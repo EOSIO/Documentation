@@ -20,7 +20,7 @@ Copyright © 2017 block.one
   * [并发性能](#parallel-performance)
 - [共识算法 (DPOS)](#consensus-algorithm--dpos-)
   * [交易确认](#transaction-confirmation)
-  * [作为股权证明的交易 (TaPoS)](#transaction-as-proof-of-stake--tapos-)
+  * [股权证明的交易 (TaPoS)](#transaction-as-proof-of-stake--tapos-)
 - [账户](#accounts)
   * [消息 & 处理](#messages---handlers)
   * [基于角色的权限管理](#role-based-permission-management)
@@ -115,48 +115,50 @@ EOS.IO 软件使得区块准确的每 3 秒生成一个并且在任何时间点�
 
 在一般情况下，一个 DPOS 区块链不会经历任何的分叉，因为区块生产者是通过合作而非竞争的方式来生产区块。即便真的出现了分叉，共识也将自动的切换到最长的链上。之所以会这样运作，是因为区块添加到一个区块链分叉的速率与公用同一共识的区块生产者比例是相关的。换句话说，具有更多生产者的区块链分叉会比拥有较少生产的那一个条增长的速度更快。而且，没有一个生产者会同时在两个分叉上同时生产区块。如果一个区块生产者被抓到做这样的事儿，那么这个生产者将很可能被投票投出。这些双重生产行为对应密码学凭证可以用来自动的删除这些滥用者。
 
-## Transaction Confirmation
+## 交易确认
 
-Typical DPOS blockchains have 100% block producer participation. A transaction can be considered confirmed with 99.9% certainty after an average of 1.5 seconds from time of broadcast.
+通常 DPOS 区块链 100% 会有区块生产者参与。一个交易从广播开始后平均 1.5 秒就可以 99.9% 被认为是确认了。
 
-There are some extraordinary cases where a software bug, Internet congestion, or a malicious block producer will create two or more forks. For absolute certainty that a transaction is irreversible, a node may choose to wait for confirmation by 15 out of the 21 block producers.  Based on a typical configuration of the EOS.IO software, this will take an average of 45 seconds under normal circumstances. By default all nodes will consider a block confirmed by 15 of 21 producers irreversible and will not switch to a fork that excludes such a block regardless of length.
+在一些特殊情况下例外，软件出现 bug，网络拥塞，或一个恶意的区块生产者制造了两个或更多的分叉。为了确保一个交易绝对是不可逆的，一个节点可以选择等待 21 个区块生产者中的 15 个给出确认。基于通常的 EOS.IO 软件配置，在一般情况下这需要平均 45 秒的时间。默认情况下，所有的节点将认为当 21 个生产者中有 15 个给出确认后这一区块就是不可逆的了，并且不管长度如何都不会切换到没有这一区块的分叉。
 
-It is possible for a node to warn users that there is a high probability that they are on a minority fork within 9 seconds of the start of a fork. After 2 consecutive missed blocks there is a 95% probability a node is on a minority fork.  With 3 consecutive missed blocks there is a 99% certainty of being on a minority fork.  It is possible to generate a robust predictive model that will utilize information about which nodes missed, recent participation rates, and other factors to quickly warn operators that something is wrong.
+在分叉开始的 9 秒内，一个节点就可以警告用户他们极可能正处于分叉中。在连续丢失 2 个区块后，有 95% 的概率可以确认一个节点处于分叉中。在连续丢失 3 个区块后就有 99% 的概率确认。可以通过节点丢失、近期参与比率和其他参数来构建鲁棒性预测模型，从而快速的警告操作者出现了问题。
 
-The response to such a warning depends entirely upon the nature of the business transactions, but the simplest response is to wait for 15/21 confirmations until the warning stops.
+对于这种警告的反应完全取决于商业交易的性质，但最简单的做法就是等待 15/21 的确认直到警告消失。
 
-## Transaction as Proof of Stake (TaPoS)
+## 股权证明的交易 (TaPoS)
 
-The EOS.IO software requires every transaction to include the hash of a recent block header. This hash serves two purposes:
+EOS.IO 软件需要每一个交易包含最近一个区块头的哈希值。这个哈希值有两个目的：
 
-1. prevents a replay of a transaction on forks that do not include the referenced block; and
-2. signals the network that a particular user and their stake are on a specific fork.
+1. 防止不包含区块引用的交易在分叉时重放发生；和
+2. 通知网络对应的用户和他们的股份当前在某个具体的分叉上。
 
-Over time all users end up directly confirming the blockchain which makes it difficult to forge counterfeit chains as the counterfeit would not be able to migrate transactions from the legitimate chain.  
+随着时间的推移，所有的用户直接确认区块链，在这一链条上难以伪造假的链条，因为假的链条根本无法从合法链条上迁移交易。
 
-# Accounts
+# 账户
 
-The EOS.IO software permits all accounts to be referenced by a unique human readable name of 2 to 32 characters in length. The name is chosen by the creator of the account.  All accounts must be funded with the minimal account balance at the time they are created to cover the cost of storing account data.  Account names also support namespaces such that the owner of account @domain is the only one who can create the account @user.domain.
+EOS.IO 软件允许所有的账户使用一个唯一的人类可读的名称来索引，长度在 2 到 32 个字符之间。这个名称由账户创建者自己选择。所有的账户必须在创建时用极少的账户余额来注资，从而覆盖存储账户信息的成本。账户名称也支持命名空间，比如 @domain 这个账户的拥有者是唯一可以创建 @user.domain 账户的人。
 
-In a decentralized context, application developers will pay the nominal cost of account creation to sign up a new user. Traditional businesses already spend significant sums of money per customer they acquire in the form of advertizing, free services, etc. The cost of funding a new blockchain account should be insignificant in comparison. Fortunately, there is no need to create accounts for users already signed up by another application.   
+在一个去中心化的场景中，应用开发者将会为新用户注册成本买单。传统的企业已经为了获客而花费大量的前，比如广告、免费服务等。比起来，资助一个新的区块链账户的花费简直微不足道。值得庆幸的是，对一个已经在另一个应用注册过的用户并不需要再创建新的账户。
 
-## Messages & Handlers
+## 消息 & 处理
 
-Each account can send structured messages to other accounts and may define scripts to handle messages when they are received.  The EOS.IO software gives each account its own private database which can only be accessed by its own message handlers. Message handling scripts can also send messages to other accounts. The combination of messages and automated message handlers is how EOS.IO defines smart contracts.
+每个账户可以发送结构化的消息给其他的账户，并且可以定义脚本来处理他们接收到的消息。EOS.IO 软件给每个账户提供了只有自己的消息处理脚本能访问的私有数据库。消息处理脚本同样可以给其他账户发送消息。消息和自动化的消息处理的结合决定了 EOS.IO 如何定义智能合约的。
 
-## Role Based Permission Management
+## 基于角色的权限管理
 
-Permission management involves determining whether or not a message is properly authorized. The simplest form of permission management is checking that a transaction has the required signatures, but this implies that required signatures are already known. Generally authority is bound to individuals or groups of individuals and is often compartmentalized. The EOS.IO software provides a declarative permission management system that gives accounts fine grained and high level control over who can do what and when.
+权限管理涉及判定一条消息是否被正确的授权。权限管理最简单的形式就是检查一个交易包含必须的签名，但这意味着必须的签名是已知的。一般情况下，权威必然是独立的个体或者个体组成的群体，并且是被划分开的。EOS.IO 软件提供了声明式的权限管理系统，通过管理谁可以在什么时间做什么来给用户细力度和高维度的控制。
 
-It is critical that authentication and permission management be standardized and separate from the business logic of the application. This enables tools to be developed to manage permissions in a general purpose manner and also provide significant opportunities for performance optimization.  
+授权和权限管理被标准化和脱离应用的商业逻辑是不可取的。这使得管理权限的工具得以被开发，既满足常规的需求又为性能优化提供了重要的可能性。
 
-Every account may be controlled by any weighted combination of other accounts and private keys. This creates a hierarchical authority structure that reflects how permissions are organized in reality, and makes multi-user control over funds easier than ever. Multi-user control is the single biggest contributor to security, and, when used properly, it can greatly eliminate the risk of theft due to hacking.
+每一个账户可以被任何权重组合的其他账户和私钥管控。这创建了分层级的权利结构，这反映了现实中的权限分配方式，并且让多用户共同管理资产变得从未如此简单。多用户控制是安全最大的贡献者，并且，当用户使用得当，它可以极大的消除因被黑而导致被盗窃的风险。
 
-EOS.IO software allows accounts can define what combination of keys and/or other accounts can send a particular message type to another account.  For example, it is possible to have one key for a user's social media account and another for access to the exchange.  It is even possible to give other accounts permission to act on behalf of a user's account without  assigning them keys.  
+EOS.IO 软件允许账户被定义为哪些密钥和／或其他账号的组合可以发送特定的消息类型给其他账户。举个例子，可以指定一个密钥给一个用户的社交媒体账号，同时另一个密钥访问交易所。甚至可以给其他账户权限来代表自己而无需分配给他们密钥。
 
-### Named Permission Levels
+### 命名的权限级别
 
 <img align="right" src="http://eos.io/wpimg/diagram3.png" width="228.395px" height="300px" />
+
+使用 EOS.IO 软件，账户可以定义
 
 Using the EOS.IO software, accounts can define named permission levels each of which can be derived from higher level named permissions. Each named permission level defines an authority; an authority is a threshold multi-signature check consisting of keys and/or named permission levels of other accounts. For example, an account's "Friend" permission level can be set for the account to be controlled equally by any of the account's friends.
 
