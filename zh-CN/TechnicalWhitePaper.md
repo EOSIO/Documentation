@@ -325,11 +325,13 @@ EOS.IO 软件在区块生产者每次生产区块时给予其奖励。token 的�
 
 EOS.IO 软件可以配置限定生产者回报的上限从而确保 token 的每年增长比例不会超过 5%。
 
-## Community Benefit Applications
+## 社区效益应用
 
-In addition to electing block producers, based on the EOS.IO software, users can elect 3 community benefit applications also known as smart contracts. These 3 applications will receive tokens of up to a configured percent of the token supply per annum minus the tokens that have been paid to block producers. These smart contracts will receive tokens proportional to the votes each application has received from token holders. The elected applications or smart contracts can be replaced by newly elected applications or smart contracts by token holders.
+基于 EOS.IO 软件，除了竞选区块生产者，用户还可以竞选 3 个社区效益应用，它们也是智能合约。这三个应用将接收至多一个按照配置百分比对应的 token 年供应量减去每年提供给区块生产者的 token 量。这些智能合约将按照每个应用接收到的 token 持有者的票的比例对应的 token。这些应用或者智能合约可以被 token 持有者选出的新的应用或智能合约所替代。
 
-# Governance
+# 治理
+
+治理是人们在主观问题上达成共识的过程，而这无法完全用软件算法来捕获。EOS.IO 软件实现了一个治理流程，可以有效的引导区块生产者存在的影响。
 
 Governance is the process by which people reach consensus on subjective matters that cannot be captured entirely by software algorithms. The EOS.IO software implements a governance process that efficiently directs the existing influence of block producers. Absent a defined governance process, prior blockchains relied ad hoc, informal, and often controversial governance processes that result in unpredictable outcomes.
 
