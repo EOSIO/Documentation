@@ -300,7 +300,7 @@ That said, there are certain things that are trivial to measure objectively. The
 
 Traditionally, it is the business that pays for office space, computational power, and other costs required to run the business. The customer buys specific products from the business and the revenue from those product sales is used to cover the business costs of operation. Similarly, no website obligates its visitors to make micropayments for visiting its website to cover hosting costs. Therefore, decentralized applications should not force its customers to pay the blockchain directly for the use of the blockchain.
 
-The EOS.IO software does not require its users to pay directly to the blockchain for its use and therefore does not constrain or prevent t a business from determining its own monetization strategy for its products.
+The EOS.IO software does not require its users to pay directly to the blockchain for its use and therefore does not constrain or prevent a business from determining its own monetization strategy for its products.
 
 ## Delegating Capacity 
 
