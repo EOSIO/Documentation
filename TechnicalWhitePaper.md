@@ -2,7 +2,7 @@
 
 **DRAFT: June 5, 2017**
 
-**Abstract:** The EOS.IO software introduces a new blockchain architecture designed to enable vertical and horizontal scaling of decentralized applications. This is achieved by creating an operating system-like construct upon which applications can be built. The software provides accounts, authentication, databases, asynchronous communication and the scheduling of applications across hundreds of CPU cores or clusters. The resulting technology is a blockchain architecture that scales to millions of transactions per second, eliminates user fees, and allows for quick and easy deployment of decentralized applications.
+**Abstract:** The EOS.IO software introduces a new blockchain architecture designed to enable vertical and horizontal scaling of decentralized applications. This is achieved by creating an operating system-like construct upon which applications can be built. The software provides accounts, authentication, databases, asynchronous communication, and the scheduling of applications across hundreds of CPU cores or clusters. The resulting technology is a blockchain architecture that scales to millions of transactions per second, eliminates user fees, and allows for quick and easy deployment of decentralized applications.
 
 Copyright © 2017 block.one 
 
@@ -81,7 +81,7 @@ In order to gain widespread use, applications on the blockchain require a platfo
 
 ## Support Millions of Users
 
-Disrupting businesses such as Ebay, Uber, AirBnB, and Facebook, require blockchain technology capable of handling tens of millions of active daily users.  In certain cases, applications may not work unless a critical mass of users is reached and therefore a platform that can handle mass number of users is paramount.  
+Disrupting businesses such as Ebay, Uber, AirBnB, and Facebook, requires blockchain technology capable of handling tens of millions of active daily users.  In certain cases, applications may not work unless a critical mass of users is reached and therefore a platform that can handle mass number of users is paramount.  
 
 ## Free Usage
 
@@ -95,7 +95,7 @@ All non-trivial software is subject to bugs, even with the most rigorous of form
 
 ## Low Latency
 
-A good user experience demands reliable feedback with delay of no more than a few seconds. Longer delays frustrate users and make applications built on a blockchain less competitive with existing non-blockchain alternatives.
+A good user experience demands reliable feedback with a delay of no more than a few seconds. Longer delays frustrate users and make applications built on a blockchain less competitive with existing non-blockchain alternatives.
 
 ## Sequential Performance 
 
@@ -107,15 +107,15 @@ Large scale applications need to divide the workload across multiple CPUs and co
 
 # Consensus Algorithm (DPOS)
 
-EOS.IO software utilizes the only decentralized consensus algorithm capable of meeting the performance requirements of applications on the blockchain, [Delegated Proof of Stake (DPOS)](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper). Under this algorithm, those who hold tokens on a blockchain may select block producers through a continuous approval voting system and anyone may choose to participate in block production and will be given an opportunity to produce blocks proportional to the total votes they have received relative to all other producers. For private blockchains the management will use the tokens to add and remove IT staff.
+EOS.IO software utilizes the only decentralized consensus algorithm capable of meeting the performance requirements of applications on the blockchain, [Delegated Proof of Stake (DPOS)](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper). Under this algorithm, those who hold tokens on a blockchain may select block producers through a continuous approval voting system and anyone may choose to participate in block production and will be given an opportunity to produce blocks proportional to the total votes they have received relative to all other producers. For private blockchains, the management will use the tokens to add and remove IT staff.
 
-The EOS.IO software enables blocks to be produced exactly every 3 seconds and exactly one producer is authorized to produce a block at any given point in time. If the block is not produced at the scheduled time then the block for that time slot is skipped.  When one or more blocks are skipped, there is a 6 or more second gap in the blockchain.
+The EOS.IO software enables blocks to be produced exactly every 3 seconds, and exactly one producer is authorized to produce a block at any given point in time. If the block is not produced at the scheduled time then the block for that time slot is skipped.  When one or more blocks are skipped, there is a 6 or more second gap in the blockchain.
 
-Using the EOS.IO software blocks are produced in rounds of 21. At the start of each round 21 unique block producers are chosen. The top 20 by total approval are automatically chosen every round and the last producer is chosen proportional to their number of votes relative to other producers. The selected producers are shuffled using a pseudorandom number derived from the block time.  This shuffling is done to ensure that all producers maintain balanced connectivity to all other producers.
+Using the EOS.IO software, blocks are produced in rounds of 21. At the start of each round, 21 unique block producers are chosen. The top 20 by total approval are automatically chosen every round, and the last producer is chosen proportional to their number of votes relative to other producers. The selected producers are shuffled using a pseudorandom number derived from the block time.  This shuffling is done to ensure that all producers maintain balanced connectivity to all other producers.
 
-If a producer misses a block and has not produced any block within the last 24 hours they are removed from consideration until they notify the blockchain of their intention to start producing blocks again. This ensures the network operates smoothly by minimizing the number of blocks missed by not scheduling those who are proven to be unreliable. 
+If a producer misses a block and has not produced any block within the last 24 hours, they are removed from consideration until they notify the blockchain of their intention to start producing blocks again. This ensures the network operates smoothly, minimizing the number of blocks missed by not scheduling producers who are proven to be unreliable. 
 
-Under normal conditions a DPOS blockchain does not experience any forks because the block producers cooperate to produce blocks rather than compete.  In the event there is a fork, consensus will automatically switch to the longest chain. This metric works because the rate at which blocks are added to a blockchain chain fork is directly correlated to the percentage of block producers that share the same consensus. In other words, a blockchain fork with more producers on it will grow in length faster than one with fewer producers.  Furthermore, no block producer should be producing blocks on two forks at the same time. If a block producer is caught doing this then such block producer will likely be voted out. Cryptographic evidence of such double-production may also be used to automatically remove abusers.
+Under normal conditions a DPOS blockchain does not experience any forks because the block producers cooperate to produce blocks rather than compete. In the event there is a fork, consensus will automatically switch to the longest chain. This metric works because the rate at which blocks are added to a blockchain chain fork is directly correlated to the percentage of block producers that share the same consensus. In other words, a blockchain fork with more producers on it will grow in length faster than one with fewer producers.  Furthermore, no block producer should be producing blocks on two forks at the same time. If a block producer is caught doing this then such block producer will likely be voted out. Cryptographic evidence of such double-production may also be used to automatically remove abusers.
 
 ## Transaction Confirmation
 
@@ -150,7 +150,7 @@ Each account can send structured messages to other accounts and may define scrip
 
 Permission management involves determining whether or not a message is properly authorized. The simplest form of permission management is checking that a transaction has the required signatures, but this implies that required signatures are already known. Generally authority is bound to individuals or groups of individuals and is often compartmentalized. The EOS.IO software provides a declarative permission management system that gives accounts fine grained and high level control over who can do what and when.
 
-It is critical that authentication and permission management be standardized and separate from the business logic of the application. This enables tools to be developed to manage permissions in a general purpose manner and also provide significant opportunities for performance optimization.  
+It is critical that authentication and permission management be standardized and separate from the business logic of the application. This enables tools to be developed to manage permissions in a general purpose manner and also provides significant opportunities for performance optimization.  
 
 Every account may be controlled by any weighted combination of other accounts and private keys. This creates a hierarchical authority structure that reflects how permissions are organized in reality, and makes multi-user control over funds easier than ever. Multi-user control is the single biggest contributor to security, and, when used properly, it can greatly eliminate the risk of theft due to hacking.
 
@@ -352,7 +352,7 @@ The constitution also defines the human-readable intent of the source code proto
 
 ## Upgrading the Protocol & Constitution
 
-The EOS.IO software define a process by which the protocol as defined by the canonical source code and its constitution, can be updated using the following process:
+The EOS.IO software defines a process by which the protocol as defined by the canonical source code and its constitution, can be updated using the following process:
 
 1. Block producers propose a change to the constitution and obtains 17/21 approval.
 2. Block producers maintain 17/21 approval for 30 consecutive days.
