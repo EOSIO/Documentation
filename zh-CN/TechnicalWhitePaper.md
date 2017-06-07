@@ -2,7 +2,7 @@
 
 **草案：2017 年 6 月 5 日**
 
-**摘要：** EOS.IO 软件引入一种新的区块链架构设计，它使得去中心化的应用可以横向和纵向的扩展。这通过构建一个仿操作系统的方式来实现，在它之上可以构建应用程序。该软件提供账户、身份验证、数据库、异步通信和跨越数百个 CPU 内核或集群的应用程序调度。由此产生的技术是一种区块链架构，它可以扩展至每秒处理百万级交易，消除用户的手续费，并且允许快速和轻松的部署去中心化的应用。
+**摘要：** EOS.IO 软件引入一种新的区块链架构设计，它使得去中心化的应用可以横向和纵向的扩展。这通过构建一个仿操作系统的方式来实现，在它之上可以构建应用程序。该软件提供帐户、身份验证、数据库、异步通信和跨越数百个 CPU 内核或集群的应用程序调度。由此产生的技术是一种区块链架构，它可以扩展至每秒处理百万级交易，消除用户的手续费，并且允许快速和轻松的部署去中心化的应用。
 
 Copyright © 2017 block.one
 
@@ -21,7 +21,7 @@ Copyright © 2017 block.one
 - [共识算法 (DPOS)](#consensus-algorithm--dpos-)
   * [交易确认](#transaction-confirmation)
   * [股权证明的交易 (TaPoS)](#transaction-as-proof-of-stake--tapos-)
-- [账户](#accounts)
+- [帐户](#accounts)
   * [消息 & 处理](#messages---handlers)
   * [基于角色的权限管理](#role-based-permission-management)
     + [命名的权限级别](#named-permission-levels)
@@ -35,35 +35,35 @@ Copyright © 2017 block.one
 - [应用程序的确定性并行执行](#deterministic-parallel-execution-of-applications)
   * [最小化通信延迟](#minimizing-communication-latency)
   * [只读信息的处理](#read-only-message-handlers)
-  * [多账户的原子化交易](#atomic-transactions-with-multiple-accounts)
+  * [多帐户的原子化交易](#atomic-transactions-with-multiple-accounts)
   * [区块链状态的部分评估](#partial-evaluation-of-blockchain-state)
-  * [主观尽力而为调度](#subjective-best-effort-scheduling)
+  * [自主最优调度](#subjective-best-effort-scheduling)
 - [Token 模型与资源使用](#token-model-and-resource-usage)
   * [客观与主观的度量](#objective-and-subjective-measurements)
-  * [Receiver Pays](#receiver-pays)
-  * [Delegating Capacity](#delegating-capacity)
-  * [Separating Transaction costs from Token Value](#separating-transaction-costs-from-token-value)
-  * [State Storage Costs](#state-storage-costs)
-  * [Block Rewards](#block-rewards)
-  * [Community Benefit Applications](#community-benefit-applications)
-- [Governance](#governance)
-  * [Freezing Accounts](#freezing-accounts)
-  * [Changing Account Code](#changing-account-code)
-  * [Constitution](#constitution)
-  * [Upgrading the Protocol & Constitution](#upgrading-the-protocol---constitution)
-    + [Emergency Changes](#emergency-changes)
-- [Scripts & Virtual Machines](#scripts---virtual-machines)
-  * [Schema Defined Messages](#schema-defined-messages)
-  * [Schema Defined Database](#schema-defined-database)
-  * [Separating Authentication from Application](#separating-authentication-from-application)
-  * [Virtual Machine Independent Architecture](#virtual-machine-independent-architecture)
-    + [Web Assembly](#web-assembly)
-    + [Ethereum Virtual Machine (EVM)](#ethereum-virtual-machine--evm-)
-- [Inter Blockchain Communication](#inter-blockchain-communication)
-  * [Merkle Proofs for Light Client Validation (LCV)](#merkle-proofs-for-light-client-validation--lcv-)
-  * [Latency of Interchain Communication](#latency-of-interchain-communication)
-  * [Proof of Completeness](#proof-of-completeness)
-- [Conclusion](#conclusion)
+  * [接收方付费](#receiver-pays)
+  * [委托能力](#delegating-capacity)
+  * [分离交易成本与 Token 价值](#separating-transaction-costs-from-token-value)
+  * [状态存储成本](#state-storage-costs)
+  * [区块奖励](#block-rewards)
+  * [社区效益应用](#community-benefit-applications)
+- [治理](#governance)
+  * [冻结帐户](#freezing-accounts)
+  * [更改帐户代码](#changing-account-code)
+  * [宪法](#constitution)
+  * [升级协议 & 宪法](#upgrading-the-protocol---constitution)
+    + [紧急变更](#emergency-changes)
+- [脚本 & 虚拟机](#scripts---virtual-machines)
+  * [模式定义的消息](#schema-defined-messages)
+  * [模式定义的数据库](#schema-defined-database)
+  * [分离授权与应用](#separating-authentication-from-application)
+  * [虚拟机独立架构](#virtual-machine-independent-architecture)
+    + [Web 组建](#web-assembly)
+    + [以太访虚拟机 (EVM)](#ethereum-virtual-machine--evm-)
+- [跨链通信](#inter-blockchain-communication)
+  * [用于轻客户端的 Merkle 证明 (LCV)](#merkle-proofs-for-light-client-validation--lcv-)
+  * [跨链通信的延时](#latency-of-interchain-communication)
+  * [完备性证明](#proof-of-completeness)
+- [结论](#conclusion)
 
 # 背景
 
@@ -134,15 +134,15 @@ EOS.IO 软件需要每一个交易包含最近一个区块头的哈希值。这�
 
 随着时间的推移，所有的用户直接确认区块链，在这一链条上难以伪造假的链条，因为假的链条根本无法从合法链条上迁移交易。
 
-# 账户
+# 帐户
 
-EOS.IO 软件允许所有的账户使用一个唯一的人类可读的名称来索引，长度在 2 到 32 个字符之间。这个名称由账户创建者自己选择。所有的账户必须在创建时用极少的账户余额来注资，从而覆盖存储账户信息的成本。账户名称也支持命名空间，比如 @domain 这个账户的拥有者是唯一可以创建 @user.domain 账户的人。
+EOS.IO 软件允许所有的帐户使用一个唯一的人类可读的名称来索引，长度在 2 到 32 个字符之间。这个名称由帐户创建者自己选择。所有的帐户必须在创建时用极少的帐户余额来注资，从而覆盖存储帐户信息的成本。帐户名称也支持命名空间，比如 @domain 这个帐户的拥有者是唯一可以创建 @user.domain 帐户的人。
 
-在一个去中心化的场景中，应用开发者将会为新用户注册成本买单。传统的企业已经为了获客而花费大量的前，比如广告、免费服务等。比起来，资助一个新的区块链账户的花费简直微不足道。值得庆幸的是，对一个已经在另一个应用注册过的用户并不需要再创建新的账户。
+在一个去中心化的场景中，应用开发者将会为新用户注册成本买单。传统的企业已经为了获客而花费大量的前，比如广告、免费服务等。比起来，资助一个新的区块链帐户的花费简直微不足道。值得庆幸的是，对一个已经在另一个应用注册过的用户并不需要再创建新的帐户。
 
 ## 消息 & 处理
 
-每个账户可以发送结构化的消息给其他的账户，并且可以定义脚本来处理他们接收到的消息。EOS.IO 软件给每个账户提供了只有自己的消息处理脚本能访问的私有数据库。消息处理脚本同样可以给其他账户发送消息。消息和自动化的消息处理的结合决定了 EOS.IO 如何定义智能合约的。
+每个帐户可以发送结构化的消息给其他的帐户，并且可以定义脚本来处理他们接收到的消息。EOS.IO 软件给每个帐户提供了只有自己的消息处理脚本能访问的私有数据库。消息处理脚本同样可以给其他帐户发送消息。消息和自动化的消息处理的结合决定了 EOS.IO 如何定义智能合约的。
 
 ## 基于角色的权限管理
 
@@ -150,45 +150,46 @@ EOS.IO 软件允许所有的账户使用一个唯一的人类可读的名称来�
 
 授权和权限管理被标准化和脱离应用的商业逻辑是不可取的。这使得管理权限的工具得以被开发，既满足常规的需求又为性能优化提供了重要的可能性。
 
-每一个账户可以被任何权重组合的其他账户和私钥管控。这创建了分层级的权利结构，这反映了现实中的权限分配方式，并且让多用户共同管理资产变得从未如此简单。多用户控制是安全最大的贡献者，并且，当用户使用得当，它可以极大的消除因被黑而导致被盗窃的风险。
+每一个帐户可以被任何权重组合的其他帐户和私钥管控。这创建了分层级的权利结构，这反映了现实中的权限分配方式，并且让多用户共同管理资产变得从未如此简单。多用户控制是安全最大的贡献者，并且，当用户使用得当，它可以极大的消除因被黑而导致被盗窃的风险。
 
-EOS.IO 软件允许账户被定义为哪些密钥和／或其他账号的组合可以发送特定的消息类型给其他账户。举个例子，可以指定一个密钥给一个用户的社交媒体账号，同时另一个密钥访问交易所。甚至可以给其他账户权限来代表自己而无需分配给他们密钥。
+EOS.IO 软件允许帐户被定义为哪些密钥和／或其他账号的组合可以发送特定的消息类型给其他帐户。举个例子，可以指定一个密钥给一个用户的社交媒体账号，同时另一个密钥访问交易所。甚至可以给其他帐户权限来代表自己而无需分配给他们密钥。
 
 ### 命名的权限级别
 
 <img align="right" src="http://eos.io/wpimg/diagram3.png" width="228.395px" height="300px" />
 
-使用 EOS.IO 软件，账户可以定义
+在 EOS.IO 软件中，帐户可以定义命名的权限级别，每一个是由更高级别的命名权限派生而来。每一个命名的权限级别定义了一个权威；一个权威是多重签名阈值校验，它包含密钥和／或其他帐户的命名权限级别。打个比方，一个帐户的“朋友”权限级别可以被设置为由该帐户的任何一个朋友无差别的控制。
 
-Using the EOS.IO software, accounts can define named permission levels each of which can be derived from higher level named permissions. Each named permission level defines an authority; an authority is a threshold multi-signature check consisting of keys and/or named permission levels of other accounts. For example, an account's "Friend" permission level can be set for the account to be controlled equally by any of the account's friends.
+另一个例子在 Steem 区块链中，它包含三个硬编码的命名权限级别：拥有，活跃和发帖。发帖权限就只能进行如投票和发帖的社交活动，而活跃权限可以做除了变更拥有之外的所有的事情。拥有权限的意思是冷存储并且有能力做任何事。EOS.IO 通过允许帐户所有者定义他们自己的分级权限和行为的组合来推广这一概念。
 
-Another example is the Steem blockchain which has three hard-coded named permission levels: owner, active, and posting. The posting permission can only perform social actions such as voting and posting, while the active permission can do everything except change the owner.  The owner permission is meant for cold storage and is able to do everything.  EOS.IO generalizes this concept by allowing each account holder to define their own hierarchy as well as the grouping of actions.
+### 命名的消息处理群组
 
-### Named Message Handler Groups
+EOS.IO 软件允许每个帐户将他们自己的消息组织到一个命名和嵌套的群组中。这个命名的消息处理群组可以在其他帐户配置他们权限级别时被引用。
 
-The EOS.IO software allows each account to organize its own message handlers into named and nested groups. These named message handler groups can be referenced by other accounts when they configure their permission levels.
+最高级别的消息处理群组是帐户名称，最低级别的是一个帐户接收到的单独的消息类型。这些群组可以被这样的方式引用：
+ **@accountname.groupa.subgroupb.MessageType**.
 
-The highest level message handler group is the account name and the lowest level is the individual message type being received by the account. These groups can be referenced like so:  **@accountname.groupa.subgroupb.MessageType**.
+在这样的模型之下，交易所合约可以通过将挂单的创建和取消分组，从而与充值提现分离开。交易所合约的这样分组对用户而言带来了方便。
 
-Under this model it is possible for an exchange contract to group order creation and canceling separately from deposit and withdraw. This grouping by the exchange contract is a convenience for users of the exchange.
+### 权限映射
 
-### Permission Mapping
+EOS.IO 软件允许每个帐户定义从任意帐户的一个命名的消息处理群组与自己的命名的权限级别之间建立映射。举个例子，一个帐户所有者可以将自己社交媒体应用与自己的“朋友”权限群组建立映射。有了这个映射，任何朋友可以以这一帐户的身份在这一帐户的社交媒体上发帖。尽管他们将以帐户所有者的身份发帖，他们仍然使用自己的密钥来签名消息。这意味着总是可以辨识出是哪一个朋友在以何种方式使用帐户。
 
-EOS.IO software allows each account to define a mapping between a Named Message Handler Group of any account and their own Named Permission Level.  For example, an account holder could map the account holder's social media application to the account holder's "Friend" permission group. With this mapping, any friend could post as the account holder on the account holder's social media.  Even though they would post as the account holder, they would still use their own keys to sign the message. This means it is always possible to identify which friends used the account and in what way.
+### 评估权限
 
-### Evaluating Permissions
+当 **@alice** 以 "**Action**" 类型发送一条消息给 **@bob** 时，EOS.IO 软件首先会检查 **@alice** 是否为 **@bob.groupa.subgroup.Action** 定义过权限映射。如果什么都没有找到，紧接着检查 **@bob.groupa.subgroup** 映射，然后是 **@bob.groupa**，最后 **@bob** 将被检查。如果都没有找到，那么假定映射为命名的权限群组 **@alice.active**。
 
-When delivering a message of type "**Action**", from **@alice** to **@bob** the EOS.IO software will first check to see if **@alice** has defined a permission mapping for **@bob.groupa.subgroup.Action**.  If nothing is found then a mapping for **@bob.groupa.subgroup** then **@bob.groupa**, and lastly **@bob** will be checked. If no further match is found, then the assumed mapping will be to the named permission group **@alice.active**.  
-
-Once a mapping is identified then signing authority is validated using the threshold multi-signature process and the authority associated with the named permission. If that fails, then it traverses up to the parent permission and ultimately to the owner permission, **@alice.owner**.  
+一旦一个映射被识别，则通过阈值多签名流程验证签名权威，并且关联权威与命名的权限。如果失败了，则跃迁至父权限，直至拥有者权限，**@alice.owner**。
 
 <img align="center" src="http://eos.io/wpimg/diagram2grayscale2.jpg" width="845.85px" height="500px" />
 
-#### Default Permission Groups
+#### 默认权限群组
 
-The technology also allows all accounts have an "owner" group which can do everything, and an "active" group which can do everything except change the owner group.  All other permission groups are derived from "active".  
+这一技术同样允许所有的帐户有一个“拥有者”群组，可以做任何的事，并且还有一个“活动”群组可以做出了变更拥有者群组之外的所有事。所有其他的全新群组派生自“活动”群组。
 
-#### Parallel Evaluation of Permissions
+#### 权限并行评估
+
+权限评估过程是“只读”的，并且通过交易对权限的变更在一个区块结束之前不会起作用。这意味着对所有的交易对应的密钥和权限评估可以被并行执行。此外，这意味着一个快速的权限验证是可行的，它无需启动会引起回滚需求的高成本的应用逻辑。最后，这意味着交易权限可以被评估为待接收交易，
 
 The permission evaluation process is "read-only" and changes to permissions made by transactions do not take effect until the end of a block. This means that all keys and permission evaluation for all transactions can be executed in parallel. Furthermore, this means that a rapid validation of permission is possible without starting the costly application logic that would have to be rolled back. Lastly, it means that transaction permissions can be evaluated as pending transactions are received and do not need to be re-evaluated as they are applied.
 
@@ -196,131 +197,133 @@ All things considered, permission verification represents a significant percenta
 
 When replaying the blockchain to regenerate the deterministic state from the log of messages there is no need to evaluate the permissions again. The fact that a transaction is included in a known good block is sufficient to skip this step. This dramatically reduces the computational load associated with replaying an ever growing blockchain.
 
-## Messages with Mandatory Delay
+## 带强制性延时的消息
 
-Time is a critical component of security. In most cases, it is not possible to know if a private key has been stolen until it has been used. Time based security is even more critical when people have applications that require keys be kept on computers connected to the internet for daily use.  The EOS.IO software enables application developers to indicate that certain messages must wait a minimum period of time after being included in a block before they can be applied. During this time they can be canceled.  
+时间是安全中的一个关键组成部分。在大多数情况下，一个私钥在没有被使用前都无从知晓它是否被偷窃。当人们有需要密钥的应用在每天联网使用的电脑上运行时，基于时间的安全会更为重要。EOS.IO 软件让应用开发者可以指明消息必须在被加到一个区块之前等待最小的时间间隙。在这个时间段内消息可以被取消。
 
-Users can then receive notice via email or text message when one of these messages is broadcast. If they did not authorize it, then they can use the account recovery process to recover their account and retract the message.
+用户可以在消息广播出去后通过邮件或者文字消息的形式收到通知。如果他们没有授权，那么他们可以使用帐户恢复流程来恢复帐户，并收回消息。
 
-The required delay depends upon how sensitive an operation is. Paying for a coffee can have no delay and be irreversible in seconds, while buying a house may require a 72 hour clearing period. Transferring an entire account to new control may take up to 30 days. The exact delays chosen are up to application developers and users.
+这个必须的延时由操作敏感性决定。为一杯咖啡付款可以没有任何的延时，几秒之内就不可逆了，而购买一个房子也许需要 72 消失的结算期。转移整个帐户到一个新的控制可能需要长达 30 天。具体的延时选择由开发者和用户自己来做选择。
 
-## Recovery from Stolen Keys
+## 恢复被盗窃的密钥
 
-The EOS.IO software provides users a way to restore control of their account when their keys are stolen. An account owner can use any owner key that was active in the last 30 days along with approval from their designated account recovery partner to reset the owner key on their account. The account recovery partner cannot reset control of the account without the help of the owner.
+EOS.IO 软件提供给用户一种找回自己失窃密钥控制权的方式。一个帐户的所有者可以使用过去 30 天任何活跃的拥有者密钥与事先指定的合作者帐户给出的批准来重置自己帐户的密钥。帐户的恢复合作者在没有所有人帮助的情况下无法重置帐户的控制权。
 
-There is nothing for the hacker to gain by attempting to go through the recovery process because they already "control" the account. Furthermore, if they did go through the process, the recovery partner would likely demand identification and multi-factor authentication (phone and email).  This would likely compromise the hacker or gain the hacker nothing in the process.
+黑客尝试进行恢复流程是无意义的，因为他们已经“控制”了帐户。此外，就算他们真的进行这一流程，恢复合作者也会询问身份证明和多因素认证（手机和邮件）。这会让黑客脱作出让步或者无功而返。
 
-This process is also very different from a simple multi-signature arrangement. With a multi-signature transaction, there is another company that is party to every transaction that is executed, but with the recovery process the agent is only a party to the recovery process and has no power over the day-to-day transactions. This dramatically reduces costs and legal liabilities for everyone involved.
+这一流程与简单的多重签名有很大差异。在多重签名中，另一个公司要参与所有转账的执行，但在恢复流程中，它却只在恢复时才起作用对每天的转账无从干预。这大大的降低了参与者的成本和法律责任。
 
-# Deterministic Parallel Execution of Applications
+# 应用程序的确定性并行执行
 
-Blockchain consensus depends upon deterministic (reproducible) behavior. This means all parallel execution must be free from the use of mutexes or other locking primitives.  Without locks there must be some way to guarantee that all accounts can only read and write their own private database.  It also means that each account processes messages sequentially and that parallelism will be at the account level.  
+区块链共识取决于确定性（可重现的）的行为。这意味着所有的并行计算必须是不能互斥或者具有其他锁特性的。没有了锁就必须有一些方式可以确保所有的帐户只可以读取和写入他们自己的私有数据库。这也意味着每个帐户处理消息是顺序的，而并发只能在帐户层面进行。
 
-Using the EOS.IO software, it is the job of the block producer to organize message delivery into independent threads so that they can be evaluated in parallel.  The state of each account depends only upon the messages delivered to it. The schedule is the output of a block producer and will be deterministically executed, but the process for generating the schedule need not be deterministic. This means that block producers can utilize parallel algorithms to schedule transactions.
+EOS.IO 软件中，将消息传递到不同的线程是区块生产者的职责，这样他们就可以被平行的评估。每个帐户的状态由且只由发送给它的消息决定。进度表由区块生产者输出并且会被确定性的执行，但是生成进度表的过程却不一定是确定性的。这意味着区块生产者可以使用并发算法来调度交易。
 
-Part of parallel execution means that when a script generates a new message it does not get delivered immediately, instead it is scheduled to be delivered in the next cycle. The reason it cannot be delivered immediately is because the receiver may be actively modifying its own state in another thread.
+并行执行的一方面意味着当一个脚本生成了一个新的消息，它不会立即被发送，而被安排在下一个轮训中发送。不能立马发出的原因是接受者可能在另一个线程中活跃的变更自己的状态。
 
-## Minimizing Communication Latency
+## 最小化通信延迟
 
-Latency is the time it takes for one account to send a message to another account and then receive a response.  The goal is to enable two accounts to exchange messages back and forth within a single block without having to wait 3 seconds between each message. To enable this, the EOS.IO software divides each block into cycles.  Each cycle is divided into threads and each thread contains a list of transactions.  Each transaction contains a set of messages to be delivered. This structure can be visualized as a tree where alternating layers are processed sequentially and in parallel.
+延迟是一个帐户从发出一条消息给另一个帐户，直到收到回应的这段时间。我们的目标是在一个单独的区块中包含两个帐户交换消息的来去信息，而不用在每条消息间等待 3 秒钟。为了做到这一点，EOS.IO 软件将每个区块划分为循环。每个循环划分为线程，每个线程包含了交易的一个列表。每一个交易包含了待发送的消息集合。这个结构可以被可视化为一个树，其中交互层彼此并行，各自被顺序的执行。
 
-      Block
+      区块
 
-        Cycles (sequential)
+        循环（顺序）
 
-          Threads (parallel)
+          线程（并行）
 
-            Transactions (sequential)
+            交易（顺序）
 
-              Messages (sequential)
+              消息（顺序）
 
-                Receiver and Notified Accounts (parallel)
+                接受者和被通知帐户（并行）
 
-Transactions generated in one cycle can be delivered in any subsequent cycle or block. Block producers will keep adding cycles to a block until the maximum wall clock time has passed or there are no new generated transactions to deliver.
+在一个循环中生成的交易可以在后续的任何一个循环或者区块中被发送。区块生产者会持续不断的向区块中添加循环直到最大的墙上时间到了或者没有更多的新交易要发送。
 
-It is possible to use static analysis of a block to verify that within a given cycle no two threads contain transactions that modify the same account. So long as that invariant is maintained a block can be processed by running all threads in parallel.
+可以对一个区块使用静态分析来验证同一个循环内不存在两个线程包含同一帐户下对交易的变更。只要保持不变一个区块就可以并行的运行所有的线程。
 
-## Read-Only Message Handlers
+## 只读消息的处理
 
-Some accounts may be able to process a message on a pass/fail basis without modifying their internal state. If this is the case then these handlers can be executed in parallel so long as only read-only message handlers for a particular account are included in one or more threads within a particular cycle.
+有些帐户可以在传递/失败的基础上处理消息而不修改内部状态。如果是这样的话，那么这些处理程序可以并行执行，只要只有一个特定的帐户的只读消息处理程序包含在一个或多个线程在一个特定的周期。
 
-## Atomic Transactions with Multiple Accounts
+## 多帐户的原子化交易
 
-Sometimes it is desirable to ensure that messages are delivered to and accepted by multiple accounts atomically. In this case both messages are placed in one transaction and both accounts will be assigned the same thread and the messages applied sequentially. This situation is not ideal for performance and when it comes to "billing" users for usage, they will get billed by the number of unique accounts referenced by a transaction.
+有时我们需要确保消息自动的被多个账户传递和接收。在这种情况下，消息会被放在同一个交易内，账户会被分配到同一个线程，并且消息被顺序的添加。这种情况对性能是不理想的，当用户使用涉及到“账单”时，他们将在交易内以账户唯一索引被列入其中。
 
-For performance and cost reasons it is best to minimize atomic operations involving two or more heavily utilized accounts.  
+基于性能和成本原因最好减少涉及两个或多个重度帐户的原子性操作。
 
-## Partial Evaluation of Blockchain State
+## 区块链状态的部分评估
 
-Scaling blockchain technology necessitates that components are modular. Everyone should not have to run everything, especially if they only need to use a small subset of the applications.
+扩展区块链技术使得组件化成为必要。每个人不应该执行所有的事务，尤其是当其只需要运行应用的一个小的子集。
 
-An exchange application developer runs full nodes for the purpose of displaying the exchange state to its users. This exchange application has no need for the state associated with social media applications. EOS.IO software allows any full node to pick any subset of applications to run. Messages delivered to other applications are safely ignored because an application's state is derived entirely from the messages that are delivered to it.  
+一个交易所应用开发者运行一个完整节点位的是为其用户展现所有的状态。这个交易所应用没有与社交网络建立关联的必要性。EOS.IO 软件允许任何的完整节点选择应用的任何子集来执行。传递给其他应用的消息可以被安全的忽略掉，因为应用程序的状态完全由传递给它的消息派生。
 
-This has some significant implications on communication with other accounts. Most significantly it cannot be assumed that the state of the other account is accessible on the same machine. It also means that while it is tempting to enable "locks" that allow one account to synchronously call another account, this design pattern breaks down if the other account is not resident in memory.
+这与其他帐户的沟通有一些重要的影响。最重要的是，不能假定其他帐户的状态可以在同一台机器上访问。这也意味着，虽然很容易启用“锁”来允许一个帐户同步调用另一个帐户，如果其他帐户不驻留在内存中，这种设计模式就会出现问题。
 
-All state communication among accounts must be passed via messages included in the blockchain.
+所有账户帐户间的状态通信必须通过包含在区块链中的消息进行。
 
-## Subjective Best Effort Scheduling
+## 自主最优调度
 
-The EOS.IO software cannot obligate block producers to deliver any message to any other account. Each block producer makes their own subjective measurement of the computational complexity and time required to process a transaction. This applies whether a transaction is generated by a user or automatically by a script.
+EOS.IO 软件并不能为区块生产生者为任何其他帐户送达的任何信息负责。每个区块生产者要对计算的发杂读和处理一个消息的时间自己进行主观上的预测。这同时适用于用户生成的和脚本自动生成的交易。
 
-The EOS.IO software provides that at a network level all transactions are billed a fixed computational bandwidth cost regardless of whether it took .01ms or a full 10 ms to execute it. However, each individual block producer using the software may calculate resource usage using their own algorithm and measurements. When a block producer concludes that a transaction or account has consumed a disproportionate amount of the computational capacity they simply reject the transaction when producing their own block; however, they will still process the transaction if other block producers consider it valid.
+EOS.IO 软件在网络层面通过所有列出的交易给出固定计算带宽成本，无论它是需要 .01ms 还是足足 10ms 来执行。然而，每个单独的区块生产者要通过自己的算法来计算资源的消耗。当一个区块生产者断定一个交易或者帐户消耗了不相称的大量的计算资源时，他们可以在生成自己的区块时拒绝该交易；但是，如果其他区块生产者认为交易是有效的，他们就仍需要处理交易。
 
-In general so long as even 1 block producer considers a transaction as valid and under the resource usage limits then all other block producers will also accept it, but it may take up to 1 minute for the transaction to find that producer.
+一般而言，只要一个区块生产者认为交易在资源使用限度内是有效的，那么其他区块生产者就也要接受，但可能交易传递给生产者就要花费 1 分钟。
 
-In some cases a producer may create a block that includes transactions that are an order of magnitude outside of acceptable ranges. In this case the next block producer may opt to reject the block and the tie will be broken by the third producer. This is no different than what would happen if a large block caused network propagation delays. The community would notice a pattern of abuse and eventually remove votes from the rogue producer.
+在某些情况下，生产者可以创建包含可接受范围之外的数量级的块。在这种情况下，下一个区块生产者可能会选择拒绝区块和束缚将被第三个生产者打破。这和因为区块过大导致的网络延时没什么打不同。社区会注意到模式的异常并最终会将票从流氓生产者哪里删掉。
 
-This subjective evaluation of computational cost frees the blockchain from having to precisely and deterministically measure how long something takes to run. With this design there is no need to precisely count instructions which dramatically increases opportunities for optimization without breaking consensus.
+这种对计算成本的主观评估将区块链从必须精确和确定的预测一些东西要花多长时间来运行这一问题中解放出来。有了这一设计就不需要精确的数指令，将极大的增加优化的可能性又不必打破共识。
 
-# Token Model and Resource Usage
+# Token 模型与资源使用
 
-All blockchains are resource constrained and require a system to prevent abuse. With the EOS.IO software, there are three broad classes of resources that are consumed by applications:
+所有的区块链都受资源约束并且需要一个系统来防止滥用。EOS.IO 中，有三个宽泛的类别的资源供应用程序消耗：
 
-1. Bandwidth and Log Storage (Disk);
-2. Computation and Computational Backlog (CPU); and
-3. State Storage (RAM).
+1. 带宽和日志存储（磁盘）；
+2. 计算与计算储备（中央处理器）；
+3. 状态存储（内存）；
 
-Bandwidth and computation have two components, instantaneous usage and long-term usage. A blockchain maintains a log of all messages and this log is ultimately stored and downloaded by all full nodes. With the log of messages it is possible to reconstruct the state of all applications.
+带宽和计算有两部分，瞬时使用和长期使用。一个区块链维持着所有消息的日志，这些日志最终由完全节点存储和下载。通过消息日志可以重现所有应用的状态。
 
-The computational debt is calculations that must be performed to regenerate state from the message log. If the computational debt grows too large then it becomes necessary to take snapshots of the blockchain's state and discard the blockchain's history. If computational debt grows too quickly then it may take 6 months to replay 1 year worth of transactions. It is critical, therefore, that the computational debt be carefully managed.
+可计算债务是一个必须通过消息日志重新构建状态的计算结果。如果可计算债务增长变得臃肿则有必要通过快照方式记录区块链状态，并丢弃区块链历史。如果可计算债务增长过快，则它需要花费 6 个月时间来重放等值与 1 年的交易。这很不可取，因此，可计算债务需要被细心的管理。
 
-Blockchain state storage is information that is accessible from application logic. It includes information such as order books and account balances. If the state is never read by the application then it should not be stored. For example, blog post content and comments are not read by application logic so they should not be stored in the blockchain's state.  Meanwhile the existence of a post/comment, the number of votes, and other properties do get stored as part of the blockchain's state.
+区块链状态存储是通过访问应用逻辑获取的信息。它包括诸如挂单和账户余额等信息。如果状态从未被应用读取则它不会被存储。比如，博客发布的内容和评论如未被应用逻辑读取则他们就不应该存储在区块链状态中。同时，发布的内容／评论的存在、投票的数量和其他属性要作为区块链状态的部分被存储下来。
 
-Block producers publish their available capacity for bandwidth, computation, and state. The EOS.IO software allows each account to consume a percentage of the available capacity proportional to the amount of tokens held in a 3-day staking contract. For example, if a blockchain based on the EOS.IO software is launched and if an account holds 1% of the total tokens distributable pursuant to that blockchain, then that account has the potential to utilize 1% of the state storage capacity.
+区块生产者对外发布她们可用的带宽，计算能力和状态。EOS.IO 允许帐户按比例消耗一个 3 天对赌合约中的可用资源。举个例子，如果一个基于 EOS.IO 的区块链启动了，一个帐户持有所有 token 发行总量的 1%，那么帐号就具有使用 1% 状态存储空间的能力。
 
-Using the EOS.IO software, bandwidth and computational capacity are allocated on a fractional reserve basis because they are transient (unused capacity cannot be saved for future use). The algorithm used by EOS.IO is similar to the algorithm used by Steem to rate-limit bandwidth usage.
+EOS.IO 软件中，带宽和计算能力分配在部分准备的基础中，因为他们是瞬态的（未使用的容量不能为了之后使用而存储下来）。EOS.IO 中使用的算法类似于 Steem 中限制带宽使用而用的算法。
 
-## Objective and Subjective Measurements
+## 客观与主观的度量
 
-As discussed earlier, instrumenting computational usage has a significant impact on performance and optimization; therefore, all resource usage constraints are ultimately subjective and enforcement is done by block producers according to their individual algorithms and estimates.
+如前所述，检测计算使用的性能和优化的影响很大；因此，所有资源的使用限制，最终都是主观的，执行依靠个人的算法和区块生产者进行估计。
 
-That said, there are certain things that are trivial to measure objectively. The number of messages delivered and the size of the data stored in the internal database are cheap to measure objectively. The EOS.IO software enables block producers to apply the same algorithm over these objective measures but may choose to apply stricter subjective algorithms over subjective measurements.  
+也就是说，有一些事情是微不足道的客观衡量。发送的消息数和存储在内部数据库中的数据的大小是便宜的客观衡量。的 EOS.IO 软件让区块生产者采用相同的算法应对客观的量，但可以在主观量上选择采用更严格的主观测量算法。
 
-## Receiver Pays
+## 接收方付费
 
-Traditionally, it is the business that pays for office space, computational power, and other costs required to run the business. The customer buys specific products from the business and the revenue from those product sales is used to cover the business costs of operation. Similarly, no website obligates its visitors to make micropayments for visiting its website to cover hosting costs. Therefore, decentralized applications should not force its customers to pay the blockchain directly for the use of the blockchain.
+传统上来说，企业为办公场地、计算力和其他为了运行企业而需要的成本买单。客户从企业购买具体的产品，产品销售产生的利润来盖过企业运作的成本。类似的，没有哪个网站要求来访者为盖过运作成本而支付。因此，去中心化应用也不应该强制用户因为使用了区块链而直接为区块链支付。
 
-The EOS.IO software does not require its users to pay directly to the blockchain for its use and therefore does not constrain or prevent t a business from determining its own monetization strategy for its products.
+EOS.IO 软件不需要其用户为使用区块链而付费，因此不限制或阻止企业确定其产品自身的盈利策略。
 
-## Delegating Capacity
+## 委托能力
 
-If a blockchain is launched using the EOS.IO software and tokens are held by a holder who may not have an immediate need to consume all or part of the available bandwidth, such holder can choose to give or rent the unconsumed bandwidth to others; the block producers running EOS.IO software will recognize this delegation of capacity and allocate bandwidth accordingly.
+如果一个区块链使用 EOS.IO 软件启动，一个 token 持有者也许并不想立即消耗所有或者部分可用带宽，这个持有者可以选择将可用带宽送给或者租给其他人；运行 EOS.IO 的区块生产者将根据识别到的被委托方的能力给其分配对应的带宽。
 
-## Separating Transaction costs from Token Value
+## 分离交易成本与 Token 价值
 
-One of the major benefits of the EOS.IO software is that the amount of bandwidth available to an application is entirely independent of any token price. If an application owner holds a relevant number of tokens, then the application can run indefinitely within a fixed state and bandwidth usage. Developers and users are unaffected from any price volatility in the token market and therefore not reliant on a price feed. The EOS.IO software enables block producers to naturally increase bandwidth, computation, and storage available per token independent of the token's value.
+EOS.IO 软件的一个主要优点就是应用可用的带宽完全独立于 token 的价格。如果一个应用所有者持有相应数量的 token，那么应用就可以在固定的状态和带宽使用下运行。开发者和用户不会收到 token 市场价格波动的任何影响，因此不依赖于价格反馈。EOS.IO 软件可以依据 token 让区块生产者自然的增加带宽、计算力和存储空间，而与 token 价值彼此独立。
 
-The EOS.IO software awards block producers tokens every time they produce the block. The value of the tokens will impact the amount of bandwidth, storage, and computation a producer can afford to purchase; this model naturally leverages rising token values to increase network performance.
+EOS.IO 软件在区块生产者每次生产区块时给予其奖励。token 的值将影响其能购买的带宽、存储和计算资源；这一模型会自然的利用 token 值的上涨来增加网络的性能。
 
-## State Storage Costs
+## 状态存储成本
 
-While bandwidth and computation can be delegated, storage of application state will require an application developer to hold tokens until that state is deleted. If state is never deleted then the tokens are effectively removed from circulation.
+由于带宽和计算资源可以被委托，因此应用的状态存储需要应用程序的开发者持有 token 直到状态被删除。如果状态永远不会被删除那么 token 实质上从流通中被抹除。
 
-Every user account requires a certain amount of storage; therefore, every account must maintain a minimum balance. As storage capacity of the network increases this minimum required balance will fall.
+每一个用户帐户需要一个确定数量的存储；因此每一个帐户必须保持一个最小的余额。随着网络存储能力的不断提升，余额的最小余额需求将会下降。
 
-## Block Rewards
+## 块奖励
 
-EOS.IO software awards new tokens to a block producer every time a block is produced.  The number of tokens created is determined by the median of the desired pay published by all block producers. The EOS.IO software may be configured to enforce a cap on producer awards such that the total annual increase in token supply does not exceed 5%.  
+每次区块生产生造出新的区块时 EOS.IO 软件会给予其 token 奖励。奖励的 token 数量由所有的区块生产者发布的期望回报取中值得到。
+
+EOS.IO 软件可以配置限定生产者回报的上限从而确保 token 的每年增长比例不会超过 5%。
 
 ## Community Benefit Applications
 
