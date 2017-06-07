@@ -105,15 +105,15 @@ Copyright © 2017 block.one
 
 # 共识算法 (DPOS)
 
-EOS.IO software utilizes the only decentralized consensus algorithm capable of meeting the performance requirements of applications on the blockchain, [Delegated Proof of Stake (DPOS)](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper). Under this algorithm, those who hold tokens on a blockchain may select block producers through a continuous approval voting system and anyone may choose to participate in block production and will be given an opportunity to produce blocks proportional to the total votes they have received relative to all other producers. For private blockchains the management will use the tokens to add and remove IT staff.
+EOS.IO 软件使用唯一能满足区块链之上应用性能需求的去中心化共识算法，[委托股权证明（DPOS）](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper)。在这种算法中，持有区块链中 token 的人可以通过持续批准的投票系统选择区块生产者，任何人可以选择参与区块的生产，并且将按照其获得总票数在所有生产者获得票数的比例来赋予参与的机会。对于私有区块链管理人员可以使用这些 token 来添加和删除 IT 职员。
 
-The EOS.IO software enables blocks to be produced exactly every 3 seconds and exactly one producer is authorized to produce a block at any given point in time. If the block is not produced at the scheduled time then the block for that time slot is skipped.  When one or more blocks are skipped, there is a 6 or more second gap in the blockchain.
+EOS.IO 软件使得区块准确的每 3 秒生成一个并且在任何时间点都只有一个被授权的生产者来生成区块。如果一个区块在规定时间之内未被生产出来则这一区块将被跳过。当一个或多个区块被跳过发生时，在区块链中会有一个 6 秒及以上的间隔。
 
-Using the EOS.IO software blocks are produced in rounds of 21. At the start of each round 21 unique block producers are chosen. The top 20 by total approval are automatically chosen every round and the last producer is chosen proportional to their number of votes relative to other producers. The selected producers are shuffled using a pseudorandom number derived from the block time.  This shuffling is done to ensure that all producers maintain balanced connectivity to all other producers.
+在 EOS.IO 软件中，区块通过 21 名生产者轮流产生。在每一轮的开始时，21 个唯一的区块生产者被选出。获票最高的前 20 名自动在没轮被选中，剩余的一个生产者通过得票比例选出。被选中的生产者通过从区块取到的时间作为伪随机数来打乱其顺序，打乱顺序是为确保这些生产者与其他生产者保持均衡的连通性。
 
-If a producer misses a block and has not produced any block within the last 24 hours they are removed from consideration until they notify the blockchain of their intention to start producing blocks again. This ensures the network operates smoothly by minimizing the number of blocks missed by not scheduling those who are proven to be unreliable.
+如果一个生产者错过了一个区块并且在过去的 24 小时内没有生产任何的区块，那么它将被从候选中移除，直到它在区块链中通知它要开始再次生产区块的意图。这样通过最小化区块丢失数量（因被证实不可靠的节点不作为导致）来确保网络操作的稳定性。
 
-Under normal conditions a DPOS blockchain does not experience any forks because the block producers cooperate to produce blocks rather than compete.  In the event there is a fork, consensus will automatically switch to the longest chain. This metric works because the rate at which blocks are added to a blockchain chain fork is directly correlated to the percentage of block producers that share the same consensus. In other words, a blockchain fork with more producers on it will grow in length faster than one with fewer producers.  Furthermore, no block producer should be producing blocks on two forks at the same time. If a block producer is caught doing this then such block producer will likely be voted out. Cryptographic evidence of such double-production may also be used to automatically remove abusers.
+在一般情况下，一个 DPOS 区块链不会经历任何的分叉，因为区块生产者是通过合作而非竞争的方式来生产区块。即便真的出现了分叉，共识也将自动的切换到最长的链上。之所以会这样运作，是因为区块添加到一个区块链分叉的速率与公用同一共识的区块生产者比例是相关的。换句话说，具有更多生产者的区块链分叉会比拥有较少生产的那一个条增长的速度更快。而且，没有一个生产者会同时在两个分叉上同时生产区块。如果一个区块生产者被抓到做这样的事儿，那么这个生产者将很可能被投票投出。这些双重生产行为对应密码学凭证可以用来自动的删除这些滥用者。
 
 ## Transaction Confirmation
 
