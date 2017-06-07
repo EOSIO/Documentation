@@ -1,8 +1,16 @@
 # EOS.IO Technical White Paper
 
-**Drafted June 5, 2017 by block.one**
+**DRAFT: June 5, 2017**
 
-**Abstract:** The EOS.IO software introduces a new blockchain architecture designed to enable vertical and horizontal scaling of decentralized applications. This is achieved by creating an operating system-like construct upon which applications can be built. The software provides accounts, authentication, databases, asynchronous communication and the scheduling of applications across hundreds of CPU cores or clusters. The final result of the technology is a blockchain architecture that has the potential to scale to millions of transactions per second while entirely eliminating fees for application users.
+**Abstract:** The EOS.IO software introduces a new blockchain architecture designed to enable vertical and horizontal scaling of decentralized applications. This is achieved by creating an operating system-like construct upon which applications can be built. The software provides accounts, authentication, databases, asynchronous communication and the scheduling of applications across hundreds of CPU cores or clusters. The resulting technology is a blockchain architecture that scales to millions of transactions per second, eliminates user fees, and allows for quick and easy deployment of decentralized applications.
+
+Copyright © 2017 block.one 
+
+Without permission, anyone may use, reproduce or distribute any material in this whitepaper for non-commercial and educational use (i.e., other than for a fee or for commercial purposes) provided that the original source and the applicable copyright notice are cited.
+
+
+**DISCLAIMER:**  This draft EOS.IO Technical Whitepaper is for information purposes only.  block.one does not guarantee the accuracy of the conclusions reached in this paper, and the whitepaper is provided “as is” with no representations and warranties, express or implied, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, title or noninfringement; (ii) that the contents of this whitepaper are free from error or suitable for any purpose; and (iii) that such contents will not infringe third-party rights. All warranties are expressly disclaimed. block.one and its affiliates expressly disclaim all liability for and damages of any kind arising out of the use, reference to, or reliance on any information contained in this whitepaper, even if advised of the possibility of such damages.  In no event will block.one or its affiliates be liable to any person or entity for any direct, indirect, special or consequential damages for the use of, reference to, or reliance on this whitepaper or any of the content contained herein. 
+
 
 - [Background](#background)
 - [Requirements for Blockchain Applications](#requirements-for-blockchain-applications)
@@ -51,7 +59,6 @@
   * [Schema Defined Database](#schema-defined-database)
   * [Separating Authentication from Application](#separating-authentication-from-application)
   * [Virtual Machine Independent Architecture](#virtual-machine-independent-architecture)
-    + [Wren](#wren)
     + [Web Assembly](#web-assembly)
     + [Ethereum Virtual Machine (EVM)](#ethereum-virtual-machine--evm-)
 - [Inter Blockchain Communication](#inter-blockchain-communication)
@@ -175,7 +182,7 @@ When delivering a message of type "**Action**", from **@alice** to **@bob** the 
 
 Once a mapping is identified then signing authority is validated using the threshold multi-signature process and the authority associated with the named permission. If that fails, then it traverses up to the parent permission and ultimately to the owner permission, **@alice.owner**.  
 
-<img align="center" src="http://eos.io/wpimg/diagram2grayscale.jpg" width="845.85px" height="500px" />
+<img align="center" src="http://eos.io/wpimg/diagram2grayscale2.jpg" width="845.85px" height="500px" />
 
 #### Default Permission Groups
 
@@ -389,11 +396,7 @@ Authentication is the read-only process of verifying that a message can be appli
 
 ## Virtual Machine Independent Architecture
 
-It is the intention of the EOS.IO software that multiple virtual machines can be supported and new virtual machines added over time as necessary. For this reason, this paper will not discuss the details of any particular language or virtual machine. That said, there are three virtual machines that are currently being evaluated for use within EOS.IO.
-
-### Wren
-
-[Wren](http://wren.io) is a small, fast, class-based concurrent scripting language. The developers of Wren describe it as "like Smalltak in a Lua-sized package with a dash of Erlang and wrapped up in a familiar, modern syntax". The Wren language and virtual machine was chosen for initial implementation due to its small, well documented, and easy to understand code base. It also has very respectable performance and is designed to be easily embedded into C++ applications.
+It is the intention of the EOS.IO software that multiple virtual machines can be supported and new virtual machines added over time as necessary. For this reason, this paper will not discuss the details of any particular language or virtual machine. That said, there are two virtual machines that are currently being evaluated for use within EOS.IO.
 
 ### Web Assembly (WASM)
 
