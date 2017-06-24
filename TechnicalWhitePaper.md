@@ -186,7 +186,7 @@ Once a mapping is identified then signing authority is validated using the thres
 
 #### Default Permission Groups
 
-The technology also allows all accounts have an "owner" group which can do everything, and an "active" group which can do everything except change the owner group.  All other permission groups are derived from "active".  
+The technology also allows all accounts to have an "owner" group which can do everything, and an "active" group which can do everything except change the owner group.  All other permission groups are derived from "active".  
 
 #### Parallel Evaluation of Permissions
 
