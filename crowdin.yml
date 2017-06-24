@@ -1,0 +1,3 @@
+files:
+  - source: /TechnicalWhitePaper.md
+    translation: /%locale%/%original_file_name%
