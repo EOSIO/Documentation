@@ -1,6 +1,6 @@
 # EOS.IO, техническая белая бумага
 
-**June 26, 2017**
+**26 июня 2017, переведено @blockchained (https://steemit.com/@blockchained)**
 
 **Аннотация:** EOS.IO представляет собой программный комплекс, реализованный в новой блокчейн-архитектуре и позволяющий осуществлять вертикальное и горизонтальное масштабирование децентрализованных приложений. Возможность масштабирования достигается путем создания схемы, аналогичной операционной системе, поверх которой предполагается разработка самих приложений. Разрабатываемый программный комплекс включает в себя управление аккаунтами и аутентификацией, базы данных, асинхронный обмен данными, а также управление очередями выполнения для приложений с возможностью распределения задач между сотнями процессорных ядер или целыми [серверными] кластерами. Результатом является технология, представляющая собой блокчейн-архитектуру, масштабируемую до миллионов транзакций в секунду, не требующую от пользователей комиссионных платежей за использование, а также позволяющую развертывать децентрализованные приложения легко и быстро.
 
@@ -8,7 +8,7 @@
 
 Copyright © 2017 block.one
 
-Without permission, anyone may use, reproduce or distribute any material in this white paper for non-commercial and educational use (i.e., other than for a fee or for commercial purposes) provided that the original source and the applicable copyright notice are cited.
+Допускается использование, воспроизведение и распространение любых материалов из данного документа для немоммерческого использования, а также в образовательных целях (например, любое использование, не предполагающее вознаграждения или коммерческого применения) без специального разрешения, при условии цитирования оригинального источника и соответствующего упоминания авторских прав.
 
 **DISCLAIMER:** This EOS.IO Technical White Paper is for information purposes only. block.one does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided “as is”. block.one does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. block.one and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will block.one or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.
 
@@ -71,57 +71,57 @@ Without permission, anyone may use, reproduce or distribute any material in this
 
 Blockchain technology was introduced in 2008 with the launch of the bitcoin currency, and since then entrepreneurs and developers have been attempting to generalize the technology in order to support a wider range of applications on a single blockchain platform.
 
-While a number of blockchain platforms have struggled to support functional decentralized applications, application specific blockchains such as the BitShares decentralized exchange (2014) and Steem social media platform (2016) have become heavily used blockchains with tens of thousands of daily active users. They have achieved this by increasing performance to thousands of transactions per second, reducing latency to 1.5 seconds, eliminating fees, and providing a user experience similar to those currently provided by existing centralized services.
+В то время как многие блокчейн-платформы старались реализовать поддержку функциональных децентрализованных приложений, специализированные платформы, такие как децентрализованная биржа BitShares (2014) и социальная медиа-платформа Steem (2016), превратились в интенсивно используемые сообществом блокчейны с десятками тысяч активных пользователей ежедневно. Такие результаты были достигнуты благодаря увеличению производительности до тысяч операций в секунду, снижению задержки ответа до 1.5 секунд, снижению комиссий, а также предоставлению пользователям тех же возможностей, к которым они уже успели привыкнуть в существующих централизованных сервисах.
 
-Existing blockchain platforms are burdened by large fees and limited computational capacity that prevent widespread blockchain adoption.
+Высокие комиссии и ограничения, накладываемые потребностями в вычислительных мощностях, препятствуют широкому распространению технологии блокчейн и ее адаптации под нужды сообщества.
 
 # Требования к приложениям на блокчейне
 
-In order to gain widespread use, applications on the blockchain require a platform that is flexible enough to meet the following requirements:
+Для широкого распространения блокчейн-приложений необходима платформа, достаточно гибкая для того, чтобы удовлетворять следующим требованиям:
 
 ## Поддержка миллионов пользователей
 
-Disrupting businesses such as Ebay, Uber, AirBnB, and Facebook, require blockchain technology capable of handling tens of millions of active daily users. In certain cases, applications may not work unless a critical mass of users is reached and therefore a platform that can handle mass number of users is paramount.
+Выдающиеся компании, такие как Ebay, Uber, AirBnB и Facebook, испытывают потребность в блокчейн-технологии, позволяющей обслуживать миллионы активных пользователей ежедневно. В отдельных случаях приложение просто не может работать до достижения определенного критического количества пользователей, а следовательно, платформа, способная справиться с массовым наплывом пользователей, крайне востребована.
 
 ## Возможность бесплатного использования
 
-Application developers need the flexibility to offer users free services; users should not have to pay in order to use the platform or benefit from its services. A blockchain platform that is free to use for users will likely gain more widespread adoption. Developers and businesses can then create effective monetization strategies.
+Application developers need the flexibility to offer users free services; users should not have to pay in order to use the platform or benefit from its services. Бесплатная в использовании платформа, вероятно, сможет получить более широкое распространение. В результате у разработчиков и предпринимателей появится возможность построения эффективных стратегий монетизации.
 
 ## Возможность простого обновления и восстановления после сбоев
 
-Businesses building blockchain based applications need the flexibility to enhance their applications with new features.
+Предприятиям, разрабатывающим приложения на блокчейне, требуется гибкость для расширения и улучшения функциональности.
 
-All non-trivial software is subject to bugs, even with the most rigorous of formal verification. The platform must be robust enough to fix bugs when they inevitably occur.
+Любое, кроме тривиального, программное обеспечение может содержать ошибки даже после тщательнейших проверок. Платформа должна позволять справляться с неизбежными в процессе ее функционирования проблемами.
 
 ## Скорость отклика
 
-A good user experience demands reliable feedback with delay of no more than a few seconds. Longer delays frustrate users and make applications built on a blockchain less competitive with existing non-blockchain alternatives.
+Удобство использования диктует потребность в устойчивой обратной связи с задержкой, не превышающей нескольких секунд. Длительные задержки ухудшают впечатление пользователей о блокчейн-приложении в сравнении с существующими аналогами, не базирующимися на блокчейн.
 
 ## Последовательная производительность
 
-There are some applications that just cannot be implemented with parallel algorithms due to sequentially dependent steps. Applications such as exchanges need enough sequential performance to handle high volumes and therefore a platform with fast sequential performance is required.
+Некоторые приложения не могут реализовывать параллельные алгоритмы из-за наличия последовательно зависимых шагов. Например, биржевые приложения должны обеспечивать достаточную производительность последовательных вычислений для поддержания высоких объемов [торгов]. Поэтому и разрабатываемая платформа должна иметь высокую производительность последовательных вычислений.
 
 ## Параллельная производительность
 
-Large scale applications need to divide the workload across multiple CPUs and computers.
+Крупномасштабным приложениям необходимо распределять нагрузку на несколько процессоров и компьютеров.
 
 # Алгоритм консенсуса (DPOS)
 
-EOS.IO software utilizes the only decentralized consensus algorithm capable of meeting the performance requirements of applications on the blockchain, [Delegated Proof of Stake (DPOS)](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper). Under this algorithm, those who hold tokens on a blockchain adopting the EOS.IO software may select block producers through a continuous approval voting system and anyone may choose to participate in block production and will be given an opportunity to produce blocks proportional to the total votes they have received relative to all other producers. For private blockchains the management could use the tokens to add and remove IT staff.
+EOS.IO использует единственный децентрализованный алгоритм консенсуса, способный удовлетворить потребности в производительности приложений на блокчейне: [Делегированное Доказательство Владения Долей (Delegated Proof of Stake, DPOS)](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper). Under this algorithm, those who hold tokens on a blockchain adopting the EOS.IO software may select block producers through a continuous approval voting system and anyone may choose to participate in block production and will be given an opportunity to produce blocks proportional to the total votes they have received relative to all other producers. For private blockchains the management could use the tokens to add and remove IT staff.
 
-The EOS.IO software enables blocks to be produced exactly every 3 seconds and exactly one producer is authorized to produce a block at any given point in time. If the block is not produced at the scheduled time then the block for that time slot is skipped. When one or more blocks are skipped, there is a 6 or more second gap in the blockchain.
+В EOS.IO блоки будут создаваться каждые 3 секунды, при этом в каждый момент времени правом создать блок будет обладать только один производитель. Если блок не был создан согласно расписанию, соответствующий отрезок времени пропускается. Если пропущен один или несколько блоков, то в блокчейне остается разрыв в 6 или более секунд.
 
-Using the EOS.IO software blocks are produced in rounds of 21. At the start of each round 21 unique block producers are chosen. The top 20 by total approval are automatically chosen every round and the last producer is chosen proportional to their number of votes relative to other producers. The selected producers are shuffled using a pseudorandom number derived from the block time. This shuffling is done to ensure that all producers maintain balanced connectivity to all other producers.
+В EOS.IO блоки создаются раундами. В одном раунде создается 21 блок. Каждый раунд начинается с выбора 21 уникального производителя. 20 лучших из утвержденных производителей автоматически участвуют в каждом раунде, а один выбирается в соответствии с набранным количеством голосов в сравнении с другими производителями. Выбранные для раунда производители выстраиваются в очередь в соответствии с псевдослучайными номерами, полученными из времени блока. Такое перемешивание производителей призвано обеспечить сбалансированность связей между ними.
 
-If a producer misses a block and has not produced any block within the last 24 hours they are removed from consideration until they notify the blockchain of their intention to start producing blocks again. This ensures the network operates smoothly by minimizing the number of blocks missed by not scheduling those who are proven to be unreliable.
+Если производитель пропускает блок и не производит ни одного блока в течение 24 часов, то он исключается из рассмотрения до специального уведомления, которое такой производитель должен послать в блокчейн для подтверждения намерения продолжения работы. Это обеспечивает слаженную работу сети и минимизирует количество пропускаемых блоков путем исключения ненадежных производителей из расписания.
 
-Under normal conditions a DPOS blockchain does not experience any forks because the block producers cooperate to produce blocks rather than compete. In the event there is a fork, consensus will automatically switch to the longest chain. This metric works because the rate at which blocks are added to a blockchain chain fork is directly correlated to the percentage of block producers that share the same consensus. In other words, a blockchain fork with more producers on it will grow in length faster than one with fewer producers. Furthermore, no block producer should be producing blocks on two forks at the same time. If a block producer is caught doing this then such block producer will likely be voted out. Cryptographic evidence of such double-production may also be used to automatically remove abusers.
+Обычно DPOS блокчейны не подвержены ветвлению (возникновению форков), т. к. производители блоков не конкурируют между собой, а кооперируются. В случае, если ветвление цепи все-таки происходит, алгоритм консенсуса автоматически переключается на самую длинную последовательность блоков. Эта схема работает, потому что скорость добавления блоков в ветку цепи напрямую зависит от процента разделяющих текущий консенсус производителей блоков. Другими словами, ветка блокчейна с бОльшим количеством производителей просто растет в длину быстрее в сравнении с веткой с меньшим количеством производителей. Более того, производитель блоков не может производить их для нескольких веток одновременно. Производитель, попавшийся за этим занятием, вероятнее всего будет исключен из процесса путем голосования. Для автоматизации исключения нарушителей могут использоваться криптографические доказательства.
 
 ## Подтверждение транзакций
 
-Typical DPOS blockchains have 100% block producer participation. A transaction can be considered confirmed with 99.9% certainty after an average of 1.5 seconds from time of broadcast.
+В типичных DPOS блокчейнах в работе участвуют все производители блоков. Транзакция может считаться подтвержденной с вероятностью 99.9% в течение 1.5 секунд с момента её отправки.
 
-There are some extraordinary cases where a software bug, Internet congestion, or a malicious block producer will create two or more forks. For absolute certainty that a transaction is irreversible, a node may choose to wait for confirmation by 15 out of the 21 block producers. Based on a typical configuration of the EOS.IO software, this will take an average of 45 seconds under normal circumstances. By default all nodes will consider a block confirmed by 15 of 21 producers irreversible and will not switch to a fork that excludes such a block regardless of length.
+Есть вероятность возникновения некоторых экстраординарных ситуаций, вызванных сбоем в ПО, отключением от интернета или намеренным вредительством со стороны производителя блоков - в таком случае возникает ответвление (форк). Для абсолютной уверенности в необратимости транзакции узлу сети может потребоваться дождаться подтверждения от 15 из 21 производителей блоков. Для стандартной конфигурации EOS.IO в нормальных условиях на это потребуется 45 секунд. По умолчанию все узлы будут считать блок необратимым после получения подтверждения от 15 из 21 производителей и не станут переключаться на ветку, в которой нет этого блока, независимо от длины ветки.
 
 It is possible for a node to warn users that there is a high probability that they are on a minority fork within 9 seconds of the start of a fork. After 2 consecutive missed blocks there is a 95% probability a node is on a minority fork. With 3 consecutive missed blocks there is a 99% certainty of being on a minority fork. It is possible to generate a robust predictive model that will utilize information about which nodes missed, recent participation rates, and other factors to quickly warn operators that something is wrong.
 
