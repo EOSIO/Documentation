@@ -166,7 +166,7 @@ EOS.IO позволяет аккаунтам задавать комбинаци
 
 ### Именованные группы обработчиков сообщений
 
-The EOS.IO software allows each account to organize its own message handlers into named and nested groups. These named message handler groups can be referenced by other accounts when they configure their permission levels.
+EOS.IO обеспечивает каждому аккануту возможность объединять обработчики сообщений в иерархические именованные группы. Такие именованные группы обработчиков могут использоваться другими аккаунтами в процессе конфигурации их настроек уровней доступа.
 
 Обработчики сообщений верхнего уровня именуются по имени аккаунта, а нижнего - по индивидуальным типам сообщений, которые получает аккаунт. Такие группы могут быть вызваны как **@accountname.groupa.subgroupb.MessageType**.
 
