@@ -4,7 +4,7 @@
 
 **초록:** EOS.IO 소프트웨어는 탈중앙화 애플리케이션의 수직 및 수평 확장이 가능하도록 디자인된 새로운 블록체인 아키텍처를 소개합니다. 이는 애플리케이션을 구축할 수 있는 운영체제와 유사한 구조를 생성함으로 완성됩니다. 본 소프트웨어는 수백 개의 CPU 코어 또는 클러스터에 계정(accounts), 인증(authentication), 데이터베이스(databases), 비동기 통신(asynchronous communication), 애플리케이션 스케쥴링(application scheduling) 기능을 제공합니다. 그 결과 초당 수백만 건의 트랜잭션 처리 능력을 갖추면서도, 수수료가 없고, 빠르고 쉽게 애플리케이션을 개발할 수 있는 블록체인 아키텍처 기술이 탄생했습니다.
 
-**PLEASE NOTE: CRYPTOGRAPHIC TOKENS REFERRED TO IN THIS WHITE PAPER REFER TO CRYPTOGRAPHIC TOKENS ON A LAUNCHED BLOCKCHAIN THAT ADOPTS THE EOS.IO SOFTWARE. THEY DO NOT REFER TO THE ERC-20 COMPATIBLE TOKENS BEING DISTRIBUTED ON THE ETHEREUM BLOCKCHAIN IN CONNECTION WITH THE EOS TOKEN DISTRIBUTION.**
+**주의사항: 본 백서에서 언급되는 암호화폐 토큰은 EOS.IO 소프트웨어를 사용할 수 있는 블록체인 상에 존재하는 토큰을 지칭합니다. 이 토큰은 EOS 분배에 사용되는 이더리움 블록체인 상에 존재하는 ERC-20 기반 토큰을 가리키는 것이 아닙니다.**
 
 저작권 소유 © 2017 block.one
 
@@ -85,7 +85,7 @@ Ebay, Uber, AirBnB, Facebook 과 같은 기존 서비스와 경쟁력을 갖추�
 
 ## 무료 사용 (Free Usage)
 
-Application developers need the flexibility to offer users free services; users should not have to pay in order to use the platform or benefit from its services. 사용자가 무료로 이용할 수 있는 블록체인 플랫폼이 더 널리 전파될 것입니다. 빠른 대중화로 인해 기업가와 개발자는 효율적인 수익 창출 전략을 만들어 낼 수 있을 것입니다.
+애플리케이션 개발자는 사용자들에게 무료 서비스를 제공할 수 있는 유연성이 필요하며, 사용자들은 플랫폼을 사용하거나 플랫폼의 서비스를 통해 편익을 얻기 위해 비용을 지불해서는 안됩니다. 사용자가 무료로 이용할 수 있는 블록체인 플랫폼이 더 널리 전파될 것입니다. 빠른 대중화로 인해 기업가와 개발자는 효율적인 수익 창출 전략을 만들어 낼 수 있을 것입니다.
 
 ## 간편한 업그레이드 및 버그 해소 (Easy upgrades and Bug Recovery)
 
