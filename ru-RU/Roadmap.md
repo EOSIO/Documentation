@@ -1,4 +1,4 @@
-## EOS.IO Software Roadmap
+## Дорожная карта программного обеспечения EOS.IO
 
 This document outlines the development plan from a high level and will be updated as progress is made toward version 1.0. It should be noted that this roadmap applies only to the blockchain software and not to the other tools and utilities such as wallets and block explorers which will have their own teams and dedicated roadmaps once Phase 1 is complete..
 
