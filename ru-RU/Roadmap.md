@@ -27,17 +27,17 @@ block.one не гарантирует точности информации в �
 
 ### Интерфейс RPC (Архаг, Нэйтан)
 
-A simple JSON RPC over HTTP interface will be provided that enables developers to broadcast transactions and query application state. This is critical for both publishing and interacting with test applications.
+Разработчикам будет предоставлен простой JSON RPC через HTTP интерфейс, что позволит им транслировать транзакции и запрашивать состояние приложения. Это крайне важно как для публикации, так и для взаимодействия с тестовыми приложениями.
 
-### Command line Tools (Arhag)
+### Инструменты командной строки (Архаг)
 
-Command line tools facilitate integrating the RPC interface with developer build environments.
+Инструменты командной строки упрощают интеграцию интерфейса RPC в созданные разработчиками среды.
 
-### Basic Developer Documentation (Josh)
+### Базовая документация для разработчиков (Джош)
 
-Documents that teach developers how to get started with building on EOS.IO blockchains. This includes documentations of the WASM API, RPC Interface, and Command Line Tools.
+Документация, объясняющая разработчикам, как начать строить на блокчейнах EOS.IO. Включает в себя документацию по WASM API, интерфейсу RPC и инструментам командной строки.
 
-# Phase 2 - Minimal Viable Test Network - Fall 2017
+# Этап 2 - Минимальная необходимая Тестовая сеть - Осень 2017
 
 Everything in Phase 1 assumes a trusted environment that only runs the developer's own code. Before a test network can be deployed several additional features need to be implemented and tested.
 
