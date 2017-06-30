@@ -55,9 +55,9 @@ block.one не гарантирует точности информации в �
 
 ### Тестирование импорта создания (DappHub)
 
-Tools need to be developed to export data from the EOS Token Distribution state and create a genesis configuration file. This will enable anyone participating in the Token Distribution to acquire some initial test EOS (TEOS)
+Необходимо разработать инструменты для экспорта данных из состояния распределения токенов EOS и создания файла исходной конфигурации. Это позволит всем участникам распределения токенов получить некоторый первоначальный тестовый EOS (TEOS).
 
-### Interblockchain Communication (Nathan)
+### Межблокчейновая связь (Нэйтан)
 
 This feature involves verifying the Merkle hashing of transactions is proper.
 
