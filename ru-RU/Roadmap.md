@@ -1,9 +1,9 @@
 ## Дорожная карта программного обеспечения EOS.IO
 
-This document outlines the development plan from a high level and will be updated as progress is made toward version 1.0. It should be noted that this roadmap applies only to the blockchain software and not to the other tools and utilities such as wallets and block explorers which will have their own teams and dedicated roadmaps once Phase 1 is complete..
+В этом документе обозначен общий план разработки, который обновляться по мере прогресса в работе над версией 1.0. Нужно отметить, что эта дорожная карта применима только к программному обеспечению блокчейна и не относится к другим инструментам и утилитам, например, кошелькам и обозревателям блоков, для разработки которых после завершения Фазы 1 будут созданы отдельные команды и дорожные карты.
 
-***Everything contained in this document is in draft form and subject to change at any time and provided for information purposes only.  
-block.one does not guarantee the accuracy of the information contained in this roadmap and the information is provided “as is” with no representations or warranties, express or implied.***
+***Всё содержимое этого документа находится на стадии черновика и может измениться в любое время. Предоставленная информация служит сугубо информационным целям.  
+block.one не гарантирует точности информации в этой дорожной карте, которая предоставляется "как есть" без явных или подразумеваемых гарантий и заявлений.***
 
 # Phase 1 - Minimal Viable Testing Environment - Summer 2017
 
