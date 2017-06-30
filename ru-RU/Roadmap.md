@@ -51,9 +51,9 @@ block.one не гарантирует точности информации в �
 
 ### Отслеживание использования ресурсов и Ограничение скорости (Архаг)
 
-To prevent abuse the resource monitoring and usage tracking rate limits users accoding to staked EOS.
+В целях предотвращения злоупотреблений мониторинг ресурсов и отслеживание использования ограничивают пользователей по скорости в соответствии с их долей в EOS.
 
-### Genesis Import Testing (DappHub)
+### Тестирование импорта создания (DappHub)
 
 Tools need to be developed to export data from the EOS Token Distribution state and create a genesis configuration file. This will enable anyone participating in the Token Distribution to acquire some initial test EOS (TEOS)
 
