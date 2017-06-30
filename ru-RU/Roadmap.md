@@ -21,11 +21,11 @@ block.one не гарантирует точности информации в �
   2. @stake - управляет удерживаемыми EOS, голосованием и выборами Производителей
   3. @system - управляет разрешениями, сообщениями и обновлениями контактного кода
 
-### Virtual Machine API (Dan)
+### API виртуальной машины (Дэн)
 
-Contracts are compiled to WebAssembly (WASM) and WASM must interface with the blockchain via a defined API. This API is what developers depend upon to build applications and be relatively stable before developers can really start to build on EOS.
+Контракты компилируются в WebAssembly (WASM), и WASM должен взаимодействовать с блокчейном через определенный API. Этот API - то, от чего зависит возможность разработчиков строить приложения и стабильно контролировать процесс, прежде чем разработчики действительно смогут начать строить на EOS.
 
-### RPC Interface (Arhag, Nathan)
+### Интерфейс RPC (Архаг, Нэйтан)
 
 A simple JSON RPC over HTTP interface will be provided that enables developers to broadcast transactions and query application state. This is critical for both publishing and interacting with test applications.
 
