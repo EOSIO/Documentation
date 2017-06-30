@@ -11,15 +11,15 @@ block.one не гарантирует точности информации в �
 
 ### Автономный узел (Дэн & Нэйтан)
 
-A standalone node operates a test blockchain and produces blocks while exposing an API. This node does not need to concern itself with any P2P networking code.
+Автономный узел обеспечивает работу тестового блокчейна и производит блоки, выставляя API. Этому узлу не нужно задействовать какой-либо код P2P сетей.
 
-### Native Contracts (Nathan)
+### Нативные контракты (Нэйтан)
 
-The EOS.IO software has a number of native contracts. These are contracts that manage the core operations of the blockchain and exist outside the Web Assembly interface. These contracts include:
+Программное обеспечение EOS.IO обладает рядом нативных контрактов. Это контракты, управляющие основными операциями блокчейна и существующие вне интерфейса Web Assembly. Эти контракты включают в себя:
 
-  1. @eos - manages EOS token transfers
-  2. @stake - manages locked EOS, voting, and Producer Election
-  3. @system - manages permissions, messages, and contact code updates
+  1. @eos - управляет переводами токена EOS
+  2. @stake - управляет удерживаемыми EOS, голосованием и выборами Производителей
+  3. @system - управляет разрешениями, сообщениями и обновлениями контактного кода
 
 ### Virtual Machine API (Dan)
 
