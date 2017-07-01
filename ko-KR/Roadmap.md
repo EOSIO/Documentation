@@ -1,9 +1,8 @@
 ## EOS.IO Software Roadmap
 
-This document outlines the development plan from a high level and will be updated as progress is made toward version 1.0. It should be noted that this roadmap applies only to the blockchain software and not to the other tools and utilities such as wallets and block explorers which will have their own teams and dedicated roadmaps once Phase 1 is complete..
+This document outlines the development plan from a high level and will be updated as progress is made toward version 1.0. It should be noted that this roadmap applies only to the blockchain software and not to the other tools and utilities such as wallets and block explorers which will have their own teams and dedicated roadmaps once Phase 1 is complete.
 
-***Everything contained in this document is in draft form and subject to change at any time and provided for information purposes only.  
-block.one does not guarantee the accuracy of the information contained in this roadmap and the information is provided “as is” with no representations or warranties, express or implied.***
+***Everything contained in this document is in draft form and subject to change at any time and provided for information purposes only. block.one does not guarantee the accuracy of the information contained in this roadmap and the information is provided “as is” with no representations or warranties, express or implied.***
 
 # 1단계: 기초적인 테스팅 환경 구성 - 2017년 여름
 
@@ -49,13 +48,13 @@ This is a plugin that is responsible for synchronizing the blockchain state betw
 
 The WASM code needs to be sanitized to check for non-deterministic behavior such as floating point operations and infinite loops.
 
-### Resource Usage Tracking & Rate Limiting ( Arhag )
+### Resource Usage Tracking & Rate Limiting (Arhag)
 
 To prevent abuse the resource monitoring and usage tracking rate limits users accoding to staked EOS.
 
 ### Genesis Import Testing (DappHub)
 
-Tools need to be developed to export data from the EOS Token Distribution state and create a genesis configuration file. This will enable anyone participating in the Token Distribution to acquire some initial test EOS (TEOS)
+Tools need to be developed to export data from the EOS Token Distribution state and create a genesis configuration file. This will enable anyone participating in the Token Distribution to acquire some initial test EOS (TEOS).
 
 ### Interblockchain Communication (Nathan)
 
@@ -79,7 +78,7 @@ Adding support for additional langauges to be compiled to WASM: C++, Rust, etc.
 
 ### Documentation & Tutorials
 
-# 4단계: 병렬처리 최적화 - 2018년 여름 ~ 가을
+# Phase 4 - Parallel Optimization Summer / Fall 2018
 
 After getting a stable 1.0 product released, we will move toward optimizing the code for parallel execution.
 
