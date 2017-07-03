@@ -4,82 +4,82 @@
 
 ***本文档中，所有内容均为草案形式，且随时可能变更，仅供参考. block.one不保证本路线图文件中信息的准确性，所有的信息"按照原样"提供，不存在任何声明或保证，明示或暗示.***
 
-# Phase 1 - Minimal Viable Testing Environment - Summer 2017
+# 阶段一 - 最小可行的测试环境　- 2017 夏季
 
-The goal of this phase is to establish the APIs that developers will require to start building and testing applications on EOS.IO. In order for developers to start testing their applications they will require the following to be implemented:
+本阶段目标是创建API, 满足开发人员在EOS.IO上开始构建和测试应用的需要. 为了让开发人员可以着手测试他们所开发的软件，需要完成如下的部分：
 
-### Standalone Node (Dan & Nathan)
+### 独立节点 (Dan & Nathan)
 
-A standalone node operates a test blockchain and produces blocks while exposing an API. This node does not need to concern itself with any P2P networking code.
+在一个独立节点上，运行一个测试区块链，提供了API, 产生区块. 这一节点没有与P2P网络相关的代码．
 
-### Native Contracts (Nathan)
+### 本地合约 (Nathan)
 
-The EOS.IO software has a number of native contracts. These are contracts that manage the core operations of the blockchain and exist outside the Web Assembly interface. These contracts include:
+EOS.IO软件有若干本地合约．这些合约用于管理区块链的核心操作,存在于Web Assembly接口之外．这些合约包括:
 
-  1. @eos - manages EOS token transfers
-  2. @stake - manages locked EOS, voting, and Producer Election
-  3. @system - manages permissions, messages, and contact code updates
+  1. @eos - 管理EOS token的转移
+  2. @stake - 管理锁定的EOS，投票，和生产者选举
+  3. @system - 管理权限，信息，和合约代码更新
 
-### Virtual Machine API (Dan)
+### 虚拟机 API (Dan)
 
-Contracts are compiled to WebAssembly (WASM) and WASM must interface with the blockchain via a defined API. This API is what developers depend upon to build applications and be relatively stable before developers can really start to build on EOS.
+合约会被编译为WebAssembly(WASM), WASM必须通过定义好的API才能与区块链交互. 开发人员开发应用需要依赖虚拟机 API, 所以在开发人员真正着手在EOS上构建程序前，该API需要达到相对稳定的状态．
 
-### RPC Interface (Arhag, Nathan)
+### RPC 接口　(Arhag, Nathan)
 
-A simple JSON RPC over HTTP interface will be provided that enables developers to broadcast transactions and query application state. This is critical for both publishing and interacting with test applications.
+我们会提供一个简单的 JSON RPC　HTTP接口，以便开发人员能够广播交易信息，查询应用的状态． 对广播信息和与测试程序交互而言，该接口都很关键.
 
-### Command line Tools (Arhag)
+### 命令行工具 (Arhag)
 
-Command line tools facilitate integrating the RPC interface with developer build environments.
+我们提供命令行工具，方便开发人员将RPC接口集成到应用的构建环境之中.
 
-### Basic Developer Documentation (Josh)
+### 基础开发文档　(Josh)
 
-Documents that teach developers how to get started with building on EOS.IO blockchains. This includes documentations of the WASM API, RPC Interface, and Command Line Tools.
+指导开发人员开始在EOS.IO区块链上构建程序的文档．包含了WASM API, RPC接口以及命令行工具的文档．
 
-# Phase 2 - Minimal Viable Test Network - Fall 2017
+# 阶段二 - 最小可行的测试网络　- 2017年秋季
 
-Everything in Phase 1 assumes a trusted environment that only runs the developer's own code. Before a test network can be deployed several additional features need to be implemented and tested.
+在阶段一中，　所有的工作都假设了一个可靠的环境，　在这个环境之中，开发人员只运行自己的代码．部署一个可行的测试网络之前，有一些额外的特性需要完成开发和测试
 
-### P2P Network Code (Phil)
+### P2P 网络代码　(Phil)
 
-This is a plugin that is responsible for synchronizing the blockchain state between two standalone nodes.
+这是一个插件，用于在两个独立的节点之间同步区块链的状态.
 
-### WASM Sanitation & CPU Sandboxing (Brian)
+### WASM 清理 & CPU 沙盒化 (Brian)
 
-The WASM code needs to be sanitized to check for non-deterministic behavior such as floating point operations and infinite loops.
+WASM代码需要进行清洁处理, 以便检查异常行为，如浮点数运算异常，和无限循环等．
 
-### Resource Usage Tracking & Rate Limiting (Arhag)
+### 资源使用情况跟踪 & 限速 (Arhag)
 
-To prevent abuse the resource monitoring and usage tracking rate limits users accoding to staked EOS.
+为了防止滥用，根据已有EOS，资源监控和使用情况追踪，对用户进行限制．
 
-### Genesis Import Testing (DappHub)
+### Genesis 导入测试 (DappHub)
 
-Tools need to be developed to export data from the EOS Token Distribution state and create a genesis configuration file. This will enable anyone participating in the Token Distribution to acquire some initial test EOS (TEOS).
+需要开发工具，用于从EOS Token发布状态导入数据，并创建一个创世设置文件 (genesis configuration file). 这可以让参与Token众筹发布的人们获得一些初始的测试EOS (TEOS).
 
-### Interblockchain Communication (Nathan)
+### 区块链内通讯 (Nathan)
 
-This feature involves verifying the Merkle hashing of transactions is proper.
+这一特性包括，验证交易的Merkl哈希值是否有效．
 
-# Phase 3 - Testing & Security Audits - Winter 2017, Spring 2018
+# 阶段三 - 测试 & 安全审计 - 2017年冬季，2018年春季
 
-During this phase the platform will undergo heavy testing with a focus on finding security issues and bug. At the end of Phase 3 version 1.0 will be tagged.
+在这一阶段, 会对平台进行大量测试，找出安全问题和程序bug. 在第三阶段结束时，会对软件打上版本 1.0 的标签.
 
-### Develop Example Applications
+### 开发示例应用
 
-Example applications are critical to proving the platform provides the features required by real developers.
+为了验证平台是否提供了真实开发者所需要的功能，示例程序的开发非常关键．
 
-### Bounties for Succesfully Attacking Network
+### 对成功的网络攻击给予奖励
 
-Attacking the network with spam, virtual machine exploits, and bug crashes, and non-deterministic behavior will be a heavily involved process but necessary to ensure that version 1.0 is stable.
+使用垃圾信息，虚拟机滥用, 错误崩溃，非正常的操作来实施网络攻击，是一个很复杂的过程，但是，为了确保软件 1.0 可以稳定使用，又是很必要的．
 
-### Language Support
+### 编程语言支持
 
-Adding support for additional langauges to be compiled to WASM: C++, Rust, etc.
+增加对其他可以编译为WASM的编程语言的支持：C++, Rust等等．
 
-### Documentation & Tutorials
+### 文档 & 教程
 
-# Phase 4 - Parallel Optimization Summer / Fall 2018
+# 阶段四 - 并行优化 2018 年夏季/秋季
 
-After getting a stable 1.0 product released, we will move toward optimizing the code for parallel execution.
+在 1.0 的稳定版发布后，我们会继续优化代码，提升并行执行性能．
 
-# Phase 5 - Cluster Implementation The Future
+# 阶段五 - 实现集群 未来
