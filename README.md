@@ -2,7 +2,7 @@
 
 - [English](TechnicalWhitePaper.md)
 - [Russian](ru-RU/TechnicalWhitePaper.md) translated by [@blockchained](https://steemit.com/@blockchained)
-- [Chinese](zh-CN/TechnicalWhitePaper.md) translated by [@0dayZh](https://steemit.com/@dayzh)
+- [Chinese](zh-CN/TechnicalWhitePaper.md) translated by [@dayzh](https://steemit.com/@dayzh)
 - [Korean](ko-KR/TechnicalWhitePaper.md) translated by [@clayop](https://steemit.com/@clayop)
 
 # Translation Guide
