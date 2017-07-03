@@ -1,8 +1,8 @@
-## EOS.IO Software Roadmap
+## EOS.IO 软件开发路线图
 
-This document outlines the development plan from a high level and will be updated as progress is made toward version 1.0. It should be noted that this roadmap applies only to the blockchain software and not to the other tools and utilities such as wallets and block explorers which will have their own teams and dedicated roadmaps once Phase 1 is complete.
+本文档列出了对开发计划的一个高度概括的大纲，软件完成1.0版本的进度后，该文档会更新． 需要注意，这份路线图只适用于区块链软件，对于其他的工具和应用，如钱包软件，和区块链浏览器，并不适用． 在阶段一完成之后，其他这些软件和工具会有其各自具体的路线图文档.
 
-***Everything contained in this document is in draft form and subject to change at any time and provided for information purposes only. block.one does not guarantee the accuracy of the information contained in this roadmap and the information is provided “as is” with no representations or warranties, express or implied.***
+***本文档中，所有内容均为草案形式，且随时可能变更，仅供参考. block.one不保证本路线图文件中信息的准确性，所有的信息"按照原样"提供，不存在任何声明或保证，明示或暗示.***
 
 # Phase 1 - Minimal Viable Testing Environment - Summer 2017
 
