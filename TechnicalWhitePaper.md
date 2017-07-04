@@ -404,7 +404,7 @@ It is the intention of the EOS.IO software-based blockchain that multiple virtua
 
 Web Assembly is an emerging web standard for building high performance web applications. With a few small modifications Web Assembly can be made deterministic and sandboxed. The benefit of Web Assembly is the widespread support from industry and that it enables contracts to be developed in familiar languages such as C or C++.
 
-Ethereum developers have already begun modifying Web Assembly to provide suitable sandboxing and determinism in with their [Ethereum flavored Web Assembly (WASM)](https://github.com/ewasm/design). This approach can be easily adapted and integrated with EOS.IO software.
+Ethereum developers have already begun modifying Web Assembly to provide suitable sandboxing and determinism in with their [Ethereum flavored Web Assembly (EWASM)](https://github.com/ewasm/design). This approach can be easily adapted and integrated with EOS.IO software.
 
 ### Ethereum Virtual Machine (EVM)
 
