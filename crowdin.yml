@@ -1,0 +1,5 @@
+files:
+  - source: /TechnicalWhitePaper.md
+    translation: /%locale%/%original_file_name%
+  - source: /Roadmap.md
+    translation: /%locale%/%original_file_name%

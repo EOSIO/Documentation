@@ -1,11 +1,10 @@
-EOS.IO Software Roadmap
------------------------
+## EOS.IO Software Roadmap
 
 This document outlines the development plan from a high level and will be updated as progress is made toward version 1.0. It should be noted that this roadmap applies only to the blockchain software and not to the other tools and utilities such as wallets and block explorers which will have their own teams and dedicated roadmaps once Phase 1 is complete.
 
 ***Everything contained in this document is in draft form and subject to change at any time and provided for information purposes only. block.one does not guarantee the accuracy of the information contained in this roadmap and the information is provided “as is” with no representations or warranties, express or implied.***
 
-# Phase 1 - Minimal Viable Testing Environment - Summer 2017
+# 1단계: 기초적인 테스팅 환경 구성 - 2017년 여름
 
 The goal of this phase is to establish the APIs that developers will require to start building and testing applications on EOS.IO. In order for developers to start testing their applications they will require the following to be implemented:
 
@@ -37,7 +36,7 @@ Command line tools facilitate integrating the RPC interface with developer build
 
 Documents that teach developers how to get started with building on EOS.IO blockchains. This includes documentations of the WASM API, RPC Interface, and Command Line Tools.
 
-# Phase 2 - Minimal Viable Test Network - Fall 2017
+# 2단계: 기초적인 테스트 네트워크 - 2017년 가을
 
 Everything in Phase 1 assumes a trusted environment that only runs the developer's own code. Before a test network can be deployed several additional features need to be implemented and tested.
 
@@ -61,7 +60,7 @@ Tools need to be developed to export data from the EOS Token Distribution state 
 
 This feature involves verifying the Merkle hashing of transactions is proper.
 
-# Phase 3 - Testing & Security Audits - Winter 2017, Spring 2018
+# 3단계: 시험운영 및 보안성 검토 - 2017년 겨울 ~ 2018년 봄
 
 During this phase the platform will undergo heavy testing with a focus on finding security issues and bug. At the end of Phase 3 version 1.0 will be tagged.
 
