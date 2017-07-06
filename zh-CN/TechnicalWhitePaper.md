@@ -218,7 +218,7 @@ EOS.IO 软件提供给用户一种找回自己失窃密钥控制权的方式。 
 
 In an EOS.IO software-based blockchain, it is the job of the block producer to organize message delivery into independent threads so that they can be evaluated in parallel. 每个帐户的状态由且只由发送给它的消息决定。 进度表由区块生产者输出并且会被确定性的执行，但是生成进度表的过程却不一定是确定性的。 这意味着区块生产者可以使用并发算法来调度交易。
 
-并行执行的一方面意味着当一个脚本生成了一个新的消息，它不会立即被发送，而被安排在下一个轮训中发送。 不能立马发出的原因是接受者可能在另一个线程中活跃的变更自己的状态。
+并行执行的一方面意味着当一个脚本生成了一个新的消息，它不会立即被发送，而被安排在下一个轮询中发送。 不能立马发出的原因是接受者可能在另一个线程中活跃的变更自己的状态。
 
 ## 最小化通信延迟
 
