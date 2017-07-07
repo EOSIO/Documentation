@@ -131,8 +131,8 @@ The response to such a warning depends entirely upon the nature of the business 
 
 The EOS.IO software requires every transaction to include the hash of a recent block header. This hash serves two purposes:
 
-  1. prevents a replay of a transaction on forks that do not include the referenced block; and
-  2. signals the network that a particular user and their stake are on a specific fork.
+1. prevents a replay of a transaction on forks that do not include the referenced block; and
+2. signals the network that a particular user and their stake are on a specific fork.
 
 Over time all users end up directly confirming the blockchain which makes it difficult to forge counterfeit chains as the counterfeit would not be able to migrate transactions from the legitimate chain.
 
@@ -279,9 +279,9 @@ This subjective evaluation of computational cost frees the blockchain from havin
 
 All blockchains are resource constrained and require a system to prevent abuse. With a blockchain that uses EOS.IO software, there are three broad classes of resources that are consumed by applications:
 
-  1. Bandwidth and Log Storage (Disk);
-  2. Computation and Computational Backlog (CPU); and
-  3. State Storage (RAM).
+1. Bandwidth and Log Storage (Disk);
+2. Computation and Computational Backlog (CPU); and
+3. State Storage (RAM).
 
 Bandwidth and computation have two components, instantaneous usage and long-term usage. A blockchain maintains a log of all messages and this log is ultimately stored and downloaded by all full nodes. With the log of messages it is possible to reconstruct the state of all applications.
 
@@ -357,13 +357,13 @@ The constitution also defines the human-readable intent of the source code proto
 
 The EOS.IO software defines a process by which the protocol as defined by the canonical source code and its constitution, can be updated using the following process:
 
-  1. Block producers propose a change to the constitution and obtains 17/21 approval.
-  2. Block producers maintain 17/21 approval for 30 consecutive days.
-  3. All users are required to sign transactions using the hash of the new constitution.
-  4. Block producers adopt changes to the source code to reflect the change in the constitution and propose it to the blockchain using the hash of a git commit.
-  5. Block producers maintain 17/21 approval for 30 consecutive days.
-  6. Changes to the code take effect 7 days later, giving all full nodes 1 week to upgrade after ratification of the source code.
-  7. All nodes that do not upgrade to the new code shut down automatically.
+1. Block producers propose a change to the constitution and obtains 17/21 approval.
+2. Block producers maintain 17/21 approval for 30 consecutive days.
+3. All users are required to sign transactions using the hash of the new constitution.
+4. Block producers adopt changes to the source code to reflect the change in the constitution and propose it to the blockchain using the hash of a git commit.
+5. Block producers maintain 17/21 approval for 30 consecutive days.
+6. Changes to the code take effect 7 days later, giving all full nodes 1 week to upgrade after ratification of the source code.
+7. All nodes that do not upgrade to the new code shut down automatically.
 
 By default configuration of the EOS.IO software, the process of updating the blockchain to add new features takes 2 to 3 months, while updates to fix non-critical bugs that do not require changes to the constitution can take 1 to 2 months.
 
@@ -387,9 +387,9 @@ Database state is also defined using a similar schema. This ensures that all dat
 
 To maximize parallelization opportunities and minimize the computational debt associated with regenerating application state from the transaction log, EOS.IO software separates validation logic into three sections:
 
-  1. Validating that a message is internally consistent;
-  2. Validating that all preconditions are valid; and
-  3. Modifying the application state.
+1. Validating that a message is internally consistent;
+2. Validating that all preconditions are valid; and
+3. Modifying the application state.
 
 Validating the internal consistency of a message is read-only and requires no access to blockchain state. This means that it can be performed with maximum parallelism. Validating preconditions, such as required balance, is read-only and therefore can also benefit from parallelism. Only modification of application state requires write access and must be processed sequentially for each application.
 
