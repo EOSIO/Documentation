@@ -48,7 +48,7 @@ Tất cả mọi thứ trong giai đoạn 1 giả định một môi trường t
 
 Mã WASM cần phải được kiểm tra cắt tỉa vệ sinh để kiểm tra các hành vi không xác định như điểm hoạt động tràn(floating point operations) và vòng lặp vô hạn.
 
-### Resource Usage Tracking & Rate Limiting (Arhag)
+### Theo dõi Tài nguyên sử dụng & tỷ lệ giới hạn (Arhag)
 
 To prevent abuse the resource monitoring and usage tracking rate limits users accoding to staked EOS.
 
