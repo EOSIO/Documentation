@@ -8,7 +8,7 @@ Tài liệu này vạch ra kế hoạch phát triển mức độ cao và sẽ �
 
 Mục tiêu của giai đoạn này là để thiết lập các API dành cho nhà phát triển, họ sẽ yêu cầu để xây dựng và thử nghiệm các ứng dụng trên nền tảng EOS. Để cho các nhà phát triển để bắt đầu thử nghiệm các ứng dụng của họ, sẽ có các yêu cầu sau đây được thực hiện:
 
-### Nút Độc lập (Dan &Nathan)
+### Nút chạy riêng lẻ (Dan &Nathan)
 
 Một nút độc lập hoạt động trên một chuỗi khối(blockchain) thử nghiệm và tạo ra các khối trong khi phơi bày một API. Nút này không cần phải quan tâm, dính dáng đến bất kỳ mã lệnh mạng P2P.
 
@@ -22,21 +22,21 @@ Nền tảng Phần mềm EOS. IO có một số lượng hợp đồng gốc. �
 
 ### Máy ảo API (Dan)
 
-Contracts are compiled to WebAssembly (WASM) and WASM must interface with the blockchain via a defined API. This API is what developers depend upon to build applications and be relatively stable before developers can really start to build on EOS.
+Hợp đồng được biên dịch để WebAssembly (WASM) và WASM phải giao tiếp với chuỗi khối ( blockchain) thông qua một API được xác định. API này là những gì nhà phát triển dựa vào để xây dựng các ứng dụng và tương đối ổn định trước khi các nhà phát triển thực sự có thể bắt đầu xây dựng trên nền tảng EOS.
 
-### RPC Interface (Arhag, Nathan)
+### Giao tiếp RPC (Arhag, Nathan)
 
-A simple JSON RPC over HTTP interface will be provided that enables developers to broadcast transactions and query application state. This is critical for both publishing and interacting with test applications.
+Một giao tiếp JSON RPC đơn giản qua HTTP sẽ cung cấp cho phép nhà phát triển phát đi các giao dịch và truy vấn trạng thái của ứng dụng. Điều này rất quan trọng cho cả việc phát hành và tương tác với các ứng dụng thử nghiệm.
 
-### Command line Tools (Arhag)
+### Công cụ dòng lệnh (Arhag)
 
-Command line tools facilitate integrating the RPC interface with developer build environments.
+Công cụ dòng lệnh tạo thuận lợi cho việc tích hợp giao tiếp RPC với nhà phát triển để xây dựng môi trường ứng dụng EOS.
 
-### Basic Developer Documentation (Josh)
+### Tài liệu phát triển phần mềm cơ bản (Josh)
 
-Documents that teach developers how to get started with building on EOS.IO blockchains. This includes documentations of the WASM API, RPC Interface, and Command Line Tools.
+Tài liệu dạy các nhà phát triển làm thế nào để bắt đầu việc xây dựng phần mềm trên nền tảng chuỗi khối EOS.IO. Điều này bao gồm các tài liệu WASM API, giao tiếp RPC, và các công cụ dòng lệnh.
 
-# Phase 2 - Minimal Viable Test Network - Fall 2017
+# Giai đoạn 2 - Mạng lưới thử nghiệm tối thiểu khả thi (Test network) - mùa thu năm 2017
 
 Everything in Phase 1 assumes a trusted environment that only runs the developer's own code. Before a test network can be deployed several additional features need to be implemented and tested.
 
