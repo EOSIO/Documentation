@@ -8,15 +8,15 @@ Tài liệu này vạch ra kế hoạch phát triển mức độ cao và sẽ �
 
 Mục tiêu của giai đoạn này là để thiết lập các API dành cho nhà phát triển, họ sẽ yêu cầu để xây dựng và thử nghiệm các ứng dụng trên nền tảng EOS. Để cho các nhà phát triển để bắt đầu thử nghiệm các ứng dụng của họ, sẽ có các yêu cầu sau đây được thực hiện:
 
-### Standalone Node (Dan & Nathan)
+### Nút Độc lập (Dan &Nathan)
 
-A standalone node operates a test blockchain and produces blocks while exposing an API. This node does not need to concern itself with any P2P networking code.
+Một nút độc lập hoạt động trên một chuỗi khối(blockchain) thử nghiệm và tạo ra các khối trong khi phơi bày một API. Nút này không cần phải quan tâm, dính dáng đến bất kỳ mã lệnh mạng P2P.
 
-### Native Contracts (Nathan)
+### Hợp đồng bản địa (Nathan)
 
-The EOS.IO software has a number of native contracts. These are contracts that manage the core operations of the blockchain and exist outside the Web Assembly interface. These contracts include:
+Nền tảng Phần mềm EOS. IO có một số lượng hợp đồng gốc. Đây là hợp đồng(contract) quản lý các hoạt động cốt lõi của chuối khối(blockchain) và tồn tại bên ngoài giao diện của WebAssembly. Các hợp đồng này bao gồm:
 
-1. @eos - manages EOS token transfers
+1. @eos - quản lý việc chuyển các tốt Kinh(token) EOS
 2. @stake - manages locked EOS, voting, and Producer Election
 3. @system - manages permissions, messages, and contact code updates
 
