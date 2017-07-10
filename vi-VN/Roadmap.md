@@ -38,15 +38,15 @@ Tài liệu dạy các nhà phát triển làm thế nào để bắt đầu vi�
 
 # Giai đoạn 2 - Mạng lưới thử nghiệm tối thiểu khả thi (Test network) - mùa thu năm 2017
 
-Everything in Phase 1 assumes a trusted environment that only runs the developer's own code. Before a test network can be deployed several additional features need to be implemented and tested.
+Tất cả mọi thứ trong giai đoạn 1 giả định một môi trường tin cậy chỉ chạy riêng các mã lệnh của nhà phát triển. Trước khi có một mạng thử nghiệm (test network) có thể được triển khai một số tính năng bổ sung cần được thực hiện và kiểm tra.
 
-### P2P Network Code (Phil)
+### Mã lệnh cho mạng P2P(Phil)
 
-This is a plugin that is responsible for synchronizing the blockchain state between two standalone nodes.
+Đây là một phần nhúng(plugin) có trách nhiệm đồng bộ hóa hiện trạng của chuổi khối( blockchain) giữa hai nút chạy riêng lẻ( nút độc lập).
 
 ### WASM Sanitation & CPU Sandboxing (Brian)
 
-The WASM code needs to be sanitized to check for non-deterministic behavior such as floating point operations and infinite loops.
+Mã WASM cần phải được kiểm tra cắt tỉa vệ sinh để kiểm tra các hành vi không xác định như điểm hoạt động tràn(floating point operations) và vòng lặp vô hạn.
 
 ### Resource Usage Tracking & Rate Limiting (Arhag)
 
