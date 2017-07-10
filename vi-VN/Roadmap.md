@@ -66,7 +66,7 @@ Trong giai đoạn này, nền tảng Eos sẽ trải qua thử nghiệm hạng 
 
 ### Các ứng dụng ví dụ
 
-Example applications are critical to proving the platform provides the features required by real developers.
+Ví dụ ứng dụng là rất quan trọng để chứng minh nền tảng cung cấp các tính năng theo yêu cầu của nhà phát triển thực sự.
 
 ### Bounties for Succesfully Attacking Network
 
