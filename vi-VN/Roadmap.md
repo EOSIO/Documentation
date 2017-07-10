@@ -50,21 +50,21 @@ Mã WASM cần phải được kiểm tra cắt tỉa vệ sinh để kiểm tra
 
 ### Theo dõi Tài nguyên sử dụng & tỷ lệ giới hạn (Arhag)
 
-To prevent abuse the resource monitoring and usage tracking rate limits users accoding to staked EOS.
+Để ngăn chặn lạm dụng, việc theo dõi tài nguyên và theo dõi tỷ lệ giới hạn sử dụng của người dùng dựa trên số EOS được đặt cọc.
 
-### Genesis Import Testing (DappHub)
+### Thử nghiệm nhập chuỗi khối gốc-Genesis (DappHub)
 
-Tools need to be developed to export data from the EOS Token Distribution state and create a genesis configuration file. This will enable anyone participating in the Token Distribution to acquire some initial test EOS (TEOS).
+Công cụ cần phải được phát triển để xuất dữ liệu từ các phần EOS được phân phối và tạo ra một tập tin cấu hình genesis. Điều này sẽ cho phép bất cứ ai tham gia vào việc phân phối Token để làm một số thử nghiệm ban đầu trên nền tảng EOS (TEOS).
 
-### Interblockchain Communication (Nathan)
+### Giao tiếp xuyên các chuỗi khối -Interblockchain (Nathan)
 
-This feature involves verifying the Merkle hashing of transactions is proper.
+Tính năng này liên quan đến việc xác minh giao dịch băm kiểu Merkle là thích hợp.
 
-# Phase 3 - Testing & Security Audits - Winter 2017, Spring 2018
+# Giai đoạn 3 - Chạy thử nghiệm & Đánh giá bảo mật - Mùa đông năm 2017, mùa xuân năm 2018
 
-During this phase the platform will undergo heavy testing with a focus on finding security issues and bug. At the end of Phase 3 version 1.0 will be tagged.
+Trong giai đoạn này, nền tảng Eos sẽ trải qua thử nghiệm hạng nặng trung vào việc tìm kiếm các vấn đề sự cố an ninh và lỗi. Vào cuối giai đoạn 3 Phiên bản 1.0 sẽ được đánh dấu.
 
-### Develop Example Applications
+### Các ứng dụng ví dụ
 
 Example applications are critical to proving the platform provides the features required by real developers.
 
