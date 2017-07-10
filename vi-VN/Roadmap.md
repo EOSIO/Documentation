@@ -17,10 +17,10 @@ Một nút độc lập hoạt động trên một chuỗi khối(blockchain) th
 Nền tảng Phần mềm EOS. IO có một số lượng hợp đồng gốc. Đây là hợp đồng(contract) quản lý các hoạt động cốt lõi của chuối khối(blockchain) và tồn tại bên ngoài giao diện của WebAssembly. Các hợp đồng này bao gồm:
 
 1. @eos - quản lý việc chuyển các tốt Kinh(token) EOS
-2. @stake - manages locked EOS, voting, and Producer Election
-3. @system - manages permissions, messages, and contact code updates
+2. @stake - quản lý khóa EOS, ban hành các cuộc bỏ phiếu, và cuộc bầu cử
+3. @system - quản lý phân quyền, cập nhật mã lệnh chovtin nhắn và liên lạc
 
-### Virtual Machine API (Dan)
+### Máy ảo API (Dan)
 
 Contracts are compiled to WebAssembly (WASM) and WASM must interface with the blockchain via a defined API. This API is what developers depend upon to build applications and be relatively stable before developers can really start to build on EOS.
 
