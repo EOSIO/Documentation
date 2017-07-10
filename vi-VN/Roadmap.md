@@ -1,12 +1,12 @@
-## EOS.IO Software Roadmap
+## Lộ trình phần mềm EOS. IO
 
-This document outlines the development plan from a high level and will be updated as progress is made toward version 1.0. It should be noted that this roadmap applies only to the blockchain software and not to the other tools and utilities such as wallets and block explorers which will have their own teams and dedicated roadmaps once Phase 1 is complete.
+Tài liệu này vạch ra kế hoạch phát triển mức độ cao và sẽ được cập nhật như là tiến trình được thực hiện đối với phiên bản 1.0. Cần lưu ý rằng lộ trình này áp dụng với blockchain và không dành cho các công cụ và tiện ích như ví và xem xét tìm kiếm các chuỗi khối, chúng sẽ có đội phát triển riêng khi giai đoạn 1 đã hoàn tất.
 
-***Everything contained in this document is in draft form and subject to change at any time and provided for information purposes only. block.one does not guarantee the accuracy of the information contained in this roadmap and the information is provided “as is” with no representations or warranties, express or implied.***
+***Tất cả mọi thứ trong tài liệu này ở dạng dự thảo và có thể thay đổi bất cứ lúc nào và chỉ cung cấp cho mục đích thông tin về Eos. block.One không đảm bảo tính chính xác của thông tin trong lộ trình này và các thông tin được cung cấp không có đại diện chiệu trách nhiệm hoặc bảo đảm, rõ ràng.***
 
-# Phase 1 - Minimal Viable Testing Environment - Summer 2017
+# Giai đoạn 1 - môi trường thử nghiệm tối thiểu khả thi - Trong mùa hè năm 2017
 
-The goal of this phase is to establish the APIs that developers will require to start building and testing applications on EOS.IO. In order for developers to start testing their applications they will require the following to be implemented:
+Mục tiêu của giai đoạn này là để thiết lập các API dành cho nhà phát triển, họ sẽ yêu cầu để xây dựng và thử nghiệm các ứng dụng trên nền tảng EOS. Để cho các nhà phát triển để bắt đầu thử nghiệm các ứng dụng của họ, sẽ có các yêu cầu sau đây được thực hiện:
 
 ### Standalone Node (Dan & Nathan)
 
