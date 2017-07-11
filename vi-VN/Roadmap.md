@@ -66,20 +66,21 @@ Trong giai đoạn này, nền tảng Eos sẽ trải qua thử nghiệm hạng 
 
 ### Các ứng dụng ví dụ
 
-Ví dụ ứng dụng là rất quan trọng để chứng minh nền tảng cung cấp các tính năng theo yêu cầu của nhà phát triển thực sự.
+Ứng dụng ví dụ là rất quan trọng để chứng minh nền tảng cung cấp các tính năng theo yêu cầu của nhà phát triển thực sự.
 
-### Bounties for Succesfully Attacking Network
+### Bounties cho tấn công thành công mạng
 
-Attacking the network with spam, virtual machine exploits, and bug crashes, and non-deterministic behavior will be a heavily involved process but necessary to ensure that version 1.0 is stable.
+Tấn công mạng với thư rác, khai thác máy ảo và lỗi treo, và không xác định hành vi sẽ là một quá trình liên quan đến rất nhiều nhưng cần thiết để đảm bảo rằng phiên bản 1.0 là ổn định.
 
-### Language Support
+### Ngôn ngữ lập trình được hổ trợ
 
-Adding support for additional langauges to be compiled to WASM: C++, Rust, etc.
+Hỗ trợ thêm một số ngôn ngữ lập trình bổ sung được biên dịch qua ngôn ngữ WASM: C+ +, Rust, vv.
 
-### Documentation & Tutorials
+### Tài liệu   
+& hướng dẫn
 
-# Phase 4 - Parallel Optimization Summer / Fall 2018
+# Giai đoạn 4 - Tối ưu hóa song song - Mùa hè / mùa thu năm 2018
 
-After getting a stable 1.0 product released, we will move toward optimizing the code for parallel execution.
+Sau khi nhận được một phiên bản ổn định 1.0 phát hành, chúng tôi sẽ tiếp tục tối ưu hóa mã lệnh cho việc chạy phần mềm song song.
 
 # Phase 5 - Cluster Implementation The Future
