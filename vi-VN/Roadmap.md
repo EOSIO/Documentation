@@ -83,4 +83,4 @@ Hỗ trợ thêm một số ngôn ngữ lập trình bổ sung được biên d�
 
 Sau khi nhận được một phiên bản ổn định 1.0 phát hành, chúng tôi sẽ tiếp tục tối ưu hóa mã lệnh cho việc chạy phần mềm song song.
 
-# Phase 5 - Cluster Implementation The Future
+# Giai đoạn 5 - Áp dụng hoàn thành Cluster trong tương lai
