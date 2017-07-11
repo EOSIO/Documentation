@@ -358,10 +358,10 @@ EOS.IO 应用使得区块链创建了一个点对点的服务条款协议或者�
 The EOS.IO software defines a process by which the protocol as defined by the canonical source code and its constitution, can be updated using the following process:
 
   1. 区块生产者对宪法提出改建意见并获得 17/21 批准。
-  2. 区块生产者持续 17/21 品准连续 30 天。
+  2. 区块生产者持续 17/21 批准连续 30 天。
   3. 所有用户需要使用新的宪法来做签名。
   4. 区块生产通过变更代码的方式来影响宪法并且提交一个 git 记录的哈希值。
-  5. 区块生产者持续 17/21 品准连续 30 天。
+  5. 区块生产者持续 17/21 批准连续 30 天。
   6. 7 天后改为会起影响的代码，给所有完整节点 1 周时间在确认源码后进行升级。
   7. 所有未升级到最新代码的节点被自动关掉。
 
