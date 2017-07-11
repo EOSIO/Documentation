@@ -1,8 +1,8 @@
-# EOS.IO Technical White Paper
+# Sách trắng kỹ thuật EOS.IO
 
-**June 26, 2017**
+**26 tháng 6 năm 2017**
 
-**Abstract:** The EOS.IO software introduces a new blockchain architecture designed to enable vertical and horizontal scaling of decentralized applications. This is achieved by creating an operating system-like construct upon which applications can be built. The software provides accounts, authentication, databases, asynchronous communication and the scheduling of applications across hundreds of CPU cores or clusters. The resulting technology is a blockchain architecture that scales to millions of transactions per second, eliminates user fees, and allows for quick and easy deployment of decentralized applications.
+**Tóm tắt:** EOS. Phần mềm IO giới thiệu một kiến trúc chuỗi khối (blockchain)mới được thiết kế để cho phép các ứng dụng mở rộng theo chiều dọc và chiều ngang. Điều này đạt được bằng cách tạo ra một hệ điều hành giống như ứng dụng có thể được xây dựng. Phần mềm cung cấp các tài khoản, xác thực, cơ sở dữ liệu, liên lạc không đồng bộ và lịch trình của các ứng dụng trên hàng trăm các lõi CPU hoặc cụm clusters. The resulting technology is a blockchain architecture that scales to millions of transactions per second, eliminates user fees, and allows for quick and easy deployment of decentralized applications.
 
 **PLEASE NOTE: CRYPTOGRAPHIC TOKENS REFERRED TO IN THIS WHITE PAPER REFER TO CRYPTOGRAPHIC TOKENS ON A LAUNCHED BLOCKCHAIN THAT ADOPTS THE EOS.IO SOFTWARE. THEY DO NOT REFER TO THE ERC-20 COMPATIBLE TOKENS BEING DISTRIBUTED ON THE ETHEREUM BLOCKCHAIN IN CONNECTION WITH THE EOS TOKEN DISTRIBUTION.**
 
