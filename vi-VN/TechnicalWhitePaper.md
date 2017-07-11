@@ -2,11 +2,11 @@
 
 **26 tháng 6 năm 2017**
 
-**Tóm tắt:** EOS. Phần mềm IO giới thiệu một kiến trúc chuỗi khối (blockchain)mới được thiết kế để cho phép các ứng dụng mở rộng theo chiều dọc và chiều ngang. Điều này đạt được bằng cách tạo ra một hệ điều hành giống như ứng dụng có thể được xây dựng. Phần mềm cung cấp các tài khoản, xác thực, cơ sở dữ liệu, liên lạc không đồng bộ và lịch trình của các ứng dụng trên hàng trăm các lõi CPU hoặc cụm clusters. The resulting technology is a blockchain architecture that scales to millions of transactions per second, eliminates user fees, and allows for quick and easy deployment of decentralized applications.
+**Tóm tắt:** EOS. Phần mềm IO giới thiệu một kiến trúc chuỗi khối (blockchain)mới được thiết kế để cho phép các ứng dụng mở rộng theo chiều dọc và chiều ngang. Điều này đạt được bằng cách tạo ra một hệ điều hành giống như ứng dụng có thể được xây dựng. Phần mềm cung cấp các tài khoản, xác thực, cơ sở dữ liệu, liên lạc không đồng bộ và lịch trình của các ứng dụng trên hàng trăm các lõi CPU hoặc cụm clusters. Công nghệ kết quả là một kiến trúc blockchain mở rộng quy mô cho hàng triệu giao dịch mỗi giây, giúp loại bỏ chi phí người dùng, và cho phép cho việc triển khai nhanh chóng và dễ dàng các ứng dụng không tập trung-decentralized.
 
-**PLEASE NOTE: CRYPTOGRAPHIC TOKENS REFERRED TO IN THIS WHITE PAPER REFER TO CRYPTOGRAPHIC TOKENS ON A LAUNCHED BLOCKCHAIN THAT ADOPTS THE EOS.IO SOFTWARE. THEY DO NOT REFER TO THE ERC-20 COMPATIBLE TOKENS BEING DISTRIBUTED ON THE ETHEREUM BLOCKCHAIN IN CONNECTION WITH THE EOS TOKEN DISTRIBUTION.**
+**XIN LƯU Ý: Tốt Kinh MÃ HÓA ĐỀ CẬP TRONG GIẤY TRẮNG NÀY THAM KHẢO Tốt Kinh MÃ HÓA TRÊN MỘT CHUỖI KHỐI ĐƯỢC VẬN HÀNH BLOCKCHAIN THÔNG QUA PHẦN MỀM EOS.IO. NÓ KHÔNG HỀ CHỈ ĐẾN CÁC TỐT KINH KIỂU ERC-20, ĐƯỢC PHÂN PHỐI TRÊN BLOCKCHAIN CỦA NỀN TẢNG ETHEREUM LIÊN QUAN ĐẾN VIỆC PHÂN PHỐI TỐT KINH EOS.**
 
-Copyright © 2017 block.one
+Bản quyền © block.one năm 2017
 
 Without permission, anyone may use, reproduce or distribute any material in this white paper for non-commercial and educational use (i.e., other than for a fee or for commercial purposes) provided that the original source and the applicable copyright notice are cited.
 
