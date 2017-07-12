@@ -22,64 +22,64 @@ EOS.IO 소프트웨어에는 여러 가지 기본적 협약들이 있습니다. 
 
 ### 가상 머신 API (Dan)
 
-협약은 웹어셈블리(Web Assembly, 이하 WASM)로 컴파일되고 WASM은 정의 된 API를 통해 블록 체인과 통신해야 합니다. This API is what developers depend upon to build applications and be relatively stable before developers can really start to build on EOS.
+협약은 웹어셈블리(Web Assembly, 이하 WASM)로 컴파일되고 WASM은 정의 된 API를 통해 블록 체인과 통신해야 합니다. 개발자들이 응용 프로그램을 만들 때 이 API에 의존해야 하기 때문에, EOS를 토대로 한 실질적인 개발이 시작되기 전에 상대적으로 안정화되어야 합니다.
 
-### RPC Interface (Arhag, Nathan)
+### RPC 인터페이스 (Arhag, Nathan)
 
-A simple JSON RPC over HTTP interface will be provided that enables developers to broadcast transactions and query application state. This is critical for both publishing and interacting with test applications.
+개발자가 트랜잭션을 브로드캐스팅하고 응용프로그램 상태를 쿼리 할 수 있게 해주는 간단한 JSON RPC over HTTP 인터페이스가 제공됩니다. 이는 테스트 응용프로그램을 퍼블리싱하는 것과, 테스트 응용프로그램과 상호작용하는 것 모두에 아주 중요합니다.
 
-### Command line Tools (Arhag)
+### 커맨드라인 툴 (Arhag)
 
-Command line tools facilitate integrating the RPC interface with developer build environments.
+커맨드라인 툴(Command line tools)을 사용하면 RPC 인터페이스와 개발자 빌드환경을 좀 더 쉽게 통합할 수 있습니다.
 
-### Basic Developer Documentation (Josh)
+### 개발자용 기초 설명서 (Josh)
 
-Documents that teach developers how to get started with building on EOS.IO blockchains. This includes documentations of the WASM API, RPC Interface, and Command Line Tools.
+설명서는 개발자에게 EOS.IO 블럭체인 구축을 시작하는 방법을 알려주는 문서입니다. 이 문서 안에는 WASM API, RPC 인터페이스 및 커맨드라인 툴의 내용이 언급되어 있습니다.
 
 # 2단계: 기초적인 테스트 네트워크 - 2017년 가을
 
-Everything in Phase 1 assumes a trusted environment that only runs the developer's own code. Before a test network can be deployed several additional features need to be implemented and tested.
+1단계의 모든 작업은 ‘개발자의 코드만을 실행’하는 신뢰할만한 환경이 조성되어 있는 상태를 가정하고 있습니다.
 
-### P2P Network Code (Phil)
+### P2P 네트워크 코드 (Phil)
 
-This is a plugin that is responsible for synchronizing the blockchain state between two standalone nodes.
+이것은 두 개의 독립실행형 노드 사이에서 블록체인의 상태를 동기화하는 역할을 합니다.
 
-### WASM Sanitation & CPU Sandboxing (Brian)
+### WASM 무결성 처리 및 CPU 샌드 박싱 (Brian)
 
-The WASM code needs to be sanitized to check for non-deterministic behavior such as floating point operations and infinite loops.
+WASM 코드는 부동소수점연산 및 무한루프와 같은 비결정적동작(Non-deterministic behavior)을 예방하기 위해 무결성 처리되어야 합니다.
 
-### Resource Usage Tracking & Rate Limiting (Arhag)
+### 리소스 사용량 추적 및 속도 제한 (Arhag)
 
-To prevent abuse the resource monitoring and usage tracking rate limits users accoding to staked EOS.
+어뷰징을 방지하기 위해 리소스 모니터링 및 사용량 추적을 시행하여, EOS의 지분에 따라 사용자의 속도를 제한합니다.
 
-### Genesis Import Testing (DappHub)
+### 제네시스 블록 가져오기 테스트 (DappHub)
 
-Tools need to be developed to export data from the EOS Token Distribution state and create a genesis configuration file. This will enable anyone participating in the Token Distribution to acquire some initial test EOS (TEOS).
+EOS 토큰 배포 상태를 내보내고(export) 제네시스(genesis configuration file, 최초블록)을 생성하긴 위한 툴 개발이 필요합니다. 이 툴은 토큰 배포에 참여하는 모든 사람이 초기 테스트 EOS(TEOS)를 획득할 수 있도록 합니다.
 
-### Interblockchain Communication (Nathan)
+### 블럭체인 간의 통신 (Nathan)
 
-This feature involves verifying the Merkle hashing of transactions is proper.
+이 기능은 트랜잭션의 머클 해시(Merkle hashing)가 적절한지 확인하는 기능을 포함합니다.
 
-# 3단계: 시험운영 및 보안성 검토 - 2017년 겨울 ~ 2018년 봄
+# 3단계: 시험운영 및 보안성 검토 - 2017년 겨울, 2018년 봄
 
-During this phase the platform will undergo heavy testing with a focus on finding security issues and bug. At the end of Phase 3 version 1.0 will be tagged.
+이 단계에서 플랫폼은 보안 문제와 버그를 찾아내는 데 아주 높은 강도의 테스트를 거치게 됩니다. 이 3단계가 끝난 후에 EOS 소프트웨어는1.0 버전으로 바뀌게 됩니다.
 
-### Develop Example Applications
+### 예시 응용프로그램 개발
 
-Example applications are critical to proving the platform provides the features required by real developers.
+예시 응용프로그램은 플랫폼이 실제 개발자에게 필요한 기능을 제공함을 증명한다는 면에서 아주 중요합니다.
 
-### Bounties for Succesfully Attacking Network
+### 네트워크 공격에 대한 포상
 
-Attacking the network with spam, virtual machine exploits, and bug crashes, and non-deterministic behavior will be a heavily involved process but necessary to ensure that version 1.0 is stable.
+스팸, 가상 머신 익스플로잇(virtual machine exploits), 버그 크래시 및 비 결정적 행동으로 네트워크를 공격하는 것은 매우 긴 과정이겠지만 1.0 버전이 안정적인지 확인하기 위해서는 꼭 필요합니다.
 
-### Language Support
+### 언어 지원
 
-Adding support for additional langauges to be compiled to WASM: C++, Rust, etc.
+WASM에 컴파일 될 추가 언어 지원: C++, Rust 등.
 
-### Documentation & Tutorials
+### 설명서 및 안내서
 
-# Phase 4 - Parallel Optimization Summer / Fall 2018
+# 4단계 - 병렬처리 최적화 - 2018년 여름/가을
 
-After getting a stable 1.0 product released, we will move toward optimizing the code for parallel execution.
+안정적인 1.0버전이 출시된 후에, 우리는 병렬 실행을 위한 코드를 최적화하는 방향으로 나아갈 것입니다.
 
 # 5단계 - 클러스터 구현 - 향후
