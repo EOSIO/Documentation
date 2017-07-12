@@ -1,28 +1,28 @@
 ## EOS.IO Software Roadmap
 
-This document outlines the development plan from a high level and will be updated as progress is made toward version 1.0. It should be noted that this roadmap applies only to the blockchain software and not to the other tools and utilities such as wallets and block explorers which will have their own teams and dedicated roadmaps once Phase 1 is complete.
+이 문서는 EOS. IO 개발 계획에 대한 대략적인 윤곽만을 제공합니다. 이후 버전이 1.0으로 변함에 따라 이 문서의 내용도 업데이트 될 것입니다. 이 문서의 내용은 ‘블록체인 소프트웨어’에만 적용되며, 1단계가 완료될 시 전용 팀과 로드맵이 구비되는 전자지갑이나 블록 익스플로어와 같은 다른 툴이나 유틸리티에는 적용되지 않습니다.
 
-***Everything contained in this document is in draft form and subject to change at any time and provided for information purposes only. block.one does not guarantee the accuracy of the information contained in this roadmap and the information is provided “as is” with no representations or warranties, express or implied.***
+***Everything contained in this document is in draft form and subject to change at any time and provided for information purposes only. Block.one(1)은 로드맵에 포함된 정보의 정확성을 보증할 수 없습니다. 이 문서에 포함된 정보는 함축적이거나 묘사하거나 보증하거나 하는 목적이 전혀 없이 “있는 그대로”를 전달하는 것입니다.***
 
-# 1단계: 기초적인 테스팅 환경 구성 - 2017년 여름
+# 1단계 - 실행 가능한 최소의 테스트 환경 - 2017년 여름
 
-The goal of this phase is to establish the APIs that developers will require to start building and testing applications on EOS.IO. In order for developers to start testing their applications they will require the following to be implemented:
+이 단계의 목표는 개발자가 EOS.IO에서 응용프로그램을 빌드하고 테스트하는 데 필요한 API를 설정하는 것입니다. 개발자가 어플리케이션을 테스트하기 위해서는 다음의 것들을 구현해야 합니다.
 
-### Standalone Node (Dan & Nathan)
+### 독립실행형 노드 (Dan & Nathan)
 
-A standalone node operates a test blockchain and produces blocks while exposing an API. This node does not need to concern itself with any P2P networking code.
+독립실행형 노드는 테스트 블록체인을 가동하고 API를 노출하면서 블록을 생성합니다. 이 노드 실행에는 P2P 네트워킹 코드가 필요하지 않습니다.
 
-### Native Contracts (Nathan)
+### 기본 컨트랙 (Nathan)
 
-The EOS.IO software has a number of native contracts. These are contracts that manage the core operations of the blockchain and exist outside the Web Assembly interface. These contracts include:
+EOS.IO 소프트웨어에는 여러 가지 기본적 협약들이 있습니다. 이 협약들은 블록체인의 핵심 운영을 관리하는, 웹 어셈블리(Webassembly) 인터페이스 외부에 존재하는 협약입니다. 이 협약에는 다음의 것들이 포함됩니다.
 
-  1. @eos - manages EOS token transfers
-  2. @stake - manages locked EOS, voting, and Producer Election
-  3. @system - manages permissions, messages, and contact code updates
+1. @eos - EOS 토큰의 전송을 관리합니다.
+2. @stake - 묶인 EOS와 보팅, 생산자 선출을 관리합니다.
+3. @system - 사용 권한, 메시지, 연락처 코드 업데이트를 관리합니다.
 
-### Virtual Machine API (Dan)
+### 가상 머신 API (Dan)
 
-Contracts are compiled to WebAssembly (WASM) and WASM must interface with the blockchain via a defined API. This API is what developers depend upon to build applications and be relatively stable before developers can really start to build on EOS.
+협약은 웹어셈블리(Web Assembly, 이하 WASM)로 컴파일되고 WASM은 정의 된 API를 통해 블록 체인과 통신해야 합니다. This API is what developers depend upon to build applications and be relatively stable before developers can really start to build on EOS.
 
 ### RPC Interface (Arhag, Nathan)
 
@@ -82,4 +82,4 @@ Adding support for additional langauges to be compiled to WASM: C++, Rust, etc.
 
 After getting a stable 1.0 product released, we will move toward optimizing the code for parallel execution.
 
-# Phase 5 - Cluster Implementation The Future
+# 5단계 - 클러스터 구현 - 향후
