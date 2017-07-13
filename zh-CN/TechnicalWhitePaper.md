@@ -38,17 +38,17 @@ Copyright © 2017 block.one
   - [最小化通信延迟](#minimizing-communication-latency)
   - [只读信息的处理](#read-only-message-handlers)
   - [多帐户的原子化交易](#atomic-transactions-with-multiple-accounts)
-  - [区块链状态的部分评估](#partial-evaluation-of-blockchain-state)
+  - [区块链状态的局部评估](#partial-evaluation-of-blockchain-state)
   - [自主最优调度](#subjective-best-effort-scheduling)
 - [Token 模型与资源使用](#token-model-and-resource-usage) 
   - [客观与主观的度量](#objective-and-subjective-measurements)
   - [接收方付费](#receiver-pays)
   - [委托能力](#delegating-capacity)
-  - [分离交易成本与 Token 价值](#separating-transaction-costs-from-token-value)
+  - [将交易成本从代币价值中分离](#separating-transaction-costs-from-token-value)
   - [状态存储成本](#state-storage-costs)
   - [区块奖励](#block-rewards)
   - [社区效益应用](#community-benefit-applications)
-- [治理](#governance) 
+- [管理](#governance) 
   - [冻结帐户](#freezing-accounts)
   - [更改帐户代码](#changing-account-code)
   - [宪法](#constitution)
@@ -59,10 +59,10 @@ Copyright © 2017 block.one
   - [模式定义的数据库](#schema-defined-database)
   - [分离授权与应用](#separating-authentication-from-application)
   - [虚拟机独立架构](#virtual-machine-independent-architecture) 
-    - [Web 组建 (WASM)](#web-assembly)
+    - [Web Assembly](#web-assembly)
     - [以太访虚拟机 (EVM)](#ethereum-virtual-machine--evm-)
 - [跨链通信](#inter-blockchain-communication) 
-  - [用于轻客户端的 Merkle 证明 (LCV)](#merkle-proofs-for-light-client-validation--lcv-)
+  - [用于轻客户端验证的 Merkle 证明 (LCV)](#merkle-proofs-for-light-client-validation--lcv-)
   - [跨链通信的延时](#latency-of-interchain-communication)
   - [完备性证明](#proof-of-completeness)
 - [结论](#conclusion)
@@ -415,7 +415,7 @@ EOS.IO 软件被设计为跨区块链通信友好的。 这是通过生成消息
 
 <img align="right" src="http://eos.io/wpimg/Diagram1.jpg" width="362.84px" height="500px" />
 
-## 用于轻客户端的 Merkle 证明 (LCV)
+## 用于轻客户端验证的 Merkle 证明 (LCV)
 
 如果客户端不需要处理所有的交易会让多区块链间的整合更为轻松。 毕竟，一个交易所只需要关心交易所的入账和出账，别无他求。 如果交易所链条可以使用资金的轻量 merkle 证明，而不必非要完全依赖对它区块生产者的信任会是一个不错的主意。 至少一个链的区块生产者在与其他区块链同步时更乐意保持尽可能小的开销。
 
