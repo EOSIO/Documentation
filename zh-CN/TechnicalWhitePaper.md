@@ -10,30 +10,30 @@ Copyright © 2017 block.one
 
 未经允许，在非用于商业和教育用途的前提下 (即，除了收取费用或商业目的)，如果注明原始出处并适用声明的版权，任何人可以使用、复制或发布本白皮书内的任何内容。
 
-**免责声明：** 本 EOS.IO 技术白皮书草案仅供参考。 block.one does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided “as is”. block.one does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. block.one and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will block.one or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.
+**免责声明：** 本 EOS.IO 技术白皮书草案仅供参考。 block.one不对在本白皮书中得到的结论的准确性做出保证，本文件"按照原样"提供. block.one does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. block.one and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will block.one or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.
 
 - [背景](#background)
 - [区块链应用的要求](#requirements-for-blockchain-applications) 
-  - [支持成百上千的用户](#support-millions-of-users)
-  - [免费的使用](#free-usage)
-  - [简单升级和 bug 修复](#easy-upgrades-and-bug-recovery)
+  - [支持数百万的用户](#support-millions-of-users)
+  - [使用免费](#free-usage)
+  - [易于升级和 bug 修复](#easy-upgrades-and-bug-recovery)
   - [低延时](#low-latency)
   - [时序性能](#sequential-performance)
   - [并发性能](#parallel-performance)
 - [共识算法 (DPOS)](#consensus-algorithm--dpos-) 
   - [交易确认](#transaction-confirmation)
-  - [股权证明的交易 (TaPoS)](#transaction-as-proof-of-stake--tapos-)
+  - [基于权益证明的交易 (TaPoS)](#transaction-as-proof-of-stake--tapos-)
 - [帐户](#accounts) 
-  - [消息 & 处理](#messages---handlers)
+  - [消息 & 处理程序](#messages---handlers)
   - [基于角色的权限管理](#role-based-permission-management) 
     - [命名的权限级别](#named-permission-levels)
-    - [命名的消息处理群组](#named-message-handler-groups)
+    - [命名的消息处理程序群组](#named-message-handler-groups)
     - [权限映射](#permission-mapping)
     - [评估权限](#evaluating-permissions) 
       - [默认权限群组](#default-permission-groups)
       - [权限并行评估](#parallel-evaluation-of-permissions)
   - [带强制性延时的消息](#messages-with-mandatory-delay)
-  - [恢复被盗窃的密钥](#recovery-from-stolen-keys)
+  - [恢复被盗密钥](#recovery-from-stolen-keys)
 - [应用程序的确定性并行执行](#deterministic-parallel-execution-of-applications) 
   - [最小化通信延迟](#minimizing-communication-latency)
   - [只读信息的处理](#read-only-message-handlers)
