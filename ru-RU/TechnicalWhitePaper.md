@@ -59,7 +59,7 @@
   - [Определяемая схемой база данных](#schema-defined-database)
   - [Отделение аутентификации от приложения](#separating-authentication-from-application)
   - [Независимая архитектура виртуальной машины](#virtual-machine-independent-architecture) 
-    - [Web Assembly (WASM)](#web-assembly)
+    - [Web Assembly (WASM)](#web-assembly-wasm)
     - [Виртуальная машина Ethereum (EVM)](#ethereum-virtual-machine-evm)
 - [Межблокчейновая связь](#inter-blockchain-communication) 
   - [Доказательство Меркла для проверки легкого клиента (Light Client) (LCV)](#merkle-proofs-for-light-client-validation-lcv)
