@@ -74,7 +74,7 @@ WASM代码需要进行清洁处理, 以便检查异常行为，如浮点数运�
 
 ### 编程语言支持
 
-Adding support for additional languages to be compiled to WASM: C++, Rust, etc.
+增加对其他可以编译为WASM的编程语言的支持：C++, Rust等等．
 
 ### 文档 & 教程
 
