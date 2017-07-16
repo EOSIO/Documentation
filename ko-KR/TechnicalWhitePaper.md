@@ -59,7 +59,7 @@
   - [스키마 정의 데이터베이스 (Schema Defined Database)](#schema-defined-database)
   - [애플리케이션과 인증 분리 (Separating Authentication from Application)](#separating-authentication-from-application)
   - [가상 머신 독립 아키텍처 (Virtual Machine Independent Architecture)](#virtual-machine-independent-architecture) 
-    - [Web Assembly (WASM)](#web-assembly-wasm)
+    - [웹어셈블리 (WASM; Web Assembly)](#web-assembly-wasm)
     - [이더리움 가상 머신 (EVM; Ethereum Virtual Machine)](#ethereum-virtual-machine-evm)
 - [블록체인 간 통신 (Inter Blockchain Communication)](#inter-blockchain-communication) 
   - [경량화된 클라이언트 검증(LCV)을 위한 머클 증명 (Merkle Proofs for Light Client Validation)](#merkle-proofs-for-light-client-validation-lcv)
