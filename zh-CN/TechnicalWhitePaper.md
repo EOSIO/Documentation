@@ -2,53 +2,53 @@
 
 **草案：2017 年 6 月 26 日 (@dayzh (https://steemit.com/@dayzh))**
 
-**摘要：** EOS.IO 软件引入一种新的区块链架构设计，它使得去中心化的应用可以横向和纵向的扩展。 这通过构建一个仿操作系统的方式来实现，在它之上可以构建应用程序。 该软件提供帐户、身份验证、数据库、异步通信和跨越数百个 CPU 内核或集群的应用程序调度。 由此产生的技术是一种区块链架构，它可以扩展至每秒处理百万级交易，消除用户的手续费，并且允许快速和轻松的部署去中心化的应用。
+**摘要：** EOS.IO 软件引入一种新的区块链架构设计，它使得去中心化的应用可以横向和纵向的扩展。 这通过构建一个仿操作系统的方式来实现，在它之上可以构建应用程序。 该软件提供帐户、身份验证、数据库、异步通信和跨越数百个 CPU 内核或集群的应用程序调度。 由此产生的技术是一种区块链架构，它可以每秒处理数百万的交易，普通用户无需付费，并且使得部署去中心化应用变得快捷轻松。
 
-**PLEASE NOTE: CRYPTOGRAPHIC TOKENS REFERRED TO IN THIS WHITE PAPER REFER TO CRYPTOGRAPHIC TOKENS ON A LAUNCHED BLOCKCHAIN THAT ADOPTS THE EOS.IO SOFTWARE. THEY DO NOT REFER TO THE ERC-20 COMPATIBLE TOKENS BEING DISTRIBUTED ON THE ETHEREUM BLOCKCHAIN IN CONNECTION WITH THE EOS TOKEN DISTRIBUTION.**
+**请注意：本白皮书中所提到的加密代币，是指使用EOS.IO软件创建的区块链上所用的加密代币. 而不是在以太坊区块链上分发的EOS代币发售所关联的ERC-20兼容代币.**
 
 Copyright © 2017 block.one
 
 未经允许，在非用于商业和教育用途的前提下 (即，除了收取费用或商业目的)，如果注明原始出处并适用声明的版权，任何人可以使用、复制或发布本白皮书内的任何内容。
 
-**免责声明：** 本 EOS.IO 技术白皮书草案仅供参考。 block.one does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided “as is”. block.one does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. block.one and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will block.one or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.
+**免责声明：** 本 EOS.IO 技术白皮书草案仅供参考。 block.one不对在本白皮书中得到的结论的准确性做出保证，本文件"按照原样"提供. block.one does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. block.one and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will block.one or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.
 
 - [背景](#background)
 - [区块链应用的要求](#requirements-for-blockchain-applications) 
-  - [支持成百上千的用户](#support-millions-of-users)
-  - [免费的使用](#free-usage)
-  - [简单升级和 bug 修复](#easy-upgrades-and-bug-recovery)
+  - [支持数百万的用户](#support-millions-of-users)
+  - [使用免费](#free-usage)
+  - [易于升级和 bug 修复](#easy-upgrades-and-bug-recovery)
   - [低延时](#low-latency)
   - [时序性能](#sequential-performance)
   - [并发性能](#parallel-performance)
 - [共识算法 (DPOS)](#consensus-algorithm--dpos-) 
   - [交易确认](#transaction-confirmation)
-  - [股权证明的交易 (TaPoS)](#transaction-as-proof-of-stake--tapos-)
+  - [基于权益证明的交易 (TaPoS)](#transaction-as-proof-of-stake--tapos-)
 - [帐户](#accounts) 
-  - [消息 & 处理](#messages---handlers)
+  - [消息 & 处理程序](#messages---handlers)
   - [基于角色的权限管理](#role-based-permission-management) 
     - [命名的权限级别](#named-permission-levels)
-    - [命名的消息处理群组](#named-message-handler-groups)
+    - [命名的消息处理程序群组](#named-message-handler-groups)
     - [权限映射](#permission-mapping)
     - [评估权限](#evaluating-permissions) 
       - [默认权限群组](#default-permission-groups)
       - [权限并行评估](#parallel-evaluation-of-permissions)
   - [带强制性延时的消息](#messages-with-mandatory-delay)
-  - [恢复被盗窃的密钥](#recovery-from-stolen-keys)
+  - [恢复被盗密钥](#recovery-from-stolen-keys)
 - [应用程序的确定性并行执行](#deterministic-parallel-execution-of-applications) 
   - [最小化通信延迟](#minimizing-communication-latency)
   - [只读信息的处理](#read-only-message-handlers)
   - [多帐户的原子化交易](#atomic-transactions-with-multiple-accounts)
-  - [区块链状态的部分评估](#partial-evaluation-of-blockchain-state)
+  - [区块链状态的局部评估](#partial-evaluation-of-blockchain-state)
   - [自主最优调度](#subjective-best-effort-scheduling)
 - [Token 模型与资源使用](#token-model-and-resource-usage) 
   - [客观与主观的度量](#objective-and-subjective-measurements)
   - [接收方付费](#receiver-pays)
   - [委托能力](#delegating-capacity)
-  - [分离交易成本与 Token 价值](#separating-transaction-costs-from-token-value)
+  - [将交易成本从代币价值中分离](#separating-transaction-costs-from-token-value)
   - [状态存储成本](#state-storage-costs)
   - [区块奖励](#block-rewards)
   - [社区效益应用](#community-benefit-applications)
-- [治理](#governance) 
+- [管理](#governance) 
   - [冻结帐户](#freezing-accounts)
   - [更改帐户代码](#changing-account-code)
   - [宪法](#constitution)
@@ -59,10 +59,10 @@ Copyright © 2017 block.one
   - [模式定义的数据库](#schema-defined-database)
   - [分离授权与应用](#separating-authentication-from-application)
   - [虚拟机独立架构](#virtual-machine-independent-architecture) 
-    - [Web 组建 (WASM)](#web-assembly)
+    - [Web Assembly](#web-assembly)
     - [以太访虚拟机 (EVM)](#ethereum-virtual-machine--evm-)
 - [跨链通信](#inter-blockchain-communication) 
-  - [用于轻客户端的 Merkle 证明 (LCV)](#merkle-proofs-for-light-client-validation--lcv-)
+  - [用于轻客户端验证的 Merkle 证明 (LCV)](#merkle-proofs-for-light-client-validation--lcv-)
   - [跨链通信的延时](#latency-of-interchain-communication)
   - [完备性证明](#proof-of-completeness)
 - [结论](#conclusion)
@@ -71,19 +71,19 @@ Copyright © 2017 block.one
 
 区块链技术是通过 2008 年诞生的比特币货币得以被认知，自从那之后企业家和开发者就不断的尝试推广这一技术，以便在单一的区块链平台上支持更为广泛的应用程序。
 
-而一些区块链平台努力的支持可运作的去中心化应用，具体的应用比如 BitShares 去中心化交易所 (2014) 和 Steem 社交媒体平台 (2016) 已经成为每天被成千上万活跃用户重度使用的区块链。 他们能做到这些，是通过性能的提升达到每秒处理上千交易，消除手续费和提供堪比已经存在的中心化服务的用户体验。
+而一些区块链平台努力的支持可运作的去中心化应用，具体的应用比如 BitShares 去中心化交易所 (2014) 和 Steem 社交媒体平台 (2016) 已经成为每天被成千上万活跃用户重度使用的区块链。 他们成功的把性能提升到能每秒处理上千笔交易，延迟降低在1.5s以内，消除手续费，提供堪比已经存在的中心化服务的用户体验。
 
-已存在的区块链平台承担着大量的交易费和有限的可计算能力，这都阻碍了区块链技术的大面积应用。
+现有的区块链平台交易费用高昂，计算能力有限，阻碍了区块链技术的广泛应用。
 
 # 区块链应用的要求
 
 为了赢得广泛的应用，构建在区块链之上的应用需要一个灵活性足以满足以下要求的平台：
 
-## 支持成百上千的用户
+## 支持百万级别的用户
 
-像 Ebay、Uber、AirBnB 和 Facebook 这样企业，他们需要区块链技术能处理每日数以千万的活跃用户。 在某些情况下，除非用户群体达到一个极庞大的量级否则应用并无用武之地，因此一个可以处理极其庞大用户的平台是至关重要的。
+像 Ebay、Uber、AirBnB 和 Facebook 这样企业，他们需要区块链技术能处理每日数以千万的活跃用户。 在某些情况下，除非用户群体达到一个极庞大的量级，否则应用并无用武之地，因此一个可以处理其庞大用户的平台是至关重要的。
 
-## 免费的使用
+## 免费使用
 
 Application developers need the flexibility to offer users free services; users should not have to pay in order to use the platform or benefit from its services. 一个可以免费供用户使用的区块链平台或许将赢得更为广泛的使用。 开发者和企业可以制订有效的货币化战略。
 
@@ -131,8 +131,8 @@ EOS.IO 软件使得区块准确的每 3 秒生成一个并且在任何时间点�
 
 EOS.IO 软件需要每一个交易包含最近一个区块头的哈希值。这个哈希值有两个目的：
 
-  1. 防止不包含区块引用的交易在分叉时重放发生；和
-  2. 通知网络对应的用户和他们的股份当前在某个具体的分叉上。
+1. 防止不包含区块引用的交易在分叉时重放发生；和
+2. 通知网络对应的用户和他们的股份当前在某个具体的分叉上。
 
 随着时间的推移，所有的用户直接确认区块链，在这一链条上难以伪造假的链条，因为假的链条根本无法从合法链条上迁移交易。
 
@@ -202,13 +202,13 @@ The EOS.IO technology also allows all accounts to have an "owner" group which ca
 
 用户可以在消息广播出去后通过邮件或者文字消息的形式收到通知。 如果他们没有授权，那么他们可以使用帐户恢复流程来恢复帐户，并收回消息。
 
-这个必须的延时由操作敏感性决定。 为一杯咖啡付款可以没有任何的延时，几秒之内就不可逆了，而购买一个房子也许需要 72 消失的结算期。 转移整个帐户到一个新的控制可能需要长达 30 天。 具体的延时选择由开发者和用户自己来做选择。
+这个必须的延时由操作敏感性决定。 为一杯咖啡付款可以没有任何的延时，几秒之内就不可逆了，而购买一个房子也许需要 72 小时的结算期。 转移整个帐户到一个新的控制可能需要长达 30 天。 具体的延时选择由开发者和用户自己来做选择。
 
 ## 恢复被盗窃的密钥
 
 EOS.IO 软件提供给用户一种找回自己失窃密钥控制权的方式。 一个帐户的所有者可以使用过去 30 天任何活跃的拥有者密钥与事先指定的合作者帐户给出的批准来重置自己帐户的密钥。 帐户的恢复合作者在没有所有人帮助的情况下无法重置帐户的控制权。
 
-黑客尝试进行恢复流程是无意义的，因为他们已经“控制”了帐户。 此外，就算他们真的进行这一流程，恢复合作者也会询问身份证明和多因素认证 (手机和邮件)。 这会让黑客脱作出让步或者无功而返。
+黑客尝试进行恢复流程是无意义的，因为他们已经“控制”了帐户。 此外，就算他们真的进行这一流程，恢复合作者也会询问身份证明和多因素认证 (手机和邮件)。 这会让黑客作出让步或者无功而返。
 
 这一流程与简单的多重签名有很大差异。 在多重签名中，另一个公司要参与所有转账的执行，但在恢复流程中，它却只在恢复时才起作用对每天的转账无从干预。 这大大的降低了参与者的成本和法律责任。
 
@@ -218,7 +218,7 @@ EOS.IO 软件提供给用户一种找回自己失窃密钥控制权的方式。 
 
 In an EOS.IO software-based blockchain, it is the job of the block producer to organize message delivery into independent threads so that they can be evaluated in parallel. 每个帐户的状态由且只由发送给它的消息决定。 进度表由区块生产者输出并且会被确定性的执行，但是生成进度表的过程却不一定是确定性的。 这意味着区块生产者可以使用并发算法来调度交易。
 
-并行执行的一方面意味着当一个脚本生成了一个新的消息，它不会立即被发送，而被安排在下一个轮训中发送。 不能立马发出的原因是接受者可能在另一个线程中活跃的变更自己的状态。
+并行执行的一方面意味着当一个脚本生成了一个新的消息，它不会立即被发送，而被安排在下一个轮询中发送。 不能立马发出的原因是接受者可能在另一个线程中活跃的变更自己的状态。
 
 ## 最小化通信延迟
 
@@ -269,7 +269,7 @@ On a launched blockchain adopting the EOS.IO software, at a network level all tr
 
 一般而言，只要一个区块生产者认为交易在资源使用限度内是有效的，那么其他区块生产者就也要接受，但可能交易传递给生产者就要花费 1 分钟。
 
-在某些情况下，生产者可以创建包含可接受范围之外的数量级的块。 在这种情况下，下一个区块生产者可能会选择拒绝区块和束缚将被第三个生产者打破。 这和因为区块过大导致的网络延时没什么打不同。 社区会注意到模式的异常并最终会将票从流氓生产者哪里删掉。
+在某些情况下，生产者可以创建包含可接受范围之外的数量级的块。 在这种情况下，下一个区块生产者可能会选择拒绝区块和束缚将被第三个生产者打破。 这和因为区块过大导致的网络延时没什么打不同。 社区会注意到模式的异常并最终会将票从流氓生产者那里删掉。
 
 这种对计算成本的主观评估将区块链从必须精确和确定的预测一些东西要花多长时间来运行这一问题中解放出来。 有了这一设计就不需要精确的数指令，将极大的增加优化的可能性又不必打破共识。
 
@@ -279,9 +279,9 @@ On a launched blockchain adopting the EOS.IO software, at a network level all tr
 
 All blockchains are resource constrained and require a system to prevent abuse. With a blockchain that uses EOS.IO software, there are three broad classes of resources that are consumed by applications:
 
-  1. 带宽和日志存储 (磁盘)；
-  2. 计算与计算储备 (中央处理器)；
-  3. 状态存储 (内存)。
+1. 带宽和日志存储 (磁盘)；
+2. 计算与计算储备 (中央处理器)；
+3. 状态存储 (内存)。
 
 带宽和计算有两部分，瞬时使用和长期使用。 一个区块链维持着所有消息的日志，这些日志最终由完全节点存储和下载。 通过消息日志可以重现所有应用的状态。
 
@@ -357,13 +357,13 @@ EOS.IO 应用使得区块链创建了一个点对点的服务条款协议或者�
 
 The EOS.IO software defines a process by which the protocol as defined by the canonical source code and its constitution, can be updated using the following process:
 
-  1. 区块生产者对宪法提出改建意见并获得 17/21 批准。
-  2. 区块生产者持续 17/21 品准连续 30 天。
-  3. 所有用户需要使用新的宪法来做签名。
-  4. 区块生产通过变更代码的方式来影响宪法并且提交一个 git 记录的哈希值。
-  5. 区块生产者持续 17/21 品准连续 30 天。
-  6. 7 天后改为会起影响的代码，给所有完整节点 1 周时间在确认源码后进行升级。
-  7. 所有未升级到最新代码的节点被自动关掉。
+1. 区块生产者对宪法提出改建意见并获得 17/21 批准。
+2. 区块生产者持续 17/21 品准连续 30 天。
+3. 所有用户需要使用新的宪法来做签名。
+4. 区块生产通过变更代码的方式来影响宪法并且提交一个 git 记录的哈希值。
+5. 区块生产者持续 17/21 品准连续 30 天。
+6. 7 天后改为会起影响的代码，给所有完整节点 1 周时间在确认源码后进行升级。
+7. 所有未升级到最新代码的节点被自动关掉。
 
 按照 EOS.IO 的默认配置，添加新特性升级区块链的流程需要 2 到 3 个月，而修复一般的 bug 不需要更改宪法需要 1 到 2 个月时间。
 
@@ -387,9 +387,9 @@ EOS.IO 首先会是一个平台用于协同用户间认证消息的传递。 脚
 
 To maximize parallelization opportunities and minimize the computational debt associated with regenerating application state from the transaction log, EOS.IO software separates validation logic into three sections:
 
-  1. 验证消息是否内部一致；
-  2. 验证所有前提条件是否有效；
-  3. 修改应用程序状态。
+1. 验证消息是否内部一致；
+2. 验证所有前提条件是否有效；
+3. 修改应用程序状态。
 
 验证消息的内部一致性是只读的并且无需访问区块链状态。 这意味着它可以以最大并发来执行。 验证前提条件，比如需要的余额数，是只读的因此也可以受益与并行计算。 只有更改应用状态时需要写入权限并且必须顺序的执行每个应用。
 
@@ -415,7 +415,7 @@ EOS.IO 软件被设计为跨区块链通信友好的。 这是通过生成消息
 
 <img align="right" src="http://eos.io/wpimg/Diagram1.jpg" width="362.84px" height="500px" />
 
-## 用于轻客户端的 Merkle 证明 (LCV)
+## 用于轻客户端验证的 Merkle 证明 (LCV)
 
 如果客户端不需要处理所有的交易会让多区块链间的整合更为轻松。 毕竟，一个交易所只需要关心交易所的入账和出账，别无他求。 如果交易所链条可以使用资金的轻量 merkle 证明，而不必非要完全依赖对它区块生产者的信任会是一个不错的主意。 至少一个链的区块生产者在与其他区块链同步时更乐意保持尽可能小的开销。
 
