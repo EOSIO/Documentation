@@ -74,7 +74,7 @@
 
 ### Поддержка языков
 
-Adding support for additional languages to be compiled to WASM: C++, Rust, etc.
+Добавление поддержки нескольких дополнительных языков, которые будут компилироваться в WASM: C++, Rust и т.п.
 
 ### Документация и инструкции
 
