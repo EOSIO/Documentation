@@ -59,7 +59,7 @@ Without permission, anyone may use, reproduce or distribute any material in this
   - [Schema Defined Database](#schema-defined-database)
   - [Separating Authentication from Application](#separating-authentication-from-application)
   - [Virtual Machine Independent Architecture](#virtual-machine-independent-architecture) 
-    - [Web Assembly](#web-assembly)
+    - [Web Assembly (WASM)](#web-assembly-wasm)
     - [Ethereum Virtual Machine (EVM)](#ethereum-virtual-machine-evm)
 - [Inter Blockchain Communication](#inter-blockchain-communication) 
   - [Merkle Proofs for Light Client Validation (LCV)](#merkle-proofs-for-light-client-validation-lcv)
