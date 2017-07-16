@@ -59,7 +59,7 @@ Copyright © 2017 block.one
   - [模式定义的数据库](#schema-defined-database)
   - [分离授权与应用](#separating-authentication-from-application)
   - [虚拟机独立架构](#virtual-machine-independent-architecture) 
-    - [Web Assembly](#web-assembly)
+    - [Web Assembly (WASM)](#web-assembly-wasm)
     - [以太访虚拟机 (EVM)](#ethereum-virtual-machine-evm)
 - [跨链通信](#inter-blockchain-communication) 
   - [用于轻客户端验证的 Merkle 证明 (LCV)](#merkle-proofs-for-light-client-validation-lcv)
