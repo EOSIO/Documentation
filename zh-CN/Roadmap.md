@@ -16,9 +16,9 @@
 
 EOS.IO软件有若干本地合约．这些合约用于管理区块链的核心操作,存在于Web Assembly接口之外．这些合约包括:
 
-  1. @eos - 管理EOS token的转移
-  2. @stake - 管理锁定的EOS，投票，和生产者选举
-  3. @system - 管理权限，信息，和合约代码更新
+1. @eos - 管理EOS token的转移
+2. @stake - 管理锁定的EOS，投票，和生产者选举
+3. @system - 管理权限，信息，和合约代码更新
 
 ### 虚拟机 API (Dan)
 
@@ -74,7 +74,7 @@ WASM代码需要进行清洁处理, 以便检查异常行为，如浮点数运�
 
 ### 编程语言支持
 
-增加对其他可以编译为WASM的编程语言的支持：C++, Rust等等．
+Adding support for additional languages to be compiled to WASM: C++, Rust, etc.
 
 ### 文档 & 教程
 
