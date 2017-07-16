@@ -74,7 +74,7 @@ EOS 토큰 배포 상태를 내보내고(export) 제네시스(genesis configurat
 
 ### 언어 지원
 
-WASM에 컴파일 될 추가 언어 지원: C++, Rust 등.
+Adding support for additional languages to be compiled to WASM: C++, Rust, etc.
 
 ### 설명서 및 안내서
 
