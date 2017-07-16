@@ -74,7 +74,7 @@ Tấn công mạng với thư rác, khai thác máy ảo và lỗi treo, và kh�
 
 ### Ngôn ngữ lập trình được hổ trợ
 
-Hỗ trợ thêm một số ngôn ngữ lập trình bổ sung được biên dịch qua ngôn ngữ WASM: C+ +, Rust, vv.
+Adding support for additional languages to be compiled to WASM: C++, Rust, etc.
 
 ### Tài liệu   
 & hướng dẫn
