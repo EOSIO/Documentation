@@ -50,7 +50,7 @@ Mã WASM cần phải được kiểm tra cắt tỉa vệ sinh để kiểm tra
 
 ### Theo dõi Tài nguyên sử dụng & tỷ lệ giới hạn (Arhag)
 
-Để ngăn chặn lạm dụng, việc theo dõi tài nguyên và theo dõi tỷ lệ giới hạn sử dụng của người dùng dựa trên số EOS được đặt cọc.
+To prevent abuse the resource monitoring and usage tracking rate limits users according to staked EOS.
 
 ### Thử nghiệm nhập chuỗi khối gốc-Genesis (DappHub)
 
@@ -68,7 +68,7 @@ Trong giai đoạn này, nền tảng Eos sẽ trải qua thử nghiệm hạng 
 
 Ứng dụng ví dụ là rất quan trọng để chứng minh nền tảng cung cấp các tính năng theo yêu cầu của nhà phát triển thực sự.
 
-### Bounties cho tấn công thành công mạng
+### Bounties for Successfully Attacking Network
 
 Tấn công mạng với thư rác, khai thác máy ảo và lỗi treo, và không xác định hành vi sẽ là một quá trình liên quan đến rất nhiều nhưng cần thiết để đảm bảo rằng phiên bản 1.0 là ổn định.
 
