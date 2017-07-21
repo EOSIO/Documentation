@@ -16,9 +16,9 @@
 
 EOS.IO软件有若干本地合约．这些合约用于管理区块链的核心操作,存在于Web Assembly接口之外．这些合约包括:
 
-  1. @eos - 管理EOS token的转移
-  2. @stake - 管理锁定的EOS，投票，和生产者选举
-  3. @system - 管理权限，信息，和合约代码更新
+1. @eos - 管理EOS token的转移
+2. @stake - 管理锁定的EOS，投票，和生产者选举
+3. @system - 管理权限，信息，和合约代码更新
 
 ### 虚拟机 API (Dan)
 
