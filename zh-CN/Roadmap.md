@@ -50,7 +50,7 @@ WASM代码需要进行清洁处理, 以便检查异常行为，如浮点数运�
 
 ### 资源使用情况跟踪 & 限速 (Arhag)
 
-为了防止滥用，根据已有EOS，资源监控和使用情况追踪，对用户进行限制．
+To prevent abuse the resource monitoring and usage tracking rate limits users according to staked EOS.
 
 ### Genesis 导入测试 (DappHub)
 
@@ -68,7 +68,7 @@ WASM代码需要进行清洁处理, 以便检查异常行为，如浮点数运�
 
 为了验证平台是否提供了真实开发者所需要的功能，示例程序的开发非常关键．
 
-### 对成功的网络攻击给予奖励
+### Bounties for Successfully Attacking Network
 
 使用垃圾信息，虚拟机滥用, 错误崩溃，非正常的操作来实施网络攻击，是一个很复杂的过程，但是，为了确保软件 1.0 可以稳定使用，又是很必要的．
 
