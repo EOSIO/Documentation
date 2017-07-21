@@ -50,7 +50,7 @@ WASM 코드는 부동소수점연산 및 무한루프와 같은 비결정적동�
 
 ### 리소스 사용량 추적 및 속도 제한 (Arhag)
 
-To prevent abuse the resource monitoring and usage tracking rate limits users according to staked EOS.
+어뷰징을 방지하기 위해 리소스 모니터링 및 사용량 추적을 시행하여, EOS의 지분에 따라 사용자의 속도를 제한합니다.
 
 ### 제네시스 블록 가져오기 테스트 (DappHub)
 
@@ -68,7 +68,7 @@ EOS 토큰 배포 상태를 내보내고(export) 제네시스(genesis configurat
 
 예시 응용프로그램은 플랫폼이 실제 개발자에게 필요한 기능을 제공함을 증명한다는 면에서 아주 중요합니다.
 
-### Bounties for Successfully Attacking Network
+### 네트워크 공격에 대한 포상
 
 스팸, 가상 머신 익스플로잇(virtual machine exploits), 버그 크래시 및 비 결정적 행동으로 네트워크를 공격하는 것은 매우 긴 과정이겠지만 1.0 버전이 안정적인지 확인하기 위해서는 꼭 필요합니다.
 
