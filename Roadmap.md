@@ -51,7 +51,7 @@ The WASM code needs to be sanitized to check for non-deterministic behavior such
 
 ### Resource Usage Tracking & Rate Limiting (Arhag)
 
-To prevent abuse the resource monitoring and usage tracking rate limits users accoding to staked EOS.
+To prevent abuse the resource monitoring and usage tracking rate limits users according to staked EOS.
 
 ### Genesis Import Testing (DappHub)
 
@@ -69,7 +69,7 @@ During this phase the platform will undergo heavy testing with a focus on findin
 
 Example applications are critical to proving the platform provides the features required by real developers.
 
-### Bounties for Succesfully Attacking Network
+### Bounties for Successfully Attacking Network
 
 Attacking the network with spam, virtual machine exploits, and bug crashes, and non-deterministic behavior will be a heavily involved process but necessary to ensure that version 1.0 is stable.
 
