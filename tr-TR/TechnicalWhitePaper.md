@@ -2,9 +2,9 @@
 
 **26 Haziran 2017**
 
-** Özet: </ 0> EOS.IO yazılımı, merkezi olmayan uygulamaların dikey ve yatay ölçeklenebilirliğini sağlamak üzere tasarlanmış yeni bir blok zincir mimarisi sunar. Bu, üzerinde uygulamaların oluşturulabileceği işletim sistemi benzeri bir yapı oluşturularak sağlanır. Bu yazılım hesaplar, kimlik doğrulamaları, veritabanları, asenkron iletişim ve yüzlerce CPU çekirdeği veya kümesi arasında uygulamaların zamanlamalarını sağlar. Sonuçta ortaya çıkan teknoloji saniyede milyonlarca işlemi ölçeklendirebilen, kullanıcı ücretlerini ortadan kaldıran ve merkezi olmayan uygulamaların hızlı ve kolay bir şekilde kurulmasına izin veren bir blok zincir mimarisidir.</p> 
+** Özet: </ 0> EOS.IO yazılımı, merkezi olmayan uygulamaların dikey ve yatay ölçeklenebilirliğini sağlamak üzere tasarlanmış yeni bir blok zinciri mimarisi sunar. Bu, üzerinde uygulamaların oluşturulabileceği işletim sistemi benzeri bir yapı oluşturularak sağlanır. Bu yazılım hesaplar, kimlik doğrulamaları, veritabanları, asenkron iletişim ve yüzlerce CPU çekirdeği veya kümesi arasında uygulamaların zamanlamalarını sağlar. Sonuçta ortaya çıkan teknoloji saniyede milyonlarca işlemi ölçeklendirebilen, kullanıcı ücretlerini ortadan kaldıran ve merkezi olmayan uygulamaların hızlı ve kolay bir şekilde kurulmasına izin veren bir blok zinciri mimarisidir.</p> 
 
-**LÜTFEN DİKKAT: BU TEKNİK DÖKÜMANDA ANILAN KRİPTOGRAFİK TOKENLER EOS.IO YAZILIMI KULLANAN BİR BLOK ZİNCİRDEN BAŞLATILAN KRİPTOGRAFİK TOKENLERİ KASTETMEKTEDİR. EOS TOKEN DAĞITIMI İLE BAĞLANTILI OLARAK ETHEREUM BLOK ZİNCİRİNDE DAĞITILMAKTA OLAN ERC-20 UYUMLU TOKENLER İLE İLGİSİ YOKTUR.**
+**LÜTFEN DİKKAT: BU TEKNİK DÖKÜMANDA ANILAN KRİPTOGRAFİK TOKENLER EOS.IO YAZILIMI KULLANAN BİR BLOK ZİNCİRİNDEN BAŞLATILAN KRİPTOGRAFİK TOKENLERİ KASTETMEKTEDİR. EOS TOKEN DAĞITIMI İLE BAĞLANTILI OLARAK ETHEREUM BLOK ZİNCİRİNDE DAĞITILMAKTA OLAN ERC-20 UYUMLU TOKENLER İLE İLGİSİ YOKTUR.**
 
 Telif Hakkı © 2017 block.one
 
@@ -13,7 +13,7 @@ Herkes izin almaksızın, orijinal kaynak ve geçerli telif hakkı bilgisini bel
 **YASAL UYARI:** Bu EOS. IO teknik dokümanı yalnızca bilgi amaçlıdır. block.one bu teknik dokümanda varılan sonuçların doğruluğunu garanti etmemektedir ve bu teknik doküman "olduğu gibi" sunulmaktadır. block.one açıktan veya ima yolu ile hiçbir temsil yapmaz, garanti vermez, burada sayılanlarla birlikte ve bunlarla sınırlı olmaksızın: (i) ticari garantiler, belirli bir amaç için uyumluluk, uygunluk, kullanım, unvan veya hak ihlali; (ii) bu teknik dokümandaki bilgilerin hatasız oluşu; ve (iii) bu tür içeriklerin üçüncü taraf hakları ihlallerine ilişkin hukuki veya her ne şekilde olursa olsun her türlü temsil ve garantileri açıkça reddeder. block.one ve iştirakleri bu teknik dokümandan veya buradaki herhangi bir içeriğin zarar verme olasılığı olduğu belirtilmiş olsa dahi, kullanımından, referans gösterilmesinden, veya bu dokümana güvenilmesinden kaynaklanan hiç bir zararlardan yasal olarak sorumlu tutulamayacaklardır. Hiçbir durumda block.one veya iştirakleri bu teknik dokümanın veya burada bulunan, bunlarla sınırlı olmayan herhangi bir içeriğin kullanılması, referans alınması, güvenilmesi sonucunda oluşacak doğrudan veya dolaylı, netice olarak ortaya çıkmış, telafi edici, tesadüfi, fiili, örnek, cezai veya özel zararlar, kayıplar, yasal yükümlülükler, her türlü maliyet ve giderler, herhangi bir iş, gelir, kar, iyi niyet kaybı ve maddi olmayan diğer kayıplar için herhangi bir kişi veya kuruluşa karşı sorumlu olmayacaktır.
 
 - [Geçmiş](#background)
-- [Blok Zincir Uygulamaları için Gereksinimler](#requirements-for-blockchain-applications) 
+- [Blok Zincirİ Uygulamaları için Gereksinimler](#requirements-for-blockchain-applications) 
   - [Milyonlarca Kullanıcı Desteği](#support-millions-of-users)
   - [Ücretsiz Kullanım](#free-usage)
   - [Kolay Yükseltmeler ve Hata Kurtarma](#easy-upgrades-and-bug-recovery)
@@ -69,15 +69,15 @@ Herkes izin almaksızın, orijinal kaynak ve geçerli telif hakkı bilgisini bel
 
 # Geçmiş
 
-Blockchain technology was introduced in 2008 with the launch of the bitcoin currency, and since then entrepreneurs and developers have been attempting to generalize the technology in order to support a wider range of applications on a single blockchain platform.
+Blok zinciri teknolojisi 2008 yılında bitcoin para biriminin oluşturulmasıyla birlikte ortaya çıkmıştır ve o zamandan beri tek bir blok zinciri platformunda daha geniş bir uygulama yelpazesi desteklemek amacıyla bu teknoloji girişimciler ve geliştiriciler tarafından yaygınlaştırılmaya çalışılmaktadır.
 
-While a number of blockchain platforms have struggled to support functional decentralized applications, application specific blockchains such as the BitShares decentralized exchange (2014) and Steem social media platform (2016) have become heavily used blockchains with tens of thousands of daily active users. They have achieved this by increasing performance to thousands of transactions per second, reducing latency to 1.5 seconds, eliminating fees, and providing a user experience similar to those currently provided by existing centralized services.
+Bir dizi blok zinciri platformları fonksiyonel merkezi olmayan uygulamaları desteklemek için çalışırken, merkezi olmayan borsa BitShares (2014) ve sosyal medya platformu Steem (2016) gibi uygulamaya özgü blok zincirleri on binlerce günlük aktif kullanıcıya sahip olarak yoğun biçimde kullanılan blok zincirlerine dönüştü. Performansı saniyede binlerce harekete yükselterek, gecikmeyi 1,5 saniyeye indirerek, ücretleri ortadan kaldırarak ve mevcut merkezi hizmetlerin sunduğuna benzer kullanıcı deneyimleri sağlayarak bunu başarmışlardır.
 
-Existing blockchain platforms are burdened by large fees and limited computational capacity that prevent widespread blockchain adoption.
+Mevcut blok zinciri platformları blok zincirinin yaygın kabulüne engel olan yüksek ücretler ve sınırlı hesaplama kapasiteleri nedeniyle ağır yük altındadırlar.
 
-# Blok Zincir Uygulamaları için Gereksinimler
+# Blok Zinciri Uygulamaları için Gereksinimler
 
-In order to gain widespread use, applications on the blockchain require a platform that is flexible enough to meet the following requirements:
+Yaygın kullanım sağlamak için blok zinciri üzerindeki uygulamaların aşağıdaki gereklilikleri sağlayacak kadar esnek bir platforma sahip olmaları gerekir:
 
 ## Milyonlarca Kullanıcı Desteği
 
@@ -275,7 +275,7 @@ This subjective evaluation of computational cost frees the blockchain from havin
 
 # Token Modeli ve Kaynak Kullanımı
 
-**LÜTFEN DİKKAT: BU TEKNİK DÖKÜMANDA ANILAN KRİPTOGRAFİK TOKENLER EOS.IO YAZILIMI KULLANAN BİR BLOK ZİNCİRDEN BAŞLATILAN KRİPTOGRAFİK TOKENLERİ KASTETMEKTEDİR. EOS TOKEN DAĞITIMI İLE BAĞLANTILI OLARAK ETHEREUM BLOK ZİNCİRİNDE DAĞITILMAKTA OLAN ERC-20 UYUMLU TOKENLER İLE İLGİSİ YOKTUR.**
+**LÜTFEN DİKKAT: BU TEKNİK DÖKÜMANDA ANILAN KRİPTOGRAFİK TOKENLER EOS.IO YAZILIMI KULLANAN BİR BLOK ZİNCİRİNDEN BAŞLATILAN KRİPTOGRAFİK TOKENLERİ KASTETMEKTEDİR. EOS TOKEN DAĞITIMI İLE BAĞLANTILI OLARAK ETHEREUM BLOK ZİNCİRİNDE DAĞITILMAKTA OLAN ERC-20 UYUMLU TOKENLER İLE İLGİSİ YOKTUR.**
 
 All blockchains are resource constrained and require a system to prevent abuse. With a blockchain that uses EOS.IO software, there are three broad classes of resources that are consumed by applications:
 

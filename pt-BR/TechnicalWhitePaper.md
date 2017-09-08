@@ -12,7 +12,7 @@ Sem permissão, qualquer um pode usar, reproduzir ou distribuir qualquer materia
 
 **AVISO LEGAL:** Este White Paper Técnico do EOS.IO é apenas para fins informativos. block.one não garante a precisão das conclusões neste white paper, e este white paper é fornecido "como está". block.one não faz e expressamente renuncia todas as representações e garantias, expressas, implícitas, estatuária ou de outra forma, de qualquer maneira, incluindo, mas não limitado a: (i) garantia de comercialização, adequação para algum propósito em particular, adequação, uso, título ou não infração; (ii) que o conteúdo deste Whitepaper estão livres de erro; e (iii) que tal conteúdo não irá infringir direitos de terceiros. block.one e seus afiliados não terão responsabilidade por danos de qualquer espécie resultado do uso, referencia à, ou dependência nesse Whitepaper ou qualquer um dos conteúdos contidos no mesmo, mesmo se advertido da possibilidade de tais danos. Em nenhum evento block.one ou seus afiliados será responsável à qualquer pessoa ou entidade por qualquer dano, perda, responsabilidades, custos ou gastos de qualquer espécie, direta ou indireta, consequentes, compensatória, incidental, atual, exemplar, punitivo ou especial para o uso de, referente à, ou confiança nesse Whitepaper ou qualquer conteúdo contidos no mesmo, incluindo, sem limitações, qualquer perda de negócios, receitas, lucros, informações, uso, boa vontade, ou outra perdas intangíveis.
 
-- [Background](#background)
+- [Contexto](#background)
 - [Requisitos para Aplicações Blockchain](#requirements-for-blockchain-applications) 
   - [Suporte a Milhões de Usuários](#support-millions-of-users)
   - [Uso Gratuito](#free-usage)
@@ -64,7 +64,7 @@ Sem permissão, qualquer um pode usar, reproduzir ou distribuir qualquer materia
 - [Comunicação Inter Blockchain](#inter-blockchain-communication) 
   - [Provas de Merkle para Validação Leve de Cliente (LCV)](#merkle-proofs-for-light-client-validation-lcv)
   - [Latência de Comunicação Interchain](#latency-of-interchain-communication)
-  - [Proof of Completeness](#proof-of-completeness)
+  - [Prova de Completude](#proof-of-completeness)
 - [Conclusão](#conclusion)
 
 # Contexto
@@ -371,74 +371,74 @@ Pela configuração padrão do software EOS.IO, o processo de atualizar o blockc
 
 Os produtores de blocos podem acelerar o processo, se uma mudança de software é necessária para corrigir uma falha de segurança ou um defeito prejudicial que está ativamente prejudicando os usuários. De um modo geral pode ser contra a Constituição fazer atualizações aceleradas ou introduzir novas funcionalidades ou corrigir bugs inofensivos.
 
-# Scripts & Virtual Machines
+# Scripts & Máquinas Virtuais
 
-The EOS.IO software will be first and foremost a platform for coordinating the delivery of authenticated messages to accounts. The details of scripting language and virtual machine are implementation specific details that are mostly independent from the design of the EOS.IO technology. Any language or virtual machine that is deterministic and properly sandboxed with sufficient performance can be integrated with the EOS.IO software API.
+O software EOS.IO será, sobretudo, uma plataforma para coordenar a entrega de mensagens autenticadas para contas. Os detalhes das linguagens de script e máquinas virtuais são detalhes de implementação específicos que são na sua maioria independentes do design da tecnologia do EOS.IO. Qualquer linguagem ou máquina virtual que seja determinístico e corretamente sandboxed com desempenho suficiente poderá ser integrada com a API do EOS.IO.
 
-## Schema Defined Messages
+## Mensagens Definidas por Esquema
 
-All messages sent between accounts are defined by a schema which is part of the blockchain consensus state. This schema allows seamless conversion between binary and JSON representation of the messages.
+Todas as mensagens enviadas entre contas são definidas por um esquema que faz parte do estado consensuado do blockchain. Este esquema permite uma perfeita conversão entre uma representação binária e JSON das mensagens.
 
-## Schema Defined Database
+## Banco de Dados Definido por Esquema
 
-Database state is also defined using a similar schema. This ensures that all data stored by all applications is in a format that can be interpreted as human readable JSON but stored and manipulated with the efficiency of binary.
+O estado do banco de dados também é definido usando um esquema similar. Isso garante que todos os dados armazenados por todos os aplicativos em um formato que pode ser interpretado como JSON mas armazenado e manipulado com a eficiência de binário.
 
-## Separating Authentication from Application
+## Separando a Autenticação da Aplicação
 
-To maximize parallelization opportunities and minimize the computational debt associated with regenerating application state from the transaction log, EOS.IO software separates validation logic into three sections:
+Para maximizar as oportunidades de paralelização e minimizar a dívida computacional associada a regeneração do estado do aplicativo do log de transações, o software EOS.IO separa a lógica de validação em três seções:
 
-1. Validating that a message is internally consistent;
-2. Validating that all preconditions are valid; and
-3. Modifying the application state.
+1. Validando de que uma mensagem seja internamente consistente;
+2. Validando que todas as pre-condições são válidas; e
+3. Modificando o estado do aplicativo.
 
-Validating the internal consistency of a message is read-only and requires no access to blockchain state. This means that it can be performed with maximum parallelism. Validating preconditions, such as required balance, is read-only and therefore can also benefit from parallelism. Only modification of application state requires write access and must be processed sequentially for each application.
+A validação da coerência interna de uma mensagem é uma operação de somente leitura e não requer acesso ao estado de blockchain. Isto significa que pode ser realizada com paralelismo máximo. Validação de pré-condições, tais como verificar o saldo necessário, é somente leitura e, portanto, pode também beneficiar de paralelismo. Apenas a modificação do estado do aplicativo requer acesso de gravação e deve ser processada sequencialmente para cada aplicação.
 
-Authentication is the read-only process of verifying that a message can be applied. Application is actually doing the work. In real time both calculations are required to be performed, however once a transaction is included in the blockchain it is no longer necessary to perform the authentication operations.
+A autenticação é o processo de leitura somente que verifica que uma mensagem possa ser aplicada. Aplicação é fazer o trabalho. Ambos cálculos são devem ser executados em tempo real, no entanto quando uma transação é incluída no blockchain não é mais necessário executar as operações de autenticação.
 
-## Virtual Machine Independent Architecture
+## Arquitetura Independente de Máquina Virtual
 
-It is the intention of the EOS.IO software-based blockchain that multiple virtual machines can be supported and new virtual machines added over time as necessary. For this reason, this paper will not discuss the details of any particular language or virtual machine. That said, there are two virtual machines that are currently being evaluated for use with an EOS.IO software-based blockchain.
+É a intenção do blockchain baseado em EOS.IO que várias máquinas virtuais possam ser suportadas e novas máquinas virtuais adicionadas ao longo do tempo, conforme seja necessário. Por esta motivo, este artigo não discutirá os detalhes de qualquer linguagem ou máquina virtual particular. Dito isto, existem duas máquinas virtuais que atualmente estão sendo avaliadas para o uso dentro de blockchains baseados em EOS.IO.
 
 ### Web Assembly (WASM)
 
-Web Assembly is an emerging web standard for building high performance web applications. With a few small modifications Web Assembly can be made deterministic and sandboxed. The benefit of Web Assembly is the widespread support from industry and that it enables contracts to be developed in familiar languages such as C or C++.
+Web Assembly é um padrão emergente da web para construir aplicações web de alto desempenho. Com algumas pequenas modificações o Web Assembly pode se tornar determinístico e sandboxed. O benefício de suportar Web Assembly é o apoio generalizado da indústria e que permite que os contratos sejam desenvolvidos em linguagens como C ou C++.
 
-Ethereum developers have already begun modifying Web Assembly to provide suitable sandboxing and determinism in with their [Ethereum flavored Web Assembly (WASM)](https://github.com/ewasm/design). This approach can be easily adapted and integrated with EOS.IO software.
+Os desenvolvedores Ethereum já começaram a modificar o Web Assembly para fornecer um sandboxing adequado e determinístico com seu [Ethereum sabor Web Assembly (WASM)](https://github.com/ewasm/design). Esta abordagem pode ser facilmente adaptada e integrada com o EOS.IO.
 
-### Ethereum Virtual Machine (EVM)
+### Máquina Virtual do Ethereum (EVM)
 
-This virtual machine has been used for most existing smart contracts and could be adapted to work within an EOS.IO blockchain. It is conceivable that EVM contracts could be run within their own sandbox inside an EOS.IO software-based blockchain and that with some adaptation EVM contracts could communicate with other EOS.IO software blockchain applications.
+Essa máquina virtual tem sido usada pelo maioria dos contratos inteligentes e pode ser adaptada para funcionar dentro de um blockchain EOS.IO. É concebível que contratos EVM poderiam ser executados dentro de seu própria sandbox dentro de um blockchain baseado em EOS.IO e que, com alguma adaptação contratos EVM poderiam se comunicar com outras aplicações baseadas no blockchain do EOS.IO.
 
-# Inter Blockchain Communication
+# Comunicação Inter Blockchain
 
-EOS.IO software is designed to facilitate inter-blockchain communication. This is achieved by making it easy to generate proof of message existence and proof of message sequence. These proofs combined with an application architecture designed around message passing enables the details of inter-blockchain communication and proof validation to be hidden from application developers.
+O software EOS.IO foi projetado para facilitar a comunicação inter-blockchain. Isto é conseguido, facilitando a geração de prova de existência de mensagem e prova de sequência de mensagens. Estas provas combinadas com uma arquitetura de aplicativo projetada ao redor de passagem de mensagens permite que os detalhes do inter-blockchain de comunicação e à prova de validação possam ser escondidos dos desenvolvedores de aplicativos.
 
 <img align="right" src="http://eos.io/wpimg/Diagram1.jpg" width="362.84px" height="500px" />
 
-## Merkle Proofs for Light Client Validation (LCV)
+## Provas de Merkle para Validação Leve de Cliente (LCV)
 
-Integrating with other blockchains is much easier if clients do not need to process all transactions. After all, an exchange only cares about transfers in and out of the exchange and nothing more. It would also be ideal if the exchange chain could utilize lightweight merkle proofs of deposit rather than having to trust its own block producers entirely. At the very least a chain's block producers would like to maintain the smallest possible overhead when synchronizing with another blockchain.
+A integração com outros blockchains é muito mais fácil se os clientes não precisam processar todas as transações. Afinal de contas, um exchange só se preocupa com as transferências para dentro e para fora e nada mais. Também seria ideal se a cadeia de troca pudesse utilizar provas merkle de depósito leve, ao invés de ter que confiar em seus próprios produtores de bloco inteiramente. Pelo menos, os produtores de blocos de um blockchain gostariam de manter a menor sobrecarga possível ao sincronizar com outro blockchain.
 
-The goal of LCV is to enable the generation of relatively light-weight proof of existence that can be validated by anyone tracking a relatively light-weight data set. In this case the objective is to prove that a particular transaction was included in a particular block and that the block is included in the verified history of a particular blockchain.
+O objetivo do LCV é permitir a geração de uma prova de existência relativamente leve que possa ser validada por qualquer um que rastreie um conjunto de dados relativamente leve. Neste caso, o objetivo é provar que uma determinada operação foi incluída em um bloco particular e que o bloco está incluído na história verificada de um blockchain particular.
 
-Bitcoin supports validation of transactions assuming all nodes have access to the full history of block headers which amounts to 4MB of block headers per year. At 10 transactions per second, a valid proof requires about 512 bytes. This works well for a blockchain with a 10 minute block interval, but is no longer "light" for blockchains with a 3 second block interval.
+O Bitcoin suporta a validação de transações assumindo que todos os nós têm acesso ao histórico completo de cabeçalhos de bloco que equivale a 4MB de cabeçalhos de bloco por ano. A 10 transações por segundo, uma prova válida requer cerca de 512 bytes. Isso funciona bem para um blockchain com um intervalo de 10 minutos entre blocos, mas não é mais "leve" para blockchains com um intervalo de 3 segundos entre blocos.
 
-The EOS.IO software enables lightweight proofs for anyone who has any irreversible block header after the point in which the transaction was included. Using the hash-linked structure shown below it is possible to prove the existence of any transaction with a proof less than 1024 bytes in size. If it is assumed that validating nodes are keeping up with all block headers in the past day (2 MB of data), then proving these transactions will only require proofs 200 bytes long.
+O software EOS.IO habilita provas leves para quem possui um cabeçalho de bloco irreversível após o ponto no qual a transação foi inclusa. Usando a estrutura de hash interligados mostrada abaixo, é possível provar a existência de qualquer transação com uma prova com menos de 1024 bytes de tamanho. Se assumir que os nós de validação estão atualizados com todos os cabeçalhos de bloco do último dia (2 MB de dados), então, provar essas transações só exigirá provas de 200 bytes de tamanho.
 
-There is little incremental overhead associated with producing blocks with the proper hash-linking to enable these proofs which means there is no reason not to generate blocks this way.
+Há uma pequena sobrecarga incremental associada à produção de blocos com o hash interligado apropriado para habilitar essas provas, o que significa que não há motivo para não gerar blocos desta forma.
 
-When it comes time to validate proofs on other chains there are a wide variety of time/ space/ bandwidth optimizations that can be made. Tracking all block headers (420 MB/year) will keep proof sizes small. Tracking only recent headers can offer a trade off between minimal long-term storage and proof size. Alternatively, a blockchain can use a lazy evaluation approach where it remembers intermediate hashes of past proofs. New proofs only have to include links to the known sparse tree. The exact approach used will necessarily depend upon the percentage of foreign blocks that include transactions referenced by merkle proof.
+Quando chega o momento de validar as provas em outras cadeias existe uma grande variedade de otimizações de tempo / espaço / largura de banda que podem ser feitas. O rastreamento de todos os cabeçalhos de bloco (420 MB / ano) manterá os tamanhos das provas pequenos. O rastreamento apenas de cabeçalhos recentes pode oferecer um trade off entre armazenamento mínimo a longo prazo e tamanho de prova. Alternativamente, um blockchain pode usar uma abordagem de avaliação preguiçosa (lazy evaluation) onde se lembra de hashes intermediários de provas passadas. Novas provas só precisam incluir links para uma árvore esparsa conhecida. A abordagem exata utilizada dependerá necessariamente da porcentagem de blocos estrangeiros que incluam transações referenciadas pela prova merkle.
 
-After a certain density of interconnectedness it becomes more efficient to simply have one chain contain the entire block history of another chain and eliminate the need for proofs all together. For performance reasons, it is ideal to minimize the frequency of inter-chain proofs.
+Após uma certa densidade de interconexão, torna-se mais eficiente simplesmente ter uma cadeia contendo todo o histórico de blocos de outra cadeia e eliminar a necessidade de provas de vez. Por motivos de desempenho, é ideal minimizar a freqüência de provas inter-cadeias.
 
-## Latency of Interchain Communication
+## Latência de Comunicação Inter Blockchains
 
-When communicating with another outside blockchain, block producers must wait until there is 100% certainty that a transaction has been irreversibly confirmed by the other blockchain before accepting it as a valid input. Using an EOS.IO software-based blockchain and DPOS with 3 second blocks and 21 producers, this takes approximately 45 seconds. If a chain's block producers do not wait for irreversibility it would be like an exchange accepting a deposit that was later reversed and could impact the validity of the blockchain's consensus.
+Ao se comunicar com outro blockchain externo, os produtores de blocos devem aguardar até que exista 100% de certeza de que uma transação foi confirmada irreversivelmente pela outra cadeia de blocos antes de aceitá-la como uma entrada válida. Usando um blockchain baseado em software EOS.IO e DPOS com blocos a cada 3 segundos e 21 produtores, isto leva aproximadamente 45 segundos. Se os produtores de blocos de um blockchain não aguardarem a irreversibilidade, seria como uma troca aceitando um depósito que mais tarde foi revertido e pode afetar a validade do consenso do blockchain.
 
-## Proof of Completeness
+## Prova de Completude
 
-When using merkle proofs from outside blockchains, there is a significant difference between knowing that all transactions processed are valid and knowing that no transactions have been skipped or omitted. While it is impossible to prove that all of the most recent transactions are known, it is possible to prove that there have been no gaps in the transaction history. The EOS.IO software facilitates this by assigning a sequence number to every message delivered to every account. A user can use these sequence numbers to prove that all messages intended for a particular account have been processed and that they were processed in order.
+Ao usar provas merkle de blockchains externos, há uma diferença significativa entre saber que todas as transações processadas são válidas e saber que nenhuma transação foi ignorada ou omitida. Embora seja impossível provar que todas as transações mais recentes são conhecidas, é possível provar que não houve lacunas no histórico de transações. O software EOS.IO facilita isso atribuindo um número seqüêncial a cada mensagem entregue a cada conta. Um usuário pode usar esses números de seqüência para provar que todas as mensagens destinadas a uma determinada conta foram processadas e que elas foram processadas em ordem.
 
-# Conclusion
+# Conclusão
 
-The EOS.IO software is designed from experience with proven concepts and best practices, and represents fundamental advancements in blockchain technology. The software is part of a holistic blueprint for a globally scalable blockchain society in which decentralised applications can be easily deployed and governed.
+O software EOS.IO foi projetado a partir da experiência com conceitos comprovados e melhores práticas, e representa avanços fundamentais na tecnologia blockchain. O software faz parte de um plano holístico para uma sociedade de blockchains globalmente escalável em que aplicativos descentralizados possam ser facilmente implantados e governados.

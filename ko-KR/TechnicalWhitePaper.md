@@ -1,8 +1,8 @@
 # EOS.IO 기술 백서
 
-**초안 작성일: 2017년 6월 26일, 번역: 이태민 (taeminlee), 감수: 조재우 (@clayop (https://steemit.com/@clayop)), </br>- 2017년 8월 28일, 2차개정안 전체를 @loum이 재수정.**
+**- 초안 작성일: 2017년 6월 26일, 번역: 이태민 (taeminlee), 감수: 조재우 (@clayop (https://steemit.com/@clayop)), </br> - 2017년 9월 3일, 2차개정안 @loum와 @testz가 번역.**
 
-**초록:** EOS.IO 소프트웨어는 탈중앙화 애플리케이션의 수직 및 수평 확장이 가능하게 디자인된 새로운 블록체인 구조를 소개합니다. 이것은 애플리케이션들(applications)을 만들 수 있는 운영체제와 유사한 구조를 생성함으로 가능합니다. 본 소프트웨어는 수백 개의 CPU 코어 또는 클러스터를 통해 계정(accounts), 인증(authentication), 데이터베이스(databases), 비동기 통신(asynchronous communication), 애플리케이션의 스케쥴링(application scheduling)을 제공합니다. 그 결과로 탄생한 것은 초당 수백만 건의 트랜잭션 처리 능력을 갖추면서도, 수수료가 없고, 빠르고, 쉽게 애플리케이션을 개발할 수 있는 블록체인 아키텍처 기술입니다.
+**초록:** EOS.IO 소프트웨어는 탈중앙화 애플리케이션의 수직 및 수평 확장이 가능하게 디자인된 새로운 블록체인 구조를 소개합니다. 이것은 애플리케이션들(applications)을 만들 수 있는 운영체제와 유사한 구조를 생성함으로 가능합니다. 본 소프트웨어는 수백 개의 CPU 코어 또는 클러스터를 통해 계정(accounts), 인증(authentication), 데이터베이스(databases), 비동기 통신(asynchronous communication), 애플리케이션의 스케쥴링(application scheduling)을 제공합니다. 그 결과 초당 수백만 건의 트랜잭션 처리 능력을 갖추면서도, 수수료가 없고, 빠르고 쉽게 애플리케이션을 개발할 수 있는 블록체인 아키텍처 기술이 탄생했습니다.
 
 **주의사항: 본 백서에서 언급되는 암호화폐 토큰은 EOS.IO 소프트웨어를 사용할 수 있는 블록체인 상에 존재하는 토큰을 지칭합니다. 이 토큰은 EOS 분배에 사용되는 이더리움 블록체인 상에 존재하는 ERC-20 기반 토큰을 가리키는 것이 아닙니다.**
 
@@ -10,62 +10,62 @@
 
 누구든지 허가 없이 원래의 출처와 해당 저작권 고지가 언급된 경우 비영리적이고 교육적인 용도 (즉, 유료 또는 상업적 목적 이외의 목적)로 본 백서의 자료를 사용, 복제 또는 배포할 수 있습니다.
 
-**면책 조항:** EOS.IO 기술 백서는 오직 정보 제공의 목적으로써 제공됩니다. block.one의 정확성을 보증 하지 않습니다 또는이 백서의 결론 도달하고 이 백서는 "있는 그대로" 제공 됩니다. block.one은 이 백서에서 도달한 결론의 정확성을 보장하지 않으며, 백서는 "있는 그대로" 제공되며, 이는 (단, 이에 한정되지는 않음) 명시적이거나 묵시적인 것으로서 어떠한 보증도 하지 않습니다. (i) 상품성에 대한 보증, 특정 목적을 위한 적합성, 타이틀 또는 법규의 위반이 없음; (ii) 본 백서의 내용에 오류가 없거나 어떤 목적에 적합하다는 것; (iii) 그러한 내용이 제3자의 권리를 침해하지 않을 것입니다. block.one과 그 계열사는 이 백서에 포함된 정보의 사용, 참조 또는 신뢰로 인해 발생하는 모든 종류의 손해에 대해 명시적으로 책임을 지지 않습니다. 어떠한 경우에도 block.one 또는 그 계열사 책임을 지지 것입니다. 어떤 사람 또는 단체(entity)의 모든 손해, 손실, 책임, 비용 또는 어떠한 종류의 비용에 대 한 직접 또는 간접, 결과적, 보상, 부수적, 실제, 모범, 징벌적 또는 의 사용, 참조, 또는 이 백서 또는 비즈니스의 손실을 포함하되 이 제한 없이, 여기에 포함 된 내용에 대한 의존도 대한 특별 한 수익, 이익, 데이터, 사용, 영업권 또는 기타 무형 손실.
+**면책 조항:** EOS.IO 기술 백서는 오직 정보 제공의 목적으로써 제공됩니다. block.one의 정확성을 보증 하지 않습니다 또는이 백서의 결론 도달하고 이 백서는 "있는 그대로" 제공 됩니다. block.one은 이 백서에서 도달한 결론의 정확성을 보장하지 않으며, 백서는 "있는 그대로" 제공되며 이는 (단, 이에 한정되지는 않음) 명시적이거나 묵시적인 것으로서 어떠한 보증도 하지 않습니다. (i) 상품성에 대한 보증, 특정 목적을 위한 적합성, 타이틀 또는 법규의 위반이 없음; (ii) 본 백서의 내용에 오류가 없거나 어떤 목적에 적합하다는 것; (iii) 그러한 내용이 제3자의 권리를 침해하지 않을 것입니다. block.one과 그 계열사는 이 백서에 포함된 정보의 사용, 참조 또는 신뢰로 인해 발생하는 모든 종류의 손해에 대해 명시적으로 책임을 지지 않습니다. 어떠한 경우에도 block.one 또는 그 계열사 책임을 지지 것입니다. 어떤 사람 또는 단체(entity)의 모든 손해, 손실, 책임, 비용 또는 어떠한 종류의 비용에 대 한 직접 또는 간접, 결과적, 보상, 부수적, 실제, 모범, 징벌적 또는 의 사용, 참조, 또는 이 백서 또는 비즈니스의 손실을 포함하되 이 제한 없이, 여기에 포함 된 내용에 대한 의존도 대한 특별 한 수익, 이익, 데이터, 사용, 영업권 또는 기타 무형 손실.
 
-- [탄생 배경 (Background)](#background)
-- [블록체인 애플리케이션의 요구사항 (Requirements for Blockchain Application)](#requirements-for-blockchain-applications) 
-  - [수백만의 사용자 허용 (Support Millions of Users)](#support-millions-of-users)
-  - [무료 사용 (Free Usage)](#free-usage)
-  - [간편한 업그레이드 및 버그 해소 (Easy upgrades and Bug Recovery)](#easy-upgrades-and-bug-recovery)
-  - [짧은 지연 시간 (Low Latency)](#low-latency)
-  - [순차(sequential) 처리 성능 (Sequential Performance)](#sequential-performance)
-  - [병렬 처리 성능 (Parallel Performance)](#parallel-performance)
-- [합의 알고리즘 (DPOS) (Consensus Algorithm)](#consensus-algorithm-dpos) 
-  - [트랜잭션 확인 (Transaction Confirmation)](#transaction-confirmation)
-  - [트랜잭션 기반 지분 증명 (Transaction as Proof of Stake, TaPoS)](#transaction-as-proof-of-stake-tapos)
-- [계정 (Accounts)](#accounts) 
-  - [메시지와 처리기 (Messages & Handlers)](#messages--handlers)
-  - [역할 기반 권한 관리 (Role Based Permission Management)](#role-based-permission-management) 
-    - [명명된 권한 수준 (Named Permission Levels)](#named-permission-levels)
-    - [명명된 메시지 처리기 그룹 (Named Message Handler Groups)](#named-message-handler-groups)
-    - [권한 매핑 (Permission Mapping)](#permission-mapping)
-    - [권한 검사 (Evaluating Permissions)](#evaluating-permissions) 
-      - [기본 권한 그룹( Default Permission Groups)](#default-permission-groups)
-      - [권한 검사의 병렬화 (Parallel Evaluation of Permissions)](#parallel-evaluation-of-permissions)
-  - [메시지의 필수 지연 시간 (Messages with Mandatory Delay)](#messages-with-mandatory-delay)
-  - [키 도난 상태에서의 복구 (Recovery from Stolen Keys)](#recovery-from-stolen-keys)
-- [애플리케이션의 결정론적 병렬 실행 (Deterministic Parallel Execution of Applications)](#deterministic-parallel-execution-of-applications) 
-  - [통신 지연 최소화 (Minimizing Communication Latency)](#minimizing-communication-latency)
-  - [읽기 전용 메시지 처리기 (Read-Only Message Handlers)](#read-only-message-handlers)
-  - [다중 계정의 원자적 트랜잭션 (Atomic Transactions with Multiple Accounts)](#atomic-transactions-with-multiple-accounts)
-  - [블록체인 상태의 부분 검사 (Partial Evaluation of Blockchain State)](#partial-evaluation-of-blockchain-state)
-  - [주관적 최선 스케쥴링 (Subjective Best Effort Scheduling)](#subjective-best-effort-scheduling)
-- [토큰 모델과 리소스 사용 (Token Model and Resource Usage)](#token-model-and-resource-usage) 
-  - [객관적 측정과 주관적 측정 (Objective and Subjective Measurements)](#objective-and-subjective-measurements)
-  - [수취인 부담 (Receiver Pays)](#receiver-pays)
-  - [리소스 허용량 위임 (Delegating Capacity)](#delegating-capacity)
-  - [토큰의 가치와 트랜잭션 비용의 분리 (Separating Transaction costs from Token Value)](#separating-transaction-costs-from-token-value)
-  - [상태 저장 비용 (State Storage Costs)](#state-storage-costs)
-  - [블록 보상 (Block Rewards)](#block-rewards)
-  - [커뮤니티 혜택 애플리케이션 (Community Benefit Applications)](#community-benefit-applications)
-- [거버넌스 (Governance)](#governance) 
-  - [계정 동결 (Freezing Accounts)](#freezing-accounts)
-  - [계정 코드 변경 (Changing Account Code)](#changing-account-code)
-  - [약관 (Constitution)](#constitution)
-  - [프로토콜과 약관의 개정 (Upgrading the Protocol & Constitution)](#upgrading-the-protocol--constitution) 
-    - [응급 변경 (Emergency Changes)](#emergency-changes)
-- [스크립트와 가상 머신 (Scripts & Virtual Machines)](#scripts--virtual-machines) 
-  - [스키마 정의 메시지 (Schema Defined Messages)](#schema-defined-messages)
-  - [스키마 정의 데이터베이스 (Schema Defined Database)](#schema-defined-database)
-  - [애플리케이션과 인증 분리 (Separating Authentication from Application)](#separating-authentication-from-application)
-  - [가상 머신 독립 아키텍처 (Virtual Machine Independent Architecture)](#virtual-machine-independent-architecture) 
-    - [웹어셈블리 (WASM; Web Assembly)](#web-assembly-wasm)
-    - [이더리움 가상 머신 (EVM; Ethereum Virtual Machine)](#ethereum-virtual-machine-evm)
-- [블록체인 간 통신 (Inter Blockchain Communication)](#inter-blockchain-communication) 
-  - [경량화된 클라이언트 검증(LCV)을 위한 머클 증명 (Merkle Proofs for Light Client Validation)](#merkle-proofs-for-light-client-validation-lcv)
-  - [체인 간 통신의 지연 시간 (Latency of Interchain Communication)](#latency-of-interchain-communication)
-  - [완전성 증명 (Proof of Completeness)](#proof-of-completeness)
-- [결론 (Conclusion)](#conclusion)
+- [배경 (Background)](#백그라운드)
+- [블록체인 애플리케이션의 요구사항 (Requirements for Blockchain Application)](#블록체인-애플리케이션의-요구사항) 
+  - [수백만의 사용자 허용 (Support Millions of Users)](#수백만의-사용자-허용)
+  - [무료 사용 (Free Usage)](#무료사용)
+  - [간편한 업그레이드 및 버그 해소 (Easy upgrades and Bug Recovery)](#간편한-업그레이드-및-버그-해소)
+  - [짧은 지연 시간 (Low Latency)](#짧은-지연시간)
+  - [순차(sequential) 처리 성능 (Sequential Performance)](#순차-처리성능)
+  - [병렬 처리 성능 (Parallel Performance)](#병렬처리성능)
+- [합의 알고리즘 (DPOS) (Consensus Algorithm)](#합의알고리즘-dpos) 
+  - [트랜잭션 확인 (Transaction Confirmation)](#트랜잭션확인)
+  - [트랜잭션 기반 지분 증명 (Transaction as Proof of Stake, TaPoS)](#트랜잭션-기반-지분증명)
+- [계정 (Accounts)](#계정) 
+  - [메시지와 처리기 (Messages & Handlers)](#메시지-처리기)
+  - [역할 기반 권한 관리 (Role Based Permission Management)](#역할-기반-권한관리) 
+    - [명명된 권한 레벨 (Named Permission Levels)](#명명된-권한-수준)
+    - [명명된 메시지 처리기 그룹 (Named Message Handler Groups)](#명명된-메시지-처리기-그룹)
+    - [권한 매핑 (Permission Mapping)](#권한매핑)
+    - [권한 검사 (Evaluating Permissions)](#권한검사) 
+      - [기본 권한 그룹( Default Permission Groups)](#기본권한그룹)
+      - [권한 검사의 병렬화 (Parallel Evaluation of Permissions)](#권한검사의-병렬화)
+  - [메시지의 필수 지연 시간 (Messages with Mandatory Delay)](#메시지의-필수지연시간)
+  - [키 도난으로부터 복구 (Recovery from Stolen Keys)](#키-도난으로부터-복구)
+- [애플리케이션의 결정론적 병렬 실행 (Deterministic Parallel Execution of Applications)](#애플리케이션의-결정론적-병렬실행) 
+  - [통신 지연 최소화 (Minimizing Communication Latency)](#통신-지연-최소화)
+  - [읽기 전용 메시지 처리기 (Read-Only Message Handlers)](#읽기-전용-메시지-처리기)
+  - [다중 계정의 원자적 트랜잭션 (Atomic Transactions with Multiple Accounts)](#다중-계정의-원자적-트랜잭션)
+  - [블록체인 상태의 부분 검사 (Partial Evaluation of Blockchain State)](#블록체인-상태의-부분-검사)
+  - [주관적 최선 스케쥴링 (Subjective Best Effort Scheduling)](#주관적-최선-스케쥴링)
+- [토큰 모델과 리소스 사용 (Token Model and Resource Usage)](#토큰-모델과-리소스-사용) 
+  - [객관적 측정과 주관적 측정 (Objective and Subjective Measurements)](#객관적-측정과-주관적-측정)
+  - [수취인 부담 (Receiver Pays)](#수취인-부담)
+  - [리소스 허용량 위임 (Delegating Capacity)](#리소스-허용량-위임)
+  - [토큰의 가치로부터 트랜잭션 비용의 분리 (Separating Transaction costs from Token Value)](#토큰의-가치와-트랜잭션-비용의-분리)
+  - [상태 저장 비용 (State Storage Costs)](#상태-저장-비용)
+  - [블록 보상 (Block Rewards)](#블록보상)
+  - [커뮤니티 혜택 애플리케이션 (Community Benefit Applications)](#커뮤니티-혜택-애플리케이션)
+- [거버넌스 (Governance)](#거버넌스) 
+  - [계정 동결 (Freezing Accounts)](#계정동결)
+  - [계정 코드 변경 (Changing Account Code)](#계정코드변경)
+  - [약관 (Constitution)](#헌법)
+  - [프로토콜과 헌법의 개정 (Upgrading the Protocol & Constitution)](#프로토콜의-업그레이드--헌법) 
+    - [응급 변경 (Emergency Changes)](#응급변경)
+- [스크립트와 가상 머신 (Scripts & Virtual Machines)](#스크립트-가상머신) 
+  - [스키마 정의 메시지 (Schema Defined Messages)](#스키마정의메시지)
+  - [스키마 정의 데이터베이스 (Schema Defined Database)](#스키마-정의-데이터베이스)
+  - [애플리케이션과 인증 분리 (Separating Authentication from Application)](#애플리케이션과-인증-분리)
+  - [가상 머신 독립 아키텍처 (Virtual Machine Independent Architecture)](#가상머신-독립-아키텍처) 
+    - [웹어셈블리 (WASM; Web Assembly)](#웹어셈블리)
+    - [이더리움 가상머신 (EVM; Ethereum Virtual Machine)](#이더리움-가상머신-evm)
+- [블록체인 간 통신 (Inter Blockchain Communication)](#블록체인-간-통신) 
+  - [경량화된 클라이언트 검증(LCV)을 위한 머클 증명 (Merkle Proofs for Light Client Validation)](#머클증명에-의한-경량클라이언트-검증)
+  - [체인 간 통신의 지연 시간 (Latency of Interchain Communication)](#체인사이-통신의-지연시간)
+  - [완전성 증명 (Proof of Completeness)](#완전성증명)
+- [결론 (Conclusion)](#결론)
 
 # 탄생 배경 (Background)
 
@@ -85,17 +85,17 @@ Ebay, Uber, AirBnB, Facebook 과 같은 기존 서비스와 경쟁하기 위해�
 
 ## 무료 사용 (Free Usage)
 
-애플리케이션 개발자는 사용자들에게 무료 서비스를 제공할 수 있는 유연성이 필요하며, 사용자들은 플랫폼을 사용하거나 플랫폼의 서비스를 이용하기 위해 비용을 지불해서는 안됩니다. 사용자가 무료로 이용할 수 있는 블록체인 플랫폼이 더 널리 사용될 것입니다. 빠른 대중화로 인해 기업가와 개발자는 효율적인 수익 창출 전략을 만들어 낼 수 있을 것입니다.
+애플리케이션 개발자는 사용자들에게 무료 서비스를 제공할 수 있는 유연성이 필요하며, 사용자들은 플랫폼을 사용하거나 플랫폼의 서비스를 이용하기 위해 비용을 지불해서는 안됩니다. 사용자가 무료로 이용할 수 있는 블록체인 플랫폼이 더 널리 사용될 것입니다. 따라서, 개발자와 기업은 효과적인 수익 창출 전략을 만들 수 있습니다.
 
 ## 간편한 업그레이드 및 버그 해소 (Easy upgrades and Bug Recovery)
 
 블록체인 기반 애플리케이션을 만드는 기업은 그들의 애플리케이션에 새로운 기능을 추가하고 개선할 수 있어야 합니다.
 
-많은 소프트웨어들은 엄격한 공식적인 검사를 진행하더라도 버그가 발생합니다. 플랫폼은 애플리케이션에서 버그가 발생하였을 때 이 버그를 수정할 수 있을 만큼 안정적이어야 합니다.
+많은 소프트웨어들은 엄격한 공식적인 검사를 진행하더라도 버그가 발생합니다. 플랫폼은 애플리케이션에서 버그가 발생하였을 때 버그를 수정할 수 있을 만큼 안정적이어야 합니다.
 
 ## 짧은 지연 시간 (Low Latency)
 
-좋은 사용자 경험은 수 초 이하의 지연시간의 안정적인 피드백을 필요로 합니다. 긴 지연 시간은 사용자를 좌절시키며, 이런 블록체인 기반의 애플리케이션은 기존의 비블럭체인 기반의 애플리케이션들(non-blockchain alternatives)에 비해 경쟁력이 떨어집니다.
+좋은 사용자 경험은 수 초 이하의 지연시간의 안정적인 피드백을 필요로 합니다. 긴 지연 시간은 사용자의 불만을 일으키며, 이러한 블록체인 애플리케이션은 블록체인을 사용하지 않는 기존의 애플리케이션에 비해 경쟁력이 떨어집니다.
 
 ## 순차(sequential) 처리 성능 (Sequential Performance)
 
@@ -115,7 +115,7 @@ EOS.IO 소프트웨어에서 블록들은 21번의 단계의 라운드로 생성
 
 생산자가 블록 생성에 실패(misses a block)하고 지난 24시간 동안 어떠한 블록을 생성하지 않았다면, 그는 블록체인에 블록 생성 참여 의사를 알려주기 전까지 블럭 생성에서 제외됩니다. 이렇게 하면 믿을 수 없는(unreliable) 사람을 블럭 생성에서 배제하므로, 놓치는 블록을 최소화하고 네트워크가 원활하게 동작하도록 합니다.
 
-일반적인 상황에서 지분 위임 증명(DPOS) 알고리즘을 사용하는 블록체인은 어떠한 포크(fork)도 일어나지 않습니다. 포크가 발생되면, 합의는 가장 긴 체인에 자동으로 전환됩니다. 이 방법이 동작하는 이유는 특정 블록체인 포크에 블록들이 추가되는 속도가 같은 합의를 공유하는 블록 생성자의 비율과 직접 연관되기 때문입니다. 즉, 더 많은 블록 생산자가 참여하는 블록체인이 적은 블록 생산자가 참여하는 블록체인에 비하여 빠르게 생성됩니다. 추가로, 어떠한 블록 생성자도 동시에 두 개의 포크에 블록을 생성할 수 없습니다. 만일 이러한 것이 적발되면, 해당 블록 생성자는 투표에서 제외될 것입니다. 이렇게 두개 이상의 블럭체인을 생성하는 악용자는 암호학적 증거(cryptographic evidence)에 의해 자동으로 제거될 수 있습니다.
+일반적인 상황에서, 지분 위임 증명(DPOS) 알고리즘을 사용하는 블록체인은 어떠한 포크(fork)도 일어나지 않습니다. 포크가 발생되면, 합의는 가장 긴 체인에 자동으로 전환됩니다. 이 방법이 동작하는 이유는 특정 블록체인 포크에 블록들이 추가되는 속도가 같은 합의를 공유하는 블록 생성자의 비율과 직접 연관되기 때문입니다. 즉, 더 많은 블록 생산자가 참여하는 블록체인이 적은 블록 생산자가 참여하는 블록체인에 비하여 빠르게 생성됩니다. 추가로, 어떠한 블록 생성자도 동시에 두 개의 포크에 블록을 생성할 수 없습니다. 만일 이러한 것이 적발되면, 해당 블록 생성자는 투표에서 제외될 것입니다. 이렇게 두개 이상의 블럭체인을 생성하는 악용자는 암호학적 증거(cryptographic evidence)에 의해 자동으로 제거될 수 있습니다.
 
 ## 트랜잭션 확인 (Transaction Confirmation)
 
@@ -204,7 +204,7 @@ EOS.IO 소프트웨어는 계정별로 어떠한 계정의 명명된 메시지 �
 
 필수 지연 시간은 작업의 중요도에 따라 다릅니다. 커피 한잔을 구매하는 것은 지연시간을 갖지 않아 몇 초 내로 취소 불가능한 상태가 되며, 집을 사는 것이라면 72시간의 거래 완료 조정 기간을 둘 수 있습니다. 전체 계정을 새로운 권한(new control)으로 이전하는 것은 30일의 기간을 둘 수도 있습니다. 애플리케이션 개발자와 사용자가 이 지연 시간을 정할 수 있습니다.
 
-## 키 도난 상태에서의 복구 (Recovery from Stolen Keys)
+## 키 도난으로부터 복구 (Recovery from Stolen Keys)
 
 EOS.IO 소프트웨어는 사용자의 키가 도난당하였을 때, 계정에 대한 복구 작업을 제공합니다. 계정 소유자는 최근 30일 이내에 사용했 소유자의 키를 가지고 지정된 계정 복구 협력자와 협력하여 그 계정에 대한 자신의 키를 재설정할 수 있습니다. 계정 복구 협력자는 소유자의 허가 없이 계정에 작업할 수 없습니다.
 
@@ -279,8 +279,8 @@ EOS.IO 소프트웨어는 네트워크 관점에서 모든 트랜잭션에 대�
 
 모든 블록 체인은 자원이 제한되어 있으므로 악용을 막기위한 시스템이 필요합니다. EOS.IO를 사용하는 블록체인과 함께, 응용 프로그램에서 사용 하는 리소스의 3 개의 넓은 종류가 있다: EOS.IO 소프트웨어를 사용하는 블록체인에서, 애플리케이션에서 소비하는 자원은(resources)은 세 가지의 넓게 분류(class)합니다.
 
-1. 대역폭과 로그 저장소 (디스크)
-2. 연산과 연산 로그 (CPU)
+1. 대역폭과 로그 저장소(Log Storage) (디스크)
+2. 연산과 연산 백로그(backlog) (CPU)
 3. 상태 저장소 (램)
 
 대역폭과 연산은 즉시 사용과 장기 사용의 2개의 구성요소로 구분됩니다. 블록 체인은 모든 메시지의 로그를 관리하며,이 로그는 모든 완전노드(full nodes)에 의해 저장되고 다운로드됩니다. 메시지의 로그( log of messages)를 가지고, 모든 애플리케이션의 상태를 재구축할 수 있습니다.
@@ -353,7 +353,7 @@ EOS.IO 소프트웨어는 블록체인에서 P2P 서비스 약정을 체결하�
 
 약관은 사람이 읽을 수 있는 형식으로 소스코드 프로토콜의 의도를 정의합니다. 이를 통해 오류가 발생하였을 때, 버그와 기능의 차이를 인식할 수 있도록 하고 커뮤니티가 수정사항이 적합한지 여부를 판단하도록 해줍니다.
 
-## 프로토콜과 약관의 개정 (Upgrading the Protocol & Constitution)
+## 프로토콜과 헌법의 개정 (Upgrading the Protocol & Constitution)
 
 EOS.IO 소프트웨어는 정식 소스 코드 및 헌법으로 규정되는 프로토콜의 절차를 규정하며, 다음의 절차로 개정할 수 있습니다.
 
