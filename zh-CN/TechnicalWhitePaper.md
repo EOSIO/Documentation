@@ -85,7 +85,7 @@ Copyright © 2017 block.one
 
 ## 免费的使用
 
-Application developers need the flexibility to offer users free services; users should not have to pay in order to use the platform or benefit from its services. 一个可以免费供用户使用的区块链平台或许将赢得更为广泛的使用。 开发者和企业可以制订有效的货币化战略。
+应用的开发者们需要一个能够向用户提供免费服务的灵活性，用户亦不必为使用该平台或者其服务而处处付费。一个可以免费供用户使用的区块链平台或许将赢得更为广泛的使用。 开发者和企业可以制订有效的货币化战略。
 
 ## 简单升级和 bug 修复
 
@@ -194,15 +194,15 @@ The EOS.IO technology also allows all accounts to have an "owner" group which ca
 
 从各方面考虑，权限验证占据了验证交易计算量的很大比例。 让其只读和普遍的并发处理将会使得性能有一个质的飞跃。
 
-当从消息日志中重新生成确定性状态时不再需要重复的权限验证。 事实是一个交易如果被包含近了一个被认为不存在问题的区块时它就有足够的理由跳过这 步这将极大减少因为区块链增长拉去过去记录时的计算量。
+当从消息日志中重新生成确定性状态时不再需要重复的权限验证。 事实是一个交易如果被包含近了一个被认为不存在问题的区块时它就有足够的理由跳过这步这将极大减少因为区块链增长拉去过去记录时的计算量。
 
 ## 带强制性延时的消息
 
-时间是安全中的一个关键组成部分。 在大多数情况下，一个私钥在没有被使用前都无从知晓它是否被偷窃。 当人们有需要密钥的应用在每天联网使用的电脑上运行时，基于时间的安全会更为重要。 EOS.IO 软件让应用开发者可以指明消息必须在被加到一个区块之前等待最小的时间间隙。 During this time they can be cancelled.
+时间是安全中的一个关键组成部分。 在大多数情况下，一个私钥在没有被使用前都无从知晓它是否被偷窃。 当人们有需要密钥的应用在每天联网使用的电脑上运行时，基于时间的安全会更为重要。 EOS.IO 软件让应用开发者可以指明消息必须在被加到一个区块之前等待最小的时间间隙。 在这期间，它们可以被取消。
 
 用户可以在消息广播出去后通过邮件或者文字消息的形式收到通知。 如果他们没有授权，那么他们可以使用帐户恢复流程来恢复帐户，并收回消息。
 
-这个必须的延时由操作敏感性决定。 为一杯咖啡付款可以没有任何的延时，几秒之内就不可逆了，而购买一个房子也许需要 72 消失的结算期。 转移整个帐户到一个新的控制可能需要长达 30 天。 具体的延时选择由开发者和用户自己来做选择。
+这个必须的延时由操作敏感性决定。 为一杯咖啡付款可以没有任何的延时，几秒之内就不可逆了，而购买一个房子也许需要 72 小时的结算期。 转移整个帐户到一个新的控制可能需要长达 30 天。 具体的延时选择由开发者和用户自己来做选择。
 
 ## 恢复被盗窃的密钥
 
@@ -237,7 +237,7 @@ In an EOS.IO software-based blockchain, it is the job of the block producer to o
                   接受者和被通知帐户 (并行)
     
 
-在一个循环中生成的交易可以在后续的任何一个循环或者区块中被发送。 区块生产者会持续不断的向区块中添加循环直到最大的墙上时间到了或者没有更多的新交易要发送。
+在一个循环中生成的交易可以在后续的任何一个循环或者区块中被发送。 区块生产者会持续不断的向区块中添加循环直到最大的墙上（？）时间到了或者没有更多的新交易要发送。
 
 可以对一个区块使用静态分析来验证同一个循环内不存在两个线程包含同一帐户下对交易的变更。 只要保持不变一个区块就可以并行的运行所有的线程。
 
@@ -263,7 +263,7 @@ In an EOS.IO software-based blockchain, it is the job of the block producer to o
 
 ## 自主最优调度
 
-EOS.IO 软件并不能为区块生产生者为任何其他帐户送达的任何信息负责。 每个区块生产者要对计算的发杂读和处理一个消息的时间自己进行主观上的预测。 这同时适用于用户生成的和脚本自动生成的交易。
+EOS.IO 软件并不能为区块生产者为任何其他帐户送达的任何信息负责。 每个区块生产者要对计算的复杂度和处理一个消息的时间自己进行主观上的预测。 这同时适用于用户生成的和脚本自动生成的交易。
 
 On a launched blockchain adopting the EOS.IO software, at a network level all transactions are billed a fixed computational bandwidth cost regardless of whether it took .01ms or a full 10 ms to execute it. 然而，每个单独的区块生产者要通过自己的算法来计算资源的消耗。 当一个区块生产者断定一个交易或者帐户消耗了不相称的大量的计算资源时，他们可以在生成自己的区块时拒绝该交易；但是，如果其他区块生产者认为交易是有效的，他们就仍需要处理交易。
 
@@ -289,7 +289,7 @@ All blockchains are resource constrained and require a system to prevent abuse. 
 
 区块链状态存储是通过访问应用逻辑获取的信息。 它包括诸如挂单和账户余额等信息。 如果状态从未被应用读取则它不会被存储。 比如，博客发布的内容和评论如未被应用逻辑读取则他们就不应该存储在区块链状态中。 同时，发布的内容／评论的存在、投票的数量和其他属性要作为区块链状态的部分被存储下来。
 
-区块生产者对外发布她们可用的带宽，计算能力和状态。 EOS.IO 允许帐户按比例消耗一个 3 天对赌合约中的可用资源。 举个例子，如果一个基于 EOS.IO 的区块链启动了，一个帐户持有所有 token 发行总量的 1%，那么帐号就具有使用 1% 状态存储空间的能力。
+区块生产者对外发布它们可用的带宽，计算能力和状态。 EOS.IO 允许帐户按比例消耗一个 3 天对赌合约中的可用资源。 举个例子，如果一个基于 EOS.IO 的区块链启动了，一个帐户持有所有 token 发行总量的 1%，那么帐号就具有使用 1% 状态存储空间的能力。
 
 Adopting the EOS.IO software on a launched blockchain means bandwidth and computational capacity are allocated on a fractional reserve basis because they are transient (unused capacity cannot be saved for future use). The algorithm used by EOS.IO software is similar to the algorithm used by Steem to rate-limit bandwidth usage.
 
@@ -301,7 +301,7 @@ Adopting the EOS.IO software on a launched blockchain means bandwidth and comput
 
 ## 接收方付费
 
-传统上来说，企业为办公场地、计算力和其他为了运行企业而需要的成本买单。 客户从企业购买具体的产品，产品销售产生的利润来盖过企业运作的成本。 类似的，没有哪个网站要求来访者为盖过运作成本而支付。 因此，去中心化应用也不应该强制用户因为使用了区块链而直接为区块链支付。
+传统上来说，企业为办公场地、计算力和其他为了运行企业而需要的成本买单。 客户从企业购买具体的产品，产品销售产生的利润来支付企业运作的成本。 类似的，没有哪个网站要求来访者为它的运作成本而支付。 因此，去中心化应用也不应该强制用户因为使用了区块链而直接为区块链支付。
 
 A launched blockchain that uses the EOS.IO software does not require its users to pay the blockchain directly for its use and therefore does not constrain or prevent a business from determining its own monetization strategy for its products.
 
