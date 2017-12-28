@@ -16,7 +16,9 @@ The account recovery features of EOS.IO bridge the gap between the uncompromisin
    * **owner:** the highest permission for an account.  It constitutes total control and has special rules to protect it.
    * **active:** the highest permission without special rules attached, able to authorize any actions
    * **recovery:** a special permission which cannot authorize any actions except for account recovery
- * **Multi-Sig Authority:** an authority which authorizes actions if-and-only-if it is satisfied by M of N private keys or referenced accounts
+ * **Multi-Sig Authority:** an authority which authorizes actions if-and-only-if it is satisfied by a number of private keys or referenced accounts
+   * a basic Multi-Sig Authority can be represented by two quantities M and N, where M is the number of required authorizers and N is the number of potential authorizers
+   * EOS.IO supports a more flexible model where each authorizing party (a public key or referenced account) has a weight and the Authority is satisfied when the sum of all authorizing weights exceeds a threshold.  This is a strict superset of the basic multi-sig authority.
 
 ## Basic Operational Restrictions
 
@@ -38,12 +40,14 @@ More succintly, the EOS.IO blockchains software has no restrictions however, it 
 
 The owner permission can be used to do anything on an account, like "root" on a unix system or the super-user on windows.  Because of its capacity for bad actors to do bad things, it should rarely be used.  Best practices are to only use the owner permission when specifically setting the Authority for the active permission or when participating in some of the recovery procedures outlined below.
 
-Furthermore, the owner permission should be extremely hard to compromise.  As such, best practices suggest that the authority set on an account's owner permission be a N of N multi-sig authority which references a key the user controls and keeps private and any number of trusted 3rd parties.  For new accounts, the account of the creator is recommended as the first trusted 3rd party.  Afterwards, the user may reconfigure that set of accounts to any set of other accounts.  As discussed later in the recovery procedures, this will not afford any of the trusted 3rd parties the ability to hold the owner account hostage.
+Furthermore, the owner permission should be extremely hard to compromise.  As such, best practices suggest that the authority set on an account's owner permission a multi-sig authority which references a key the user controls and keeps private and any number of trusted 3rd parties.  Weights for this authority should be set such that the users key is _always_ required and additionally some M of N trusted 3rd parties are required as well.  For example, if the user's key has a weight of 4 and there are 3 trusted 3rd party accounts each with a weight of 1, then an authority with a threshold of 6 can only be satisfied by the users key AND 2 of 3 trusted parties.
+
+For new accounts, the account of the creator is recommended as the first trusted 3rd party.  Afterwards, the user may reconfigure that set of accounts to any set of other accounts.  As discussed later in the recovery procedures, this will not afford any of the trusted 3rd parties the ability to hold the owner account hostage.
 
 These best practices do a number of things:
 
   * Isolate the owner permission and treat it more securely
-  * Require compromising ALL trusted parties in order to compromise andy user's owner permission
+  * Require compromising some number of trusted 3rd parties AND the a private key the user controls in order to compromise any user's owner permission
 
 ### Recovery Permission
 
