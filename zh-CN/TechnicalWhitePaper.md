@@ -4,13 +4,13 @@
 
 **摘要：** EOS.IO 软件引入一种新的区块链架构设计，它使得去中心化的应用可以横向和纵向的扩展。 这通过构建一个仿操作系统的方式来实现，在它之上可以构建应用程序。 该软件提供帐户、身份验证、数据库、异步通信和跨越数百个 CPU 内核或集群的应用程序调度。 由此产生的技术是一种区块链架构，它可以扩展至每秒处理百万级交易，消除用户的手续费，并且允许快速和轻松的部署去中心化的应用。
 
-**PLEASE NOTE: CRYPTOGRAPHIC TOKENS REFERRED TO IN THIS WHITE PAPER REFER TO CRYPTOGRAPHIC TOKENS ON A LAUNCHED BLOCKCHAIN THAT ADOPTS THE EOS.IO SOFTWARE. THEY DO NOT REFER TO THE ERC-20 COMPATIBLE TOKENS BEING DISTRIBUTED ON THE ETHEREUM BLOCKCHAIN IN CONNECTION WITH THE EOS TOKEN DISTRIBUTION.**
+** 请注意：在本白皮书中提到的密码令牌指的是已启动的采用EOS.IO软件的区块链上的密码令牌。 它们不是在以太坊区块链上进行ICO的ERC-20兼容的EOS令牌。**
 
 Copyright © 2017 block.one
 
 未经允许，在非用于商业和教育用途的前提下 (即，除了收取费用或商业目的)，如果注明原始出处并适用声明的版权，任何人可以使用、复制或发布本白皮书内的任何内容。
 
-**免责声明：** 本 EOS.IO 技术白皮书草案仅供参考。 block.one does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided “as is”. block.one does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. block.one and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will block.one or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.
+**免责声明：** 本 EOS.IO 技术白皮书草案仅供参考。 block.one不保证本白皮书的准确性或达成的结论，本白皮书“按原样”提供。block.one不以任何形式明示，暗示，法定或其他方式表示和保证，包括但不限于：（i）商业保证，适用于特定用途，适用性，使用，标题或不侵权; （ii）本白皮书的内容没有错误; （iii）这些内容不会侵犯第三方的权利。对于因使用，引用或依赖此白皮书或此处包含的任何内容而引起的任何形式的损害，即使已被告知存在此类损害的可能性，本公司及其附属公司概不负责。在任何情况下，block.one或其附属公司将不会对因引用或依赖本白皮书或此处包含的任何内容而造成对任何人或实体的任何损害，损失，责任，成本或费用负责，无论是直接的还是间接的，后果性的，补偿性的，附带的，实际的，惩戒性的，惩罚性的或特殊的使用，包括但不限于业务，收入，利润，数据，使用，商誉或其他无形损失的任何损失。
 
 - [背景](#background)
 - [区块链应用的要求](#requirements-for-blockchain-applications) 
@@ -69,11 +69,11 @@ Copyright © 2017 block.one
 
 # 背景
 
-区块链技术是通过 2008 年诞生的比特币货币得以被认知，自从那之后企业家和开发者就不断的尝试推广这一技术，以便在单一的区块链平台上支持更为广泛的应用程序。
+区块链技术因2008 年诞生的比特币得以被认知，自从那之后企业家和开发者就不断的尝试推广这一技术，以便在单一的区块链平台上支持更为广泛的应用。
 
-而一些区块链平台努力的支持可运作的去中心化应用，具体的应用比如 BitShares 去中心化交易所 (2014) 和 Steem 社交媒体平台 (2016) 已经成为每天被成千上万活跃用户重度使用的区块链。 他们能做到这些，是通过性能的提升达到每秒处理上千交易，消除手续费和提供堪比已经存在的中心化服务的用户体验。
+一些区块链平台努力的支持可运作的去中心化应用，具体的应用比如 BitShares 去中心化交易所 (2014) 和 Steem 社交媒体平台 (2016) 已经成为每天被成千上万活跃用户重度使用的区块链。 他们能做到这些，是通过性能的提升达到每秒处理上千交易，消除手续费和提供堪比已经存在的中心化服务的用户体验。
 
-已存在的区块链平台承担着大量的交易费和有限的可计算能力，这都阻碍了区块链技术的大面积应用。
+已存在的区块链平台收取的大量的交易费及其有限的计算能力阻碍了区块链技术的大面积应用。
 
 # 区块链应用的要求
 
@@ -84,8 +84,7 @@ Copyright © 2017 block.one
 像 Ebay、Uber、AirBnB 和 Facebook 这样企业，他们需要区块链技术能处理每日数以千万的活跃用户。 在某些情况下，除非用户群体达到一个极庞大的量级否则应用并无用武之地，因此一个可以处理极其庞大用户的平台是至关重要的。
 
 ## 免费的使用
-
-Application developers need the flexibility to offer users free services; users should not have to pay in order to use the platform or benefit from its services. 一个可以免费供用户使用的区块链平台或许将赢得更为广泛的使用。 开发者和企业可以制订有效的货币化战略。
+应用开发者需要能够提供免费服务的灵活性。用户不必为使用平台或因为提供的服务受益而付费。一个可以免费供用户使用的区块链平台或许将赢得更为广泛的使用。 开发者和企业可以制订有效的货币化战略。
 
 ## 简单升级和 bug 修复
 
