@@ -14,6 +14,7 @@
 - [English](Roadmap.md)
 - [Russian](ru-RU/Roadmap.md) translated by [@blockchained](https://steemit.com/@blockchained)
 - [Chinese](zh-CN/Roadmap.md) translated by [@shuke0327](https://steemit.com/@shuke0327)
+- [Korean](ko-KR/Roadmap.md) translated by [surinkim](https://github.com/surinkim)
 
 # Translation Guide
 

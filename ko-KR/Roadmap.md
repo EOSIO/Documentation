@@ -1,85 +1,106 @@
-## EOS.IO Software Roadmap
+## EOS.IO 소프트웨어 로드맵
 
-This document outlines the development plan from a high level and will be updated as progress is made toward version 1.0. It should be noted that this roadmap applies only to the blockchain software and not to the other tools and utilities such as wallets and block explorers which will have their own teams and dedicated roadmaps once Phase 1 is complete.
+이 문서는 개발 계획에 관해 간략히 설명하며 버전이 올라감에 따라 업데이트 됩니다. 이 개발 계획은 블록체인 소프트웨어에만 적용되며 다른 도구나 지갑, 블록 탐색기 같은 유틸리티에는 적용되지 않습니다. 지갑 및 블록 탐색기는 별도의 전담 팀이 있으며 아래 1단계가 완료되면 별도의 개발 계획을 수립합니다.
 
-***Everything contained in this document is in draft form and subject to change at any time and provided for information purposes only. block.one does not guarantee the accuracy of the information contained in this roadmap and the information is provided “as is” with no representations or warranties, express or implied.***
+
+***이 문서에 포함된 내용은 초안 형태이며 언제든지 변경될 수 있고 오직 정보 전달을 위해서만 제공됩니다. block.one은 이 로드맵에 포함된 정보의 정확성을 보장하지 않으며, 명시적, 암시적 표현이나 보증없이 정보를 "있는 그대로(as is)" 제공합니다.***
+
 
 # 1단계: 기초적인 테스팅 환경 구성 - 2017년 여름
 
-The goal of this phase is to establish the APIs that developers will require to start building and testing applications on EOS.IO. In order for developers to start testing their applications they will require the following to be implemented:
+1단계의 목표는 EOS.IO에서 개발자가 애플리케이션 개발과 테스트를 시작하는데 필요한 API를 수립하는 것입니다. 개발자가 애플리케이션 테스트를 시작하기 위해서는 다음 사항을 구현해야 합니다.
 
-### Standalone Node (Dan & Nathan)
 
-A standalone node operates a test blockchain and produces blocks while exposing an API. This node does not need to concern itself with any P2P networking code.
+### 독립형 노드 (Dan & Nathan)
 
-### Native Contracts (Nathan)
+독립형 노드는 테스트 블록체인을 제어하고 API를 노출하면서 블록을 생성합니다. 이 노드는 P2P 네트워크 코드를 사용하지 않습니다.
 
-The EOS.IO software has a number of native contracts. These are contracts that manage the core operations of the blockchain and exist outside the Web Assembly interface. These contracts include:
 
-  1. @eos - manages EOS token transfers
-  2. @stake - manages locked EOS, voting, and Producer Election
-  3. @system - manages permissions, messages, and contact code updates
+### 네이티브 계약 (Nathan)
 
-### Virtual Machine API (Dan)
+EOS.IO 소프트웨어에는 많은 네이티브 계약이 있습니다. 이 계약들은 블록체인의 핵심 운영을 관리하며 웹어셈블리 인터페이스 밖에 존재합니다. 이 계약들은 다음을 포함합니다.
 
-Contracts are compiled to WebAssembly (WASM) and WASM must interface with the blockchain via a defined API. This API is what developers depend upon to build applications and be relatively stable before developers can really start to build on EOS.
 
-### RPC Interface (Arhag, Nathan)
+  1. @eos - EOS 토큰 전송을 관리합니다.
+  2. @stake - 잠금 처리된 EOS, 투표, 그리고 프로듀서 선출을 관리합니다.
+  3. @system - 권한, 메시지, 연락처 코드 업데이트를 관리합니다.
 
-A simple JSON RPC over HTTP interface will be provided that enables developers to broadcast transactions and query application state. This is critical for both publishing and interacting with test applications.
 
-### Command line Tools (Arhag)
 
-Command line tools facilitate integrating the RPC interface with developer build environments.
+### 가상 머신 API (Dan)
 
-### Basic Developer Documentation (Josh)
+계약은 웹어셈블리(WASM)로 컴파일 되며 WASM은 반드시 정의된 API를 사용해서 블록체인과 연결해야 합니다. 개발자가 실제로 EOS 개발을 시작하기 전에는 상대적으로 안정적인 이 API를 사용합니다.
 
-Documents that teach developers how to get started with building on EOS.IO blockchains. This includes documentations of the WASM API, RPC Interface, and Command Line Tools.
 
-# 2단계: 기초적인 테스트 네트워크 - 2017년 가을
 
-Everything in Phase 1 assumes a trusted environment that only runs the developer's own code. Before a test network can be deployed several additional features need to be implemented and tested.
+### RPC 인터페이스 (Arhag, Nathn)
 
-### P2P Network Code (Phil)
+개발자가 트랜잭션을 브로드 캐스트하고 애플리케이션 상태를 쿼리할 수 있도록 간단한 JSON RPC over HTTP 인터페이스가 제공됩니다. 이 인터페이스는 테스트 애플리케이션을 게시하고 사용하는 데 있어 매우 중요합니다.
 
-This is a plugin that is responsible for synchronizing the blockchain state between two standalone nodes.
 
-### WASM Sanitation & CPU Sandboxing (Brian)
 
-The WASM code needs to be sanitized to check for non-deterministic behavior such as floating point operations and infinite loops.
+### 명령행 도구 (Arhag)
 
-### Resource Usage Tracking & Rate Limiting (Arhag)
+명령행 도구를 사용해서 RPC 인터페이스와 개발자 빌드 환경을 손쉽게 통합할 수 있습니다.
 
-To prevent abuse the resource monitoring and usage tracking rate limits users accoding to staked EOS.
 
-### Genesis Import Testing (DappHub)
+### 기본 개발자 문서 (Josh)
 
-Tools need to be developed to export data from the EOS Token Distribution state and create a genesis configuration file. This will enable anyone participating in the Token Distribution to acquire some initial test EOS (TEOS).
+개발자들에게 어떻게 EOS.IO 블록체인 개발을 시작하는지 알려주는 문서로, WASM API, RPC 인터페이스, 명령행 도구에 관한 내용이 포함됩니다.
 
-### Interblockchain Communication (Nathan)
 
-This feature involves verifying the Merkle hashing of transactions is proper.
+
+# 2단계: 기초적인 테스트 네트워크 구성 - 2017년 가을
+
+1단계의 모든 작업은 개발자 자신의 코드만 실행할 수 있는 신뢰할 수 있는 환경에서 이루어집니다. 테스트 네트워크를 배포하기 전에 몇 가지 추가 기능을 구현하고 테스트해야 합니다.
+
+
+### P2P 네트워크 코드 (Phil)
+
+P2P 네트워크 코드는 두 개의 독립형 노드 사이에서 블록체인 상태를 동기화하는 역할을 담당합니다.
+
+
+### WASM 정리 및 CPU 샌드박스 (Brian)
+
+WASM 코드는 부동 소수점 연산 및 무한 루프 같은 의도하지 않은 동작을 검증할 수 있도록 다듬어야 합니다.
+
+### 리소스 사용량 추적 및 속도 제한 (Arhag)
+
+남용을 방지하기 위해 리소스 모니터링 및 사용량을 추적하고 사용자의 EOS 지분에 따라 속도를 제한합니다. 
+
+
+### 제네시스 임포트 테스트 (DappHub)
+
+EOS 토큰 배포 상태를 데이터로 내보내고 제네시스 설정 파일을 생성하는 도구를 개발해야 합니다. 이렇게 해서 토큰 배포에 참여하는 모든 사용자가 초기 테스트 EOS(TEOS)의 일부를 획득할 수 있습니다.
+
+
+### 인터블록체인 커뮤니케이션 (Nathan)
+
+이 기능은 트랜잭션의 Merkle 해시가 올바른지 검증하는 것을 포함합니다.
 
 # 3단계: 시험운영 및 보안성 검토 - 2017년 겨울 ~ 2018년 봄
 
-During this phase the platform will undergo heavy testing with a focus on finding security issues and bug. At the end of Phase 3 version 1.0 will be tagged.
+3단계에서 플랫폼은 보안 문제 및 버그를 발견하는데 초점을 맞춘 정밀한 테스트를 거치게 됩니다. 3단계가 끝나면 version 1.0 태그가 추가됩니다.
 
-### Develop Example Applications
+### 예제 애플리케이션 개발
 
-Example applications are critical to proving the platform provides the features required by real developers.
+예제 애플리케이션을 통해 플랫폼이 개발자에게 필요한 기능을 제대로 제공할 수 있는지 증명합니다.
 
-### Bounties for Succesfully Attacking Network
 
-Attacking the network with spam, virtual machine exploits, and bug crashes, and non-deterministic behavior will be a heavily involved process but necessary to ensure that version 1.0 is stable.
+### 네트워크 공격에 성공했을 때의 보상
 
-### Language Support
+스팸, 가상 머신의 부당 이용, 버그 크래시, 그리고 의도하지 않은 동작으로 네트워크를 공격하려면 많은 작업을 해야 하지만, version 1.0의 안정성을 보장하기 위해 이 과정이 필요합니다.
 
-Adding support for additional langauges to be compiled to WASM: C++, Rust, etc.
 
-### Documentation & Tutorials
+### 프로그래밍 언어 지원
 
-# Phase 4 - Parallel Optimization Summer / Fall 2018
+WASM으로 컴파일 되는 언어 - C++, Rust 등을 추가로 지원합니다.
 
-After getting a stable 1.0 product released, we will move toward optimizing the code for parallel execution.
+### 문서 & 자습서
 
-# Phase 5 - Cluster Implementation The Future
+# 4단계: 병렬 실행 최적화 - 2018년 여름 ~ 가을
+
+안정적인 version 1.0이 출시되면 다음 작업으로 병렬 실행 코드 최적화를 진행합니다.
+
+
+# 5단계: 클러스터 구현 - 미래
