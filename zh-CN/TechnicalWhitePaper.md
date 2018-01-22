@@ -202,7 +202,7 @@ The EOS.IO technology also allows all accounts to have an "owner" group which ca
 
 用户可以在消息广播出去后通过邮件或者文字消息的形式收到通知。 如果他们没有授权，那么他们可以使用帐户恢复流程来恢复帐户，并收回消息。
 
-这个必须的延时由操作敏感性决定。 为一杯咖啡付款可以没有任何的延时，几秒之内就不可逆了，而购买一个房子也许需要 72 消失的结算期。 转移整个帐户到一个新的控制可能需要长达 30 天。 具体的延时选择由开发者和用户自己来做选择。
+这个必须的延时由操作敏感性决定。 为一杯咖啡付款可以没有任何的延时，几秒之内就不可逆了，而购买一个房子也许需要 72 小时的结算期。 转移整个帐户到一个新的控制可能需要长达 30 天。 具体的延时选择由开发者和用户自己来做选择。
 
 ## 恢复被盗窃的密钥
 
@@ -263,7 +263,7 @@ In an EOS.IO software-based blockchain, it is the job of the block producer to o
 
 ## 自主最优调度
 
-EOS.IO 软件并不能为区块生产生者为任何其他帐户送达的任何信息负责。 每个区块生产者要对计算的发杂读和处理一个消息的时间自己进行主观上的预测。 这同时适用于用户生成的和脚本自动生成的交易。
+EOS.IO 软件并不能为区块生产生者为任何其他帐户送达的任何信息负责。 每个区块生产者要对计算的复杂度和处理一个消息的时间自己进行主观上的预测。 这同时适用于用户生成的和脚本自动生成的交易。
 
 On a launched blockchain adopting the EOS.IO software, at a network level all transactions are billed a fixed computational bandwidth cost regardless of whether it took .01ms or a full 10 ms to execute it. 然而，每个单独的区块生产者要通过自己的算法来计算资源的消耗。 当一个区块生产者断定一个交易或者帐户消耗了不相称的大量的计算资源时，他们可以在生成自己的区块时拒绝该交易；但是，如果其他区块生产者认为交易是有效的，他们就仍需要处理交易。
 
@@ -358,10 +358,10 @@ EOS.IO 应用使得区块链创建了一个点对点的服务条款协议或者�
 The EOS.IO software defines a process by which the protocol as defined by the canonical source code and its constitution, can be updated using the following process:
 
   1. 区块生产者对宪法提出改建意见并获得 17/21 批准。
-  2. 区块生产者持续 17/21 品准连续 30 天。
+  2. 区块生产者持续 17/21 批准连续 30 天。
   3. 所有用户需要使用新的宪法来做签名。
   4. 区块生产通过变更代码的方式来影响宪法并且提交一个 git 记录的哈希值。
-  5. 区块生产者持续 17/21 品准连续 30 天。
+  5. 区块生产者持续 17/21 批准连续 30 天。
   6. 7 天后改为会起影响的代码，给所有完整节点 1 周时间在确认源码后进行升级。
   7. 所有未升级到最新代码的节点被自动关掉。
 
@@ -399,13 +399,13 @@ To maximize parallelization opportunities and minimize the computational debt as
 
 It is the intention of the EOS.IO software-based blockchain that multiple virtual machines can be supported and new virtual machines added over time as necessary. 因此，本文并不讨论任何特定的语言或者虚拟机。 That said, there are two virtual machines that are currently being evaluated for use with an EOS.IO software-based blockchain.
 
-### Web 组建 (WASM)
+### Web 组件 (WASM)
 
-网络组建是一种为了构建高性能的 web 应用而新兴的 web 标准。 只需要进行少量的更改 Web 组建就可以被制作为确定性的和沙盒化的。 Web 组建的好处是它有着广泛的产业支持并且它可以让智能合约使用熟知的语言进行开发，比如 C 或 C++。
+网络组件是一种为了构建高性能的 web 应用而新兴的 web 标准。 只需要进行少量的更改 Web 组件就可以被制作为确定性的和沙盒化的。 Web 组件的好处是它有着广泛的产业支持并且它可以让智能合约使用熟知的语言进行开发，比如 C 或 C++。
 
-以太访开发者已经开始更改 Web 组建来提供合适的沙盒与确定性在他们的[以太访式 Web 组建 (WASM)](https://github.com/ewasm/design)。 这种方式让 EOS.IO 很容易的与之适配和对接。
+以太坊开发者已经开始更改 Web 组件来提供合适的沙盒与确定性在他们的[以太坊式 Web 组件 (WASM)](https://github.com/ewasm/design)。 这种方式让 EOS.IO 很容易的与之适配和对接。
 
-### 以太访虚拟机 (EVM)
+### 以太坊虚拟机 (EVM)
 
 这个虚拟机已经被众多已有的智能合约所采用并且可以通过适配应用与 EOS.IO 区块链中。 It is conceivable that EVM contracts could be run within their own sandbox inside an EOS.IO software-based blockchain and that with some adaptation EVM contracts could communicate with other EOS.IO software blockchain applications.
 
