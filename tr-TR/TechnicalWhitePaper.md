@@ -1,113 +1,111 @@
-# EOS.IO Technical White Paper
+# EOS.IO Teknik Döküman
 
-**June 26, 2017**
+**26 Haziran 2017**
 
-**Abstract:** The EOS.IO software introduces a new blockchain architecture designed to enable vertical and horizontal scaling of decentralized applications. This is achieved by creating an operating system-like construct upon which applications can be built. The software provides accounts, authentication, databases, asynchronous communication and the scheduling of applications across hundreds of CPU cores or clusters. The resulting technology is a blockchain architecture that scales to millions of transactions per second, eliminates user fees, and allows for quick and easy deployment of decentralized applications.
+** Özet: </ 0> EOS.IO yazılımı, merkezi olmayan uygulamaların dikey ve yatay ölçeklenebilirliğini sağlamak üzere tasarlanmış yeni bir blok zinciri mimarisi sunar. Bu, üzerinde uygulamaların oluşturulabileceği işletim sistemi benzeri bir yapı oluşturularak sağlanır. Bu yazılım hesaplar, kimlik doğrulamaları, veritabanları, asenkron iletişim ve yüzlerce CPU çekirdeği veya kümesi arasında uygulamaların zamanlamalarını sağlar. Sonuçta ortaya çıkan teknoloji saniyede milyonlarca işlemi ölçeklendirebilen, kullanıcı ücretlerini ortadan kaldıran ve merkezi olmayan uygulamaların hızlı ve kolay bir şekilde kurulmasına izin veren bir blok zinciri mimarisidir.</p> 
 
-**PLEASE NOTE: CRYPTOGRAPHIC TOKENS REFERRED TO IN THIS WHITE PAPER REFER TO CRYPTOGRAPHIC TOKENS ON A LAUNCHED BLOCKCHAIN THAT ADOPTS THE EOS.IO SOFTWARE. THEY DO NOT REFER TO THE ERC-20 COMPATIBLE TOKENS BEING DISTRIBUTED ON THE ETHEREUM BLOCKCHAIN IN CONNECTION WITH THE EOS TOKEN DISTRIBUTION.**
+**LÜTFEN DİKKAT: BU TEKNİK DÖKÜMANDA ANILAN KRİPTOGRAFİK TOKENLER EOS.IO YAZILIMI KULLANAN BİR BLOK ZİNCİRİNDEN BAŞLATILAN KRİPTOGRAFİK TOKENLERİ KASTETMEKTEDİR. EOS TOKEN DAĞITIMI İLE BAĞLANTILI OLARAK ETHEREUM BLOK ZİNCİRİNDE DAĞITILMAKTA OLAN ERC-20 UYUMLU TOKENLER İLE İLGİSİ YOKTUR.**
 
-Copyright © 2017 block.one
+Telif Hakkı © 2017 block.one
 
-Without permission, anyone may use, reproduce or distribute any material in this white paper for non-commercial and educational use (i.e., other than for a fee or for commercial purposes) provided that the original source and the applicable copyright notice are cited.
+Herkes izin almaksızın, orijinal kaynak ve geçerli telif hakkı bilgisini belirtmek koşuluyla, bu teknik dokümandaki herhangi bir materyali ticari amaçlı olmadan (kar amacı veya ticari amaç gütmeden) eğitim amaçlı olarak kullanabilir, çoğaltabilir veya dağıtabilir.
 
+**YASAL UYARI:** Bu EOS. IO teknik dokümanı yalnızca bilgi amaçlıdır. block.one bu teknik dokümanda varılan sonuçların doğruluğunu garanti etmemektedir ve bu teknik doküman "olduğu gibi" sunulmaktadır. block.one açıktan veya ima yolu ile hiçbir temsil yapmaz, garanti vermez, burada sayılanlarla birlikte ve bunlarla sınırlı olmaksızın: (i) ticari garantiler, belirli bir amaç için uyumluluk, uygunluk, kullanım, unvan veya hak ihlali; (ii) bu teknik dokümandaki bilgilerin hatasız oluşu; ve (iii) bu tür içeriklerin üçüncü taraf hakları ihlallerine ilişkin hukuki veya her ne şekilde olursa olsun her türlü temsil ve garantileri açıkça reddeder. block.one ve iştirakleri bu teknik dokümandan veya buradaki herhangi bir içeriğin zarar verme olasılığı olduğu belirtilmiş olsa dahi, kullanımından, referans gösterilmesinden, veya bu dokümana güvenilmesinden kaynaklanan hiç bir zararlardan yasal olarak sorumlu tutulamayacaklardır. Hiçbir durumda block.one veya iştirakleri bu teknik dokümanın veya burada bulunan, bunlarla sınırlı olmayan herhangi bir içeriğin kullanılması, referans alınması, güvenilmesi sonucunda oluşacak doğrudan veya dolaylı, netice olarak ortaya çıkmış, telafi edici, tesadüfi, fiili, örnek, cezai veya özel zararlar, kayıplar, yasal yükümlülükler, her türlü maliyet ve giderler, herhangi bir iş, gelir, kar, iyi niyet kaybı ve maddi olmayan diğer kayıplar için herhangi bir kişi veya kuruluşa karşı sorumlu olmayacaktır.
 
-**DISCLAIMER:** This EOS.IO Technical White Paper is for information purposes only. block.one does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided “as is”. block.one does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. block.one and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will block.one or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.
-
-
-- [Background](#background)
-- [Requirements for Blockchain Applications](#requirements-for-blockchain-applications)
-  * [Support Millions of Users](#support-millions-of-users)
-  * [Free Usage](#free-usage)
-  * [Easy Upgrades and Bug Recovery](#easy-upgrades-and-bug-recovery)
-  * [Low Latency](#low-latency)
-  * [Sequential Performance](#sequential-performance)
-  * [Parallel Performance](#parallel-performance)
-- [Consensus Algorithm (DPOS)](#consensus-algorithm-dpos)
-  * [Transaction Confirmation](#transaction-confirmation)
-  * [Transaction as Proof of Stake (TaPoS)](#transaction-as-proof-of-stake-tapos)
-- [Accounts](#accounts)
-  * [Messages & Handlers](#messages--handlers)
-  * [Role Based Permission Management](#role-based-permission-management)
-    + [Named Permission Levels](#named-permission-levels)
-    + [Named Message Handler Groups](#named-message-handler-groups)
-    + [Permission Mapping](#permission-mapping)
-    + [Evaluating Permissions](#evaluating-permissions)
+- [Geçmiş](#background)
+- [Blok Zincirİ Uygulamaları için Gereksinimler](#requirements-for-blockchain-applications) 
+  - [Milyonlarca Kullanıcı Desteği](#support-millions-of-users)
+  - [Ücretsiz Kullanım](#free-usage)
+  - [Kolay Yükseltmeler ve Hata Kurtarma](#easy-upgrades-and-bug-recovery)
+  - [Düşük Gecikme](#low-latency)
+  - [Sıralı Performans](#sequential-performance)
+  - [Paralel Performans](#parallel-performance)
+- [Konsensüs Algoritması (DPOS)](#consensus-algorithm-dpos) 
+  - [Hareket Konfirmasyonu](#transaction-confirmation)
+  - [Transaction as Proof of Stake (TaPoS)](#transaction-as-proof-of-stake-tapos)
+- [Hesaplar](#accounts) 
+  - [Messages & Handlers](#messages--handlers)
+  - [Rol Tabanlı İzin Yönetimi](#role-based-permission-management) 
+    - [Named Permission Levels](#named-permission-levels)
+    - [Named Message Handler Groups](#named-message-handler-groups)
+    - [Permission Mapping](#permission-mapping)
+    - [Evaluating Permissions](#evaluating-permissions) 
       - [Default Permission Groups](#default-permission-groups)
       - [Parallel Evaluation of Permissions](#parallel-evaluation-of-permissions)
-  * [Messages with Mandatory Delay](#messages-with-mandatory-delay)
-  * [Recovery from Stolen Keys](#recovery-from-stolen-keys)
-- [Deterministic Parallel Execution of Applications](#deterministic-parallel-execution-of-applications)
-  * [Minimizing Communication Latency](#minimizing-communication-latency)
-  * [Read-Only Message Handlers](#read-only-message-handlers)
-  * [Atomic Transactions with Multiple Accounts](#atomic-transactions-with-multiple-accounts)
-  * [Partial Evaluation of Blockchain State](#partial-evaluation-of-blockchain-state)
-  * [Subjective Best Effort Scheduling](#subjective-best-effort-scheduling)
-- [Token Model and Resource Usage](#token-model-and-resource-usage)
-  * [Objective and Subjective Measurements](#objective-and-subjective-measurements)
-  * [Receiver Pays](#receiver-pays)
-  * [Delegating Capacity](#delegating-capacity)
-  * [Separating Transaction costs from Token Value](#separating-transaction-costs-from-token-value)
-  * [State Storage Costs](#state-storage-costs)
-  * [Block Rewards](#block-rewards)
-  * [Community Benefit Applications](#community-benefit-applications)
-- [Governance](#governance)
-  * [Freezing Accounts](#freezing-accounts)
-  * [Changing Account Code](#changing-account-code)
-  * [Constitution](#constitution)
-  * [Upgrading the Protocol & Constitution](#upgrading-the-protocol--constitution)
-    + [Emergency Changes](#emergency-changes)
-- [Scripts & Virtual Machines](#scripts--virtual-machines)
-  * [Schema Defined Messages](#schema-defined-messages)
-  * [Schema Defined Database](#schema-defined-database)
-  * [Separating Authentication from Application](#separating-authentication-from-application)
-  * [Virtual Machine Independent Architecture](#virtual-machine-independent-architecture)
-    + [Web Assembly (WASM)](#web-assembly-wasm)
-    + [Ethereum Virtual Machine (EVM)](#ethereum-virtual-machine-evm)
-- [Inter Blockchain Communication](#inter-blockchain-communication)
-  * [Merkle Proofs for Light Client Validation (LCV)](#merkle-proofs-for-light-client-validation-lcv)
-  * [Latency of Interchain Communication](#latency-of-interchain-communication)
-  * [Proof of Completeness](#proof-of-completeness)
+  - [Messages with Mandatory Delay](#messages-with-mandatory-delay)
+  - [Recovery from Stolen Keys](#recovery-from-stolen-keys)
+- [Deterministic Parallel Execution of Applications](#deterministic-parallel-execution-of-applications) 
+  - [Minimizing Communication Latency](#minimizing-communication-latency)
+  - [Read-Only Message Handlers](#read-only-message-handlers)
+  - [Atomic Transactions with Multiple Accounts](#atomic-transactions-with-multiple-accounts)
+  - [Partial Evaluation of Blockchain State](#partial-evaluation-of-blockchain-state)
+  - [Subjective Best Effort Scheduling](#subjective-best-effort-scheduling)
+- [Token Model and Resource Usage](#token-model-and-resource-usage) 
+  - [Objective and Subjective Measurements](#objective-and-subjective-measurements)
+  - [Receiver Pays](#receiver-pays)
+  - [Delegating Capacity](#delegating-capacity)
+  - [Separating Transaction costs from Token Value](#separating-transaction-costs-from-token-value)
+  - [State Storage Costs](#state-storage-costs)
+  - [Block Rewards](#block-rewards)
+  - [Community Benefit Applications](#community-benefit-applications)
+- [Governance](#governance) 
+  - [Freezing Accounts](#freezing-accounts)
+  - [Changing Account Code](#changing-account-code)
+  - [Constitution](#constitution)
+  - [Upgrading the Protocol & Constitution](#upgrading-the-protocol--constitution) 
+    - [Emergency Changes](#emergency-changes)
+- [Scripts & Virtual Machines](#scripts--virtual-machines) 
+  - [Schema Defined Messages](#schema-defined-messages)
+  - [Schema Defined Database](#schema-defined-database)
+  - [Separating Authentication from Application](#separating-authentication-from-application)
+  - [Virtual Machine Independent Architecture](#virtual-machine-independent-architecture) 
+    - [Web Assembly (WASM)](#web-assembly-wasm)
+    - [Ethereum Virtual Machine (EVM)](#ethereum-virtual-machine-evm)
+- [Inter Blockchain Communication](#inter-blockchain-communication) 
+  - [Merkle Proofs for Light Client Validation (LCV)](#merkle-proofs-for-light-client-validation-lcv)
+  - [Latency of Interchain Communication](#latency-of-interchain-communication)
+  - [Proof of Completeness](#proof-of-completeness)
 - [Conclusion](#conclusion)
 
-# Background
+# Geçmiş
 
-Blockchain technology was introduced in 2008 with the launch of the bitcoin currency, and since then entrepreneurs and developers have been attempting to generalize the technology in order to support a wider range of applications on a single blockchain platform.
+Blok zinciri teknolojisi 2008 yılında bitcoin para biriminin oluşturulmasıyla birlikte ortaya çıkmıştır ve o zamandan beri tek bir blok zinciri platformunda daha geniş bir uygulama yelpazesi desteklemek amacıyla bu teknoloji girişimciler ve geliştiriciler tarafından yaygınlaştırılmaya çalışılmaktadır.
 
-While a number of blockchain platforms have struggled to support functional decentralized applications, application specific blockchains such as the BitShares decentralized exchange (2014) and Steem social media platform (2016) have become heavily used blockchains with tens of thousands of daily active users. They have achieved this by increasing performance to thousands of transactions per second, reducing latency to 1.5 seconds, eliminating fees, and providing a user experience similar to those currently provided by existing centralized services.
+Bir dizi blok zinciri platformları fonksiyonel merkezi olmayan uygulamaları desteklemek için çalışırken, merkezi olmayan borsa BitShares (2014) ve sosyal medya platformu Steem (2016) gibi uygulamaya özgü blok zincirleri on binlerce günlük aktif kullanıcıya sahip olarak yoğun biçimde kullanılan blok zincirlerine dönüştü. Performansı saniyede binlerce harekete yükselterek, gecikmeyi 1,5 saniyeye indirerek, ücretleri ortadan kaldırarak ve mevcut merkezi hizmetlerin sunduğuna benzer kullanıcı deneyimleri sağlayarak bunu başarmışlardır.
 
-Existing blockchain platforms are burdened by large fees and limited computational capacity that prevent widespread blockchain adoption.
+Mevcut blok zinciri platformları blok zincirinin yaygın kabulüne engel olan yüksek ücretler ve sınırlı hesaplama kapasiteleri nedeniyle ağır yük altındadırlar.
 
-# Requirements for Blockchain Applications
+# Blok Zinciri Uygulamaları için Gereksinimler
 
-In order to gain widespread use, applications on the blockchain require a platform that is flexible enough to meet the following requirements:
+Yaygın kullanım sağlamak için blok zinciri üzerindeki uygulamaların aşağıdaki gereklilikleri sağlayacak kadar esnek bir platforma sahip olmaları gerekir:
 
-## Support Millions of Users
+## Milyonlarca Kullanıcı Desteği
 
 Disrupting businesses such as Ebay, Uber, AirBnB, and Facebook, require blockchain technology capable of handling tens of millions of active daily users. In certain cases, applications may not work unless a critical mass of users is reached and therefore a platform that can handle mass number of users is paramount.
 
-## Free Usage
+## Ücretsiz Kullanım
 
 Application developers need the flexibility to offer users free services; users should not have to pay in order to use the platform or benefit from its services. A blockchain platform that is free to use for users will likely gain more widespread adoption. Developers and businesses can then create effective monetization strategies.
 
-## Easy Upgrades and Bug Recovery
+## Kolay Yükseltmeler ve Hata Kurtarma
 
 Businesses building blockchain based applications need the flexibility to enhance their applications with new features.
 
 All non-trivial software is subject to bugs, even with the most rigorous of formal verification. The platform must be robust enough to fix bugs when they inevitably occur.
 
-## Low Latency
+## Düşük Gecikme
 
 A good user experience demands reliable feedback with delay of no more than a few seconds. Longer delays frustrate users and make applications built on a blockchain less competitive with existing non-blockchain alternatives.
 
-## Sequential Performance
+## Sıralı Performans
 
 There are some applications that just cannot be implemented with parallel algorithms due to sequentially dependent steps. Applications such as exchanges need enough sequential performance to handle high volumes and therefore a platform with fast sequential performance is required.
 
-## Parallel Performance
+## Paralel Performans
 
-Large scale applications need to divide the workload across multiple CPUs and computers.
+Büyük ölçekli uygulamalar, iş yükünü birden fazla CPU ve bilgisayar arasında bölmelidir.
 
-# Consensus Algorithm (DPOS)
+# Konsensüs Algoritması (DPOS)
 
 EOS.IO software utilizes the only decentralized consensus algorithm capable of meeting the performance requirements of applications on the blockchain, [Delegated Proof of Stake (DPOS)](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper). Under this algorithm, those who hold tokens on a blockchain adopting the EOS.IO software may select block producers through a continuous approval voting system and anyone may choose to participate in block production and will be given an opportunity to produce blocks proportional to the total votes they have received relative to all other producers. For private blockchains the management could use the tokens to add and remove IT staff.
 
@@ -119,7 +117,7 @@ If a producer misses a block and has not produced any block within the last 24 h
 
 Under normal conditions a DPOS blockchain does not experience any forks because the block producers cooperate to produce blocks rather than compete. In the event there is a fork, consensus will automatically switch to the longest chain. This metric works because the rate at which blocks are added to a blockchain chain fork is directly correlated to the percentage of block producers that share the same consensus. In other words, a blockchain fork with more producers on it will grow in length faster than one with fewer producers. Furthermore, no block producer should be producing blocks on two forks at the same time. If a block producer is caught doing this then such block producer will likely be voted out. Cryptographic evidence of such double-production may also be used to automatically remove abusers.
 
-## Transaction Confirmation
+## Hareket Konfirmasyonu
 
 Typical DPOS blockchains have 100% block producer participation. A transaction can be considered confirmed with 99.9% certainty after an average of 1.5 seconds from time of broadcast.
 
@@ -138,9 +136,9 @@ The EOS.IO software requires every transaction to include the hash of a recent b
 
 Over time all users end up directly confirming the blockchain which makes it difficult to forge counterfeit chains as the counterfeit would not be able to migrate transactions from the legitimate chain.
 
-# Accounts
+# Hesaplar
 
-The EOS.IO software permits all accounts to be referenced by a unique human readable name of 2 to 32 characters in length. The name is chosen by the creator of the account. All accounts must be funded with the minimal account balance at the time they are created to cover the cost of storing account data. Account names also support namespaces such that the owner of account @domain is the only one who can create the account @user.domain.
+The EOS.IO software permits all accounts to be referenced by a unique human readable name of 2 to 32 characters in length. İsim hesap yaratıcısı tarafından seçilir. All accounts must be funded with the minimal account balance at the time they are created to cover the cost of storing account data. Account names also support namespaces such that the owner of account @domain is the only one who can create the account @user.domain.
 
 In a decentralized context, application developers will pay the nominal cost of account creation to sign up a new user. Traditional businesses already spend significant sums of money per customer they acquire in the form of advertising, free services, etc. The cost of funding a new blockchain account should be insignificant in comparison. Fortunately, there is no need to create accounts for users already signed up by another application.
 
@@ -148,13 +146,13 @@ In a decentralized context, application developers will pay the nominal cost of 
 
 Each account can send structured messages to other accounts and may define scripts to handle messages when they are received. The EOS.IO software gives each account its own private database which can only be accessed by its own message handlers. Message handling scripts can also send messages to other accounts. The combination of messages and automated message handlers is how EOS.IO defines smart contracts.
 
-## Role Based Permission Management
+## Rol Tabanlı İzin Yönetimi
 
 Permission management involves determining whether or not a message is properly authorized. The simplest form of permission management is checking that a transaction has the required signatures, but this implies that required signatures are already known. Generally authority is bound to individuals or groups of individuals and is often compartmentalized. The EOS.IO software provides a declarative permission management system that gives accounts fine grained and high level control over who can do what and when.
 
-It is critical that authentication and permission management be standardized and separated from the business logic of the application. This enables tools to be developed to manage permissions in a general purpose manner and also provide significant opportunities for performance optimization.
+It is critical that authentication and permission management be standardized and separate from the business logic of the application. This enables tools to be developed to manage permissions in a general purpose manner and also provide significant opportunities for performance optimization.
 
-Every account may be controlled by any weighted combination of other accounts and private keys. This creates a hierarchical authority structure that reflects how permissions are organized in reality, and makes multi-user control over funds easier than ever. Multi-user control is the single biggest contributor to security, and, when used properly, it can greatly reduce the risk of theft due to hacking.
+Every account may be controlled by any weighted combination of other accounts and private keys. This creates a hierarchical authority structure that reflects how permissions are organized in reality, and makes multi-user control over funds easier than ever. Multi-user control is the single biggest contributor to security, and, when used properly, it can greatly eliminate the risk of theft due to hacking.
 
 EOS.IO software allows accounts to define what combination of keys and/or accounts can send a particular message type to another account. For example, it is possible to have one key for a user's social media account and another for access to the exchange. It is even possible to give other accounts permission to act on behalf of a user's account without assigning them keys.
 
@@ -206,7 +204,7 @@ Users can then receive notice via email or text message when one of these messag
 
 The required delay depends upon how sensitive an operation is. Paying for a coffee can have no delay and be irreversible in seconds, while buying a house may require a 72 hour clearing period. Transferring an entire account to new control may take up to 30 days. The exact delays chosen are up to application developers and users.
 
-## Recovery from Stolen Keys
+## Anahtar Çalınması Sonrası Kurtarma
 
 The EOS.IO software provides users a way to restore control of their account when their keys are stolen. An account owner can use any owner key that was active in the last 30 days along with approval from their designated account recovery partner to reset the owner key on their account. The account recovery partner cannot reset control of the account without the help of the owner.
 
@@ -226,17 +224,18 @@ Part of parallel execution means that when a script generates a new message it d
 
 Latency is the time it takes for one account to send a message to another account and then receive a response. The goal is to enable two accounts to exchange messages back and forth within a single block without having to wait 3 seconds between each message. To enable this, the EOS.IO software divides each block into cycles. Each cycle is divided into threads and each thread contains a list of transactions. Each transaction contains a set of messages to be delivered. This structure can be visualized as a tree where alternating layers are processed sequentially and in parallel.
 
-      Block
-
-        Cycles (sequential)
-
-          Threads (parallel)
-
-            Transactions (sequential)
-
-              Messages (sequential)
-
-                Receiver and Notified Accounts (parallel)
+        Block
+    
+          Cycles (sequential)
+    
+            Threads (parallel)
+    
+              Transactions (sequential)
+    
+                Messages (sequential)
+    
+                  Receiver and Notified Accounts (parallel)
+    
 
 Transactions generated in one cycle can be delivered in any subsequent cycle or block. Block producers will keep adding cycles to a block until the maximum wall clock time has passed or there are no new generated transactions to deliver.
 
@@ -274,9 +273,9 @@ In some cases a producer may create a block that includes transactions that are 
 
 This subjective evaluation of computational cost frees the blockchain from having to precisely and deterministically measure how long something takes to run. With this design there is no need to precisely count instructions which dramatically increases opportunities for optimization without breaking consensus.
 
-# Token Model and Resource Usage
+# Token Modeli ve Kaynak Kullanımı
 
-**PLEASE NOTE: CRYPTOGRAPHIC TOKENS REFERRED TO IN THIS WHITE PAPER REFER TO CRYPTOGRAPHIC TOKENS ON A LAUNCHED BLOCKCHAIN THAT ADOPTS THE EOS.IO SOFTWARE. THEY DO NOT REFER TO THE ERC-20 COMPATIBLE TOKENS BEING DISTRIBUTED ON THE ETHEREUM BLOCKCHAIN IN CONNECTION WITH THE EOS TOKEN DISTRIBUTION.**
+**LÜTFEN DİKKAT: BU TEKNİK DÖKÜMANDA ANILAN KRİPTOGRAFİK TOKENLER EOS.IO YAZILIMI KULLANAN BİR BLOK ZİNCİRİNDEN BAŞLATILAN KRİPTOGRAFİK TOKENLERİ KASTETMEKTEDİR. EOS TOKEN DAĞITIMI İLE BAĞLANTILI OLARAK ETHEREUM BLOK ZİNCİRİNDE DAĞITILMAKTA OLAN ERC-20 UYUMLU TOKENLER İLE İLGİSİ YOKTUR.**
 
 All blockchains are resource constrained and require a system to prevent abuse. With a blockchain that uses EOS.IO software, there are three broad classes of resources that are consumed by applications:
 
@@ -294,7 +293,7 @@ Block producers publish their available capacity for bandwidth, computation, and
 
 Adopting the EOS.IO software on a launched blockchain means bandwidth and computational capacity are allocated on a fractional reserve basis because they are transient (unused capacity cannot be saved for future use). The algorithm used by EOS.IO software is similar to the algorithm used by Steem to rate-limit bandwidth usage.
 
-## Objective and Subjective Measurements
+## Objektif ve Subjektif Ölçümler
 
 As discussed earlier, instrumenting computational usage has a significant impact on performance and optimization; therefore, all resource usage constraints are ultimately subjective and enforcement is done by block producers according to their individual algorithms and estimates.
 
@@ -322,15 +321,15 @@ While bandwidth and computation can be delegated, storage of application state w
 
 Every user account requires a certain amount of storage; therefore, every account must maintain a minimum balance. As storage capacity of the network increases this minimum required balance will fall.
 
-## Block Rewards
+## Blok Ödülleri
 
 A blockchain that adopts the EOS.IO software will award new tokens to a block producer every time a block is produced. In these circumstances, the number of tokens created is determined by the median of the desired pay published by all block producers. The EOS.IO software may be configured to enforce a cap on producer awards such that the total annual increase in token supply does not exceed 5%.
 
-## Community Benefit Applications
+## Toplum Yararına Uygulamalar
 
 In addition to electing block producers, pursuant to a blockchain based on the EOS.IO software, users can elect 3 community benefit applications also known as smart contracts. These 3 applications will receive tokens of up to a configured percent of the token supply per annum minus the tokens that have been paid to block producers. These smart contracts will receive tokens proportional to the votes each application has received from token holders. The elected applications or smart contracts can be replaced by newly elected applications or smart contracts by token holders.
 
-# Governance
+# Yönetim
 
 Governance is the process by which people reach consensus on subjective matters that cannot be captured entirely by software algorithms. An EOS.IO software-based blockchain implements a governance process that efficiently directs the existing influence of block producers. Absent a defined governance process, prior blockchains relied ad hoc, informal, and often controversial governance processes that result in unpredictable outcomes.
 
@@ -338,7 +337,7 @@ A blockchain based on the EOS.IO software recognizes that power originates with 
 
 Embedded into the EOS.IO software is the election of block producers. Before any change can be made to the blockchain these block producers must approve it. If the block producers refuse to make changes desired by the token holders then they can be voted out. If the block producers make changes without permission of the token holders then all other non-producing full-node validators (exchanges, etc) will reject the change.
 
-## Freezing Accounts
+## Hesapların Dondurulması
 
 Sometimes a smart contact behaves in an aberrant or unpredictable manner and fails to perform as intended; other times an application or account may discover an exploit that enables it to consume an unreasonable amount of resources. When such issues inevitably occur, the block producers have the power to rectify such situations.
 
@@ -368,7 +367,7 @@ The EOS.IO software defines a process by which the protocol as defined by the ca
 
 By default configuration of the EOS.IO software, the process of updating the blockchain to add new features takes 2 to 3 months, while updates to fix non-critical bugs that do not require changes to the constitution can take 1 to 2 months.
 
-### Emergency Changes
+### Acil Durum Değişiklikleri
 
 The block producers may accelerate the process if a software change is required to fix a harmful bug or security exploit that is actively harming users. Generally speaking it could be against the constitution for accelerated updates to introduce new features or fix harmless bugs.
 
@@ -410,7 +409,7 @@ Ethereum developers have already begun modifying Web Assembly to provide suitabl
 
 This virtual machine has been used for most existing smart contracts and could be adapted to work within an EOS.IO blockchain. It is conceivable that EVM contracts could be run within their own sandbox inside an EOS.IO software-based blockchain and that with some adaptation EVM contracts could communicate with other EOS.IO software blockchain applications.
 
-# Inter Blockchain Communication
+# Blok Zincirleri Arası İletişim
 
 EOS.IO software is designed to facilitate inter-blockchain communication. This is achieved by making it easy to generate proof of message existence and proof of message sequence. These proofs combined with an application architecture designed around message passing enables the details of inter-blockchain communication and proof validation to be hidden from application developers.
 
@@ -440,8 +439,6 @@ When communicating with another outside blockchain, block producers must wait un
 
 When using merkle proofs from outside blockchains, there is a significant difference between knowing that all transactions processed are valid and knowing that no transactions have been skipped or omitted. While it is impossible to prove that all of the most recent transactions are known, it is possible to prove that there have been no gaps in the transaction history. The EOS.IO software facilitates this by assigning a sequence number to every message delivered to every account. A user can use these sequence numbers to prove that all messages intended for a particular account have been processed and that they were processed in order.
 
-# Conclusion
+# Sonuç
 
 The EOS.IO software is designed from experience with proven concepts and best practices, and represents fundamental advancements in blockchain technology. The software is part of a holistic blueprint for a globally scalable blockchain society in which decentralised applications can be easily deployed and governed.
-
-

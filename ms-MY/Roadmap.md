@@ -1,5 +1,4 @@
-EOS.IO Software Roadmap
------------------------
+## EOS.IO Software Roadmap
 
 This document outlines the development plan from a high level and will be updated as progress is made toward version 1.0. It should be noted that this roadmap applies only to the blockchain software and not to the other tools and utilities such as wallets and block explorers which will have their own teams and dedicated roadmaps once Phase 1 is complete.
 
@@ -17,9 +16,9 @@ A standalone node operates a test blockchain and produces blocks while exposing 
 
 The EOS.IO software has a number of native contracts. These are contracts that manage the core operations of the blockchain and exist outside the Web Assembly interface. These contracts include:
 
-  1. @eos - manages EOS token transfers
-  2. @stake - manages locked EOS, voting, and Producer Election
-  3. @system - manages permissions, messages, and contact code updates
+1. @eos - manages EOS token transfers
+2. @stake - manages locked EOS, voting, and Producer Election
+3. @system - manages permissions, messages, and contact code updates
 
 ### Virtual Machine API (Dan)
 

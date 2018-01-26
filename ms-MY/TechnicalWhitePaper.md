@@ -10,63 +10,61 @@ Copyright © 2017 block.one
 
 Without permission, anyone may use, reproduce or distribute any material in this white paper for non-commercial and educational use (i.e., other than for a fee or for commercial purposes) provided that the original source and the applicable copyright notice are cited.
 
-
 **DISCLAIMER:** This EOS.IO Technical White Paper is for information purposes only. block.one does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided “as is”. block.one does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. block.one and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will block.one or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.
 
-
 - [Background](#background)
-- [Requirements for Blockchain Applications](#requirements-for-blockchain-applications)
-  * [Support Millions of Users](#support-millions-of-users)
-  * [Free Usage](#free-usage)
-  * [Easy Upgrades and Bug Recovery](#easy-upgrades-and-bug-recovery)
-  * [Low Latency](#low-latency)
-  * [Sequential Performance](#sequential-performance)
-  * [Parallel Performance](#parallel-performance)
-- [Consensus Algorithm (DPOS)](#consensus-algorithm-dpos)
-  * [Transaction Confirmation](#transaction-confirmation)
-  * [Transaction as Proof of Stake (TaPoS)](#transaction-as-proof-of-stake-tapos)
-- [Accounts](#accounts)
-  * [Messages & Handlers](#messages--handlers)
-  * [Role Based Permission Management](#role-based-permission-management)
-    + [Named Permission Levels](#named-permission-levels)
-    + [Named Message Handler Groups](#named-message-handler-groups)
-    + [Permission Mapping](#permission-mapping)
-    + [Evaluating Permissions](#evaluating-permissions)
+- [Requirements for Blockchain Applications](#requirements-for-blockchain-applications) 
+  - [Support Millions of Users](#support-millions-of-users)
+  - [Free Usage](#free-usage)
+  - [Easy Upgrades and Bug Recovery](#easy-upgrades-and-bug-recovery)
+  - [Low Latency](#low-latency)
+  - [Sequential Performance](#sequential-performance)
+  - [Parallel Performance](#parallel-performance)
+- [Consensus Algorithm (DPOS)](#consensus-algorithm-dpos) 
+  - [Transaction Confirmation](#transaction-confirmation)
+  - [Transaction as Proof of Stake (TaPoS)](#transaction-as-proof-of-stake-tapos)
+- [Accounts](#accounts) 
+  - [Messages & Handlers](#messages--handlers)
+  - [Role Based Permission Management](#role-based-permission-management) 
+    - [Named Permission Levels](#named-permission-levels)
+    - [Named Message Handler Groups](#named-message-handler-groups)
+    - [Permission Mapping](#permission-mapping)
+    - [Evaluating Permissions](#evaluating-permissions) 
       - [Default Permission Groups](#default-permission-groups)
       - [Parallel Evaluation of Permissions](#parallel-evaluation-of-permissions)
-  * [Messages with Mandatory Delay](#messages-with-mandatory-delay)
-  * [Recovery from Stolen Keys](#recovery-from-stolen-keys)
-- [Deterministic Parallel Execution of Applications](#deterministic-parallel-execution-of-applications)
-  * [Minimizing Communication Latency](#minimizing-communication-latency)
-  * [Read-Only Message Handlers](#read-only-message-handlers)
-  * [Atomic Transactions with Multiple Accounts](#atomic-transactions-with-multiple-accounts)
-  * [Partial Evaluation of Blockchain State](#partial-evaluation-of-blockchain-state)
-  * [Subjective Best Effort Scheduling](#subjective-best-effort-scheduling)
-- [Token Model and Resource Usage](#token-model-and-resource-usage)
-  * [Objective and Subjective Measurements](#objective-and-subjective-measurements)
-  * [Receiver Pays](#receiver-pays)
-  * [Delegating Capacity](#delegating-capacity)
-  * [Separating Transaction costs from Token Value](#separating-transaction-costs-from-token-value)
-  * [State Storage Costs](#state-storage-costs)
-  * [Block Rewards](#block-rewards)
-  * [Community Benefit Applications](#community-benefit-applications)
-- [Governance](#governance)
-  * [Freezing Accounts](#freezing-accounts)
-  * [Changing Account Code](#changing-account-code)
-  * [Constitution](#constitution)
-  * [Upgrading the Protocol & Constitution](#upgrading-the-protocol--constitution)
-    + [Emergency Changes](#emergency-changes)
-- [Scripts & Virtual Machines](#scripts--virtual-machines)
-  * [Schema Defined Messages](#schema-defined-messages)
-  * [Schema Defined Database](#schema-defined-database)
-  * [Separating Authentication from Application](#separating-authentication-from-application)
-  * [Virtual Machine Independent Architecture](#virtual-machine-independent-architecture)
-    + [Web Assembly (WASM)](#web-assembly-wasm)
-    + [Ethereum Virtual Machine (EVM)](#ethereum-virtual-machine-evm)
-- [Inter Blockchain Communication](#inter-blockchain-communication)
-  * [Merkle Proofs for Light Client Validation (LCV)](#merkle-proofs-for-light-client-validation-lcv)
-  * [Latency of Interchain Communication](#latency-of-interchain-communication)
-  * [Proof of Completeness](#proof-of-completeness)
+  - [Messages with Mandatory Delay](#messages-with-mandatory-delay)
+  - [Recovery from Stolen Keys](#recovery-from-stolen-keys)
+- [Deterministic Parallel Execution of Applications](#deterministic-parallel-execution-of-applications) 
+  - [Minimizing Communication Latency](#minimizing-communication-latency)
+  - [Read-Only Message Handlers](#read-only-message-handlers)
+  - [Atomic Transactions with Multiple Accounts](#atomic-transactions-with-multiple-accounts)
+  - [Partial Evaluation of Blockchain State](#partial-evaluation-of-blockchain-state)
+  - [Subjective Best Effort Scheduling](#subjective-best-effort-scheduling)
+- [Token Model and Resource Usage](#token-model-and-resource-usage) 
+  - [Objective and Subjective Measurements](#objective-and-subjective-measurements)
+  - [Receiver Pays](#receiver-pays)
+  - [Delegating Capacity](#delegating-capacity)
+  - [Separating Transaction costs from Token Value](#separating-transaction-costs-from-token-value)
+  - [State Storage Costs](#state-storage-costs)
+  - [Block Rewards](#block-rewards)
+  - [Community Benefit Applications](#community-benefit-applications)
+- [Governance](#governance) 
+  - [Freezing Accounts](#freezing-accounts)
+  - [Changing Account Code](#changing-account-code)
+  - [Constitution](#constitution)
+  - [Upgrading the Protocol & Constitution](#upgrading-the-protocol--constitution) 
+    - [Emergency Changes](#emergency-changes)
+- [Scripts & Virtual Machines](#scripts--virtual-machines) 
+  - [Schema Defined Messages](#schema-defined-messages)
+  - [Schema Defined Database](#schema-defined-database)
+  - [Separating Authentication from Application](#separating-authentication-from-application)
+  - [Virtual Machine Independent Architecture](#virtual-machine-independent-architecture) 
+    - [Web Assembly (WASM)](#web-assembly-wasm)
+    - [Ethereum Virtual Machine (EVM)](#ethereum-virtual-machine-evm)
+- [Inter Blockchain Communication](#inter-blockchain-communication) 
+  - [Merkle Proofs for Light Client Validation (LCV)](#merkle-proofs-for-light-client-validation-lcv)
+  - [Latency of Interchain Communication](#latency-of-interchain-communication)
+  - [Proof of Completeness](#proof-of-completeness)
 - [Conclusion](#conclusion)
 
 # Background
@@ -152,9 +150,9 @@ Each account can send structured messages to other accounts and may define scrip
 
 Permission management involves determining whether or not a message is properly authorized. The simplest form of permission management is checking that a transaction has the required signatures, but this implies that required signatures are already known. Generally authority is bound to individuals or groups of individuals and is often compartmentalized. The EOS.IO software provides a declarative permission management system that gives accounts fine grained and high level control over who can do what and when.
 
-It is critical that authentication and permission management be standardized and separated from the business logic of the application. This enables tools to be developed to manage permissions in a general purpose manner and also provide significant opportunities for performance optimization.
+It is critical that authentication and permission management be standardized and separate from the business logic of the application. This enables tools to be developed to manage permissions in a general purpose manner and also provide significant opportunities for performance optimization.
 
-Every account may be controlled by any weighted combination of other accounts and private keys. This creates a hierarchical authority structure that reflects how permissions are organized in reality, and makes multi-user control over funds easier than ever. Multi-user control is the single biggest contributor to security, and, when used properly, it can greatly reduce the risk of theft due to hacking.
+Every account may be controlled by any weighted combination of other accounts and private keys. This creates a hierarchical authority structure that reflects how permissions are organized in reality, and makes multi-user control over funds easier than ever. Multi-user control is the single biggest contributor to security, and, when used properly, it can greatly eliminate the risk of theft due to hacking.
 
 EOS.IO software allows accounts to define what combination of keys and/or accounts can send a particular message type to another account. For example, it is possible to have one key for a user's social media account and another for access to the exchange. It is even possible to give other accounts permission to act on behalf of a user's account without assigning them keys.
 
@@ -226,17 +224,18 @@ Part of parallel execution means that when a script generates a new message it d
 
 Latency is the time it takes for one account to send a message to another account and then receive a response. The goal is to enable two accounts to exchange messages back and forth within a single block without having to wait 3 seconds between each message. To enable this, the EOS.IO software divides each block into cycles. Each cycle is divided into threads and each thread contains a list of transactions. Each transaction contains a set of messages to be delivered. This structure can be visualized as a tree where alternating layers are processed sequentially and in parallel.
 
-      Block
-
-        Cycles (sequential)
-
-          Threads (parallel)
-
-            Transactions (sequential)
-
-              Messages (sequential)
-
-                Receiver and Notified Accounts (parallel)
+        Block
+    
+          Cycles (sequential)
+    
+            Threads (parallel)
+    
+              Transactions (sequential)
+    
+                Messages (sequential)
+    
+                  Receiver and Notified Accounts (parallel)
+    
 
 Transactions generated in one cycle can be delivered in any subsequent cycle or block. Block producers will keep adding cycles to a block until the maximum wall clock time has passed or there are no new generated transactions to deliver.
 
@@ -443,5 +442,3 @@ When using merkle proofs from outside blockchains, there is a significant differ
 # Conclusion
 
 The EOS.IO software is designed from experience with proven concepts and best practices, and represents fundamental advancements in blockchain technology. The software is part of a holistic blueprint for a globally scalable blockchain society in which decentralised applications can be easily deployed and governed.
-
-
