@@ -60,7 +60,7 @@ Copyright © 2017 block.one
   - [分离授权与应用](#separating-authentication-from-application)
   - [虚拟机独立架构](#virtual-machine-independent-architecture) 
     - [Web 组建 (WASM)](#web-assembly)
-    - [以太访虚拟机 (EVM)](#ethereum-virtual-machine--evm-)
+    - [以太坊虚拟机 (EVM)](#ethereum-virtual-machine--evm-)
 - [跨链通信](#inter-blockchain-communication) 
   - [用于轻客户端的 Merkle 证明 (LCV)](#merkle-proofs-for-light-client-validation--lcv-)
   - [跨链通信的延时](#latency-of-interchain-communication)
@@ -403,9 +403,9 @@ It is the intention of the EOS.IO software-based blockchain that multiple virtua
 
 网络组建是一种为了构建高性能的 web 应用而新兴的 web 标准。 只需要进行少量的更改 Web 组建就可以被制作为确定性的和沙盒化的。 Web 组建的好处是它有着广泛的产业支持并且它可以让智能合约使用熟知的语言进行开发，比如 C 或 C++。
 
-以太访开发者已经开始更改 Web 组建来提供合适的沙盒与确定性在他们的[以太访式 Web 组建 (WASM)](https://github.com/ewasm/design)。 这种方式让 EOS.IO 很容易的与之适配和对接。
+以太坊开发者已经开始更改 Web 组建来提供合适的沙盒与确定性在他们的[以太坊式 Web 组建 (WASM)](https://github.com/ewasm/design)。 这种方式让 EOS.IO 很容易的与之适配和对接。
 
-### 以太访虚拟机 (EVM)
+### 以太坊虚拟机 (EVM)
 
 这个虚拟机已经被众多已有的智能合约所采用并且可以通过适配应用与 EOS.IO 区块链中。 It is conceivable that EVM contracts could be run within their own sandbox inside an EOS.IO software-based blockchain and that with some adaptation EVM contracts could communicate with other EOS.IO software blockchain applications.
 
