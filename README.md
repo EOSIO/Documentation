@@ -15,6 +15,10 @@
 - [Russian](ru-RU/Roadmap.md) translated by [@blockchained](https://steemit.com/@blockchained)
 - [Chinese](zh-CN/Roadmap.md) translated by [@shuke0327](https://steemit.com/@shuke0327)
 
+# EOS Wiki
+
+- [English](https://github.com/EOSIO/eos/wiki)
+
 # Translation Guide
 
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/eos-docs/localized.svg)](https://crowdin.com/project/eos-docs)
