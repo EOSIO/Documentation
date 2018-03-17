@@ -343,9 +343,9 @@ The system contracts that implement Worker Proposals may not be in place at init
 
 Governance is the process by which people in a community:
 
-A. Reach consensus on subjective matters of collective action that cannot be captured entirely by software algorithms;
-B. Carry out the decisions they reach; and
-C. Alter the governance rules themselves via Constitutional amendments. 
+1. Reach consensus on subjective matters of collective action that cannot be captured entirely by software algorithms;
+2. Carry out the decisions they reach; and
+3. Alter the governance rules themselves via Constitutional amendments. 
 
 An EOS.IO software-based blockchain implements a governance process that efficiently directs the existing influence of block producers. Absent a defined governance process, prior blockchains relied ad hoc, informal, and often controversial governance processes that result in unpredictable outcomes.
 
@@ -374,10 +374,10 @@ The constitution also defines the human-readable intent of the source code proto
 The EOS.IO software defines the following process by which the protocol, as defined by the canonical source code and its constitution, can be updated:
 
 1. Block producers propose a change to the constitution and obtains 15/21 approval.
-2. Block producers maintain 15/21 approval of the new *constitution* for 30 consecutive days.
+2. Block producers maintain 15/21 approval of the new **constitution** for 30 consecutive days.
 3. All users are required to indicate acceptance of the new constitution as a condition of future transactions being processed.
 4. Block producers adopt changes to the source code to reflect the change in the constitution and propose it to the blockchain using the hash of the new constitution.
-5. Block producers maintain 15/21 approval of the new *code* for 30 consecutive days.
+5. Block producers maintain 15/21 approval of the new **code** for 30 consecutive days.
 6. Changes to the code take effect 7 days later, giving all non-producing full nodes 1 week to upgrade after ratification of the source code.
 7. All nodes that do not upgrade to the new code shut down automatically.
 
