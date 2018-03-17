@@ -449,19 +449,21 @@ When communicating with another outside blockchain, block producers must wait un
 When using merkle proofs from outside blockchains, there is a significant difference between knowing that all transactions processed are valid and knowing that no transactions have been skipped or omitted. While it is impossible to prove that all of the most recent transactions are known, it is possible to prove that there have been no gaps in the transaction history. The EOS.IO software facilitates this by assigning a sequence number to every Action delivered to every account. A user can use these sequence numbers to prove that all Actions intended for a particular account have been processed and that they were processed in order.
 
 For any Block N, the headers include the root of a nearly-balanced merkle tree where the leaves are commitments to data generated while processing actions: the Action Root. This can be used to prove existence and, ordering of actions. Additionally, it can be used to prove completeness of transcripts of actions that affect a given scope.
+
 The data committed to for each action, or Action Commitment, is:
 
-receiver: the account name whose contract received the given action
-scope: the scope where this action is defined
-name: The name of the action (eg: ‘transfer’)
-data: the binary encoded data payload delivered to the contract
-data_access: an array of sequence numbers for scopes accessed during the processing of this action
+**receiver**: the account name whose contract received the given action  
+**scope**: the scope where this action is defined  
+**name**: The name of the action (eg: ‘transfer’)  
+**data**: the binary encoded data payload delivered to the contract  
+**data_access**: an array of sequence numbers for scopes accessed during the processing of this action  
 
-This can be used to prove complete transcripts by providing actions and proofs for the sequence numbers between two given actions
-Sequence numbers always increment on write operations and never on reads. There will be exactly one action with a write for a given (sequence, scope, receiver)
+This can be used to prove complete transcripts by providing actions and proofs for the sequence numbers between two given actions.
 
-region_id: the region this action was processed in
-cycle_index: the cycle this action was processed in
+Sequence numbers always increment on write operations and never on reads. There will be exactly one action with a write for a given (sequence, scope, receiver):
+
+**region_id**: the region this action was processed in  
+**cycle_index**: the cycle this action was processed in  
 
 This can be used to prove ordering constraints.
 
