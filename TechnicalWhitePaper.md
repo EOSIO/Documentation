@@ -467,6 +467,7 @@ This can be used to prove ordering constraints.
 
 Shards inside a cycle can execute in parallel; there is no deterministic ordering between actions in the same cycle but different shards.
 
+```
 (Example Action Commitment)
 {
   receiver:inite,
@@ -485,7 +486,7 @@ Shards inside a cycle can execute in parallel; there is no deterministic orderin
   region:0,
   cycle:0
 }
-
+```
 
 For each shard (a unit of parallelizable execution in a cycle) a balanced merkle tree is constructed of these action commitments to generate a temporary shared merkle root. This is done for speed of parallel computation. The block header contains the root of a balanced merkle tree whose leaves are the roots of these individual shard merkle trees. This means that the resulting merkle tree represented by the Action Root is not guaranteed to be a perfectly balanced merkle tree, however, it should be very close in most cases.
 
