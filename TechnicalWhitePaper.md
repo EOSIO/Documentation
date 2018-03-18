@@ -38,7 +38,7 @@ Without permission, anyone may use, reproduce or distribute any material in this
   * [Recovery from Stolen Keys](#recovery-from-stolen-keys)
 - [Deterministic Parallel Execution of Applications](#deterministic-parallel-execution-of-applications)
   * [Minimizing Communication Latency](#minimizing-communication-latency)
-  * [Read-Only Message Handlers](#read-only-message-handlers)
+  * [Read-Only Action Handlers](#read-only-action-handlers)
   * [Atomic Transactions with Multiple Accounts](#atomic-transactions-with-multiple-accounts)
   * [Partial Evaluation of Blockchain State](#partial-evaluation-of-blockchain-state)
   * [Subjective Best Effort Scheduling](#subjective-best-effort-scheduling)
@@ -59,7 +59,7 @@ Without permission, anyone may use, reproduce or distribute any material in this
   * [Upgrading the Protocol & Constitution](#upgrading-the-protocol--constitution)
     + [Emergency Changes](#emergency-changes)
 - [Scripts & Virtual Machines](#scripts--virtual-machines)
-  * [Schema Defined Messages](#schema-defined-messages)
+  * [Schema Defined Actions](#schema-defined-actions)
   * [Schema Defined Database](#schema-defined-database)
   * [Generic Multi Index Database API](#generic-multi-index-database-api)
   * [Separating Authentication from Application](#separating-authentication-from-application)
@@ -149,35 +149,35 @@ In a decentralized context, application developers will pay the nominal cost of 
 
 ## Actions & Handlers
 
-Each account can send structured actions to other accounts and may define scripts to handle actions when they are received. The EOS.IO software gives each account its own private database which can only be accessed by its own action handlers. Action handling scripts can also send actions to other accounts. The combination of actions and automated action handlers is how EOS.IO defines smart contracts.
+Each account can send structured Actions to other accounts and may define scripts to handle Actions when they are received. The EOS.IO software gives each account its own private database which can only be accessed by its own action handlers. Action handling scripts can also send Actions to other accounts. The combination of Actions and automated action handlers is how EOS.IO defines smart contracts.
 
 To support parallel execution, each account can also define any number of scopes within their database. The block producers will schedule transaction in such a way that there is no conflict over memory access to scopes and therefore they can be executed in parallel.
 
 ## Role Based Permission Management
 
-Permission management involves determining whether or not a message is properly authorized. The simplest form of permission management is checking that a transaction has the required signatures, but this implies that required signatures are already known. Generally authority is bound to individuals or groups of individuals and is often compartmentalized. The EOS.IO software provides a declarative permission management system that gives accounts fine grained and high level control over who can do what and when.
+Permission management involves determining whether or not a Action is properly authorized. The simplest form of permission management is checking that a transaction has the required signatures, but this implies that required signatures are already known. Generally authority is bound to individuals or groups of individuals and is often compartmentalized. The EOS.IO software provides a declarative permission management system that gives accounts fine grained and high level control over who can do what and when.
 
 It is critical that authentication and permission management be standardized and separated from the business logic of the application. This enables tools to be developed to manage permissions in a general purpose manner and also provide significant opportunities for performance optimization.
 
 Every account may be controlled by any weighted combination of other accounts and private keys. This creates a hierarchical authority structure that reflects how permissions are organized in reality, and makes multi-user control over accounts easier than ever. Multi-user control is the single biggest contributor to security, and, when used properly, it can greatly reduce the risk of theft due to hacking.
 
-EOS.IO software allows accounts to define what combination of keys and/or accounts can send a particular message type to another account. For example, it is possible to have one key for a user's social media account and another for access to the exchange. It is even possible to give other accounts permission to act on behalf of a user's account without assigning them keys.
+EOS.IO software allows accounts to define what combination of keys and/or accounts can send a particular Action type to another account. For example, it is possible to have one key for a user's social media account and another for access to the exchange. It is even possible to give other accounts permission to act on behalf of a user's account without assigning them keys.
 
 ### Named Permission Levels
 
 <img align="right" src="http://eos.io/wpimg/diagram3.png" width="228.395px" height="300px" />
 
-Using the EOS.IO software, accounts can define named permission levels each of which can be derived from higher level named permissions. Each named permission level defines an authority; an authority is a threshold multi-signature check consisting of keys and/or named permission levels of other accounts. For example, an account's "Friend" permission level can be set for an action on the account to be controlled equally by any of the account's friends.
+Using the EOS.IO software, accounts can define named permission levels each of which can be derived from higher level named permissions. Each named permission level defines an authority; an authority is a threshold multi-signature check consisting of keys and/or named permission levels of other accounts. For example, an account's "Friend" permission level can be set for an Action on the account to be controlled equally by any of the account's friends.
 
 Another example is the Steem blockchain which has three hard-coded named permission levels: owner, active, and posting. The posting permission can only perform social actions such as voting and posting, while the active permission can do everything except change the owner. The owner permission is meant for cold storage and is able to do everything. The EOS.IO software generalizes this concept by allowing each account holder to define their own hierarchy as well as the grouping of actions.
 
 ### Permission Mapping
 
-EOS.IO software allows each account to define a mapping between a contract/action or contract of any other account and their own Named Permission Level. For example, an account holder could map the account holder's social media application to the account holder's "Friend" permission group. With this mapping, any friend could post as the account holder on the account holder's social media. Even though they would post as the account holder, they would still use their own keys to sign the message. This means it is always possible to identify which friends used the account and in what way.
+EOS.IO software allows each account to define a mapping between a contract/action or contract of any other account and their own Named Permission Level. For example, an account holder could map the account holder's social media application to the account holder's "Friend" permission group. With this mapping, any friend could post as the account holder on the account holder's social media. Even though they would post as the account holder, they would still use their own keys to sign the Action. This means it is always possible to identify which friends used the account and in what way.
 
 ### Evaluating Permissions
 
-When delivering a message of type "**Action**", from **@alice** to **@bob** the EOS.IO software will first check to see if **@alice** has defined a permission mapping for **@bob.groupa.subgroup.Action**. If nothing is found then a mapping for **@bob.groupa.subgroup** then **@bob.groupa**, and lastly **@bob** will be checked. If no further match is found, then the assumed mapping will be to the named permission group **@alice.active**.
+When delivering a Action of type "**Action**", from **@alice** to **@bob** the EOS.IO software will first check to see if **@alice** has defined a permission mapping for **@bob.groupa.subgroup.Action**. If nothing is found then a mapping for **@bob.groupa.subgroup** then **@bob.groupa**, and lastly **@bob** will be checked. If no further match is found, then the assumed mapping will be to the named permission group **@alice.active**.
 
 Once a mapping is identified then signing authority is validated using the threshold multi-signature process and the authority associated with the named permission. If that fails, then it traverses up to the parent permission and ultimately to the owner permission, **@alice.owner**.
 
@@ -193,13 +193,13 @@ The permission evaluation process is "read-only" and changes to permissions made
 
 All things considered, permission verification represents a significant percentage of the computation required to validate transactions. Making this a read-only and trivially parallelizable process enables a dramatic increase in performance.
 
-When replaying the blockchain to regenerate the deterministic state from the log of messages there is no need to evaluate the permissions again. The fact that a transaction is included in a known good block is sufficient to skip this step. This dramatically reduces the computational load associated with replaying an ever growing blockchain.
+When replaying the blockchain to regenerate the deterministic state from the log of Actions there is no need to evaluate the permissions again. The fact that a transaction is included in a known good block is sufficient to skip this step. This dramatically reduces the computational load associated with replaying an ever growing blockchain.
 
 ## Actions with Mandatory Delay
 
-Time is a critical component of security. In most cases, it is not possible to know if a private key has been stolen until it has been used. Time based security is even more critical when people have applications that require keys be kept on computers connected to the internet for daily use. The EOS.IO software enables application developers to indicate that certain messages must wait a minimum period of time after being included in a block before they can be applied. During this time they can be cancelled.
+Time is a critical component of security. In most cases, it is not possible to know if a private key has been stolen until it has been used. Time based security is even more critical when people have applications that require keys be kept on computers connected to the internet for daily use. The EOS.IO software enables application developers to indicate that certain Actions must wait a minimum period of time after being included in a block before they can be applied. During this time they can be cancelled.
 
-Users can then receive notice via email or text message when one of these messages is broadcast. If they did not authorize it, then they can use the account recovery process to recover their account and retract the message.
+Users can then receive notice via email or text Action when one of these Actions is broadcast. If they did not authorize it, then they can use the account recovery process to recover their account and retract the Action.
 
 The required delay depends upon how sensitive an operation is. Paying for a coffee might have no delay and be irreversible in seconds, while buying a house may require a 72 hour clearing period. Transferring an entire account to new control may take up to 30 days. The exact delays are chosen by application developers and users.
 
@@ -217,13 +217,13 @@ Blockchain consensus depends upon deterministic (reproducible) behavior. This me
 
 The June 2018 release of EOS.IO software will run single threaded, yet it contains the data structures necessary for future multi-threaded, parallel execution.
 
-In an EOS.IO software-based blockchain, once parallel operation is enabled, it will be the job of the block producer to organize action delivery into independent shards so that they can be evaluated in parallel. The schedule is the output of a block producer and will be deterministically executed, but the process for generating the schedule need not be deterministic. This means that block producers can utilize parallel algorithms to schedule transactions.
+In an EOS.IO software-based blockchain, once parallel operation is enabled, it will be the job of the block producer to organize Action delivery into independent shards so that they can be evaluated in parallel. The schedule is the output of a block producer and will be deterministically executed, but the process for generating the schedule need not be deterministic. This means that block producers can utilize parallel algorithms to schedule transactions.
 
-Part of parallel execution means that when a script generates a new message it does not get delivered immediately, instead it is scheduled to be delivered in the next cycle. The reason it cannot be delivered immediately is because the receiver may be actively modifying its own state in another shard.
+Part of parallel execution means that when a script generates a new Action it does not get delivered immediately, instead it is scheduled to be delivered in the next cycle. The reason it cannot be delivered immediately is because the receiver may be actively modifying its own state in another shard.
 
 ## Minimizing Communication Latency
 
-Latency is the time it takes for one account to send a action to another account and then receive a response. The goal is to enable two accounts to exchange actions back and forth within a single block without having to wait 0.5 seconds between each message. To enable this, the EOS.IO software divides each block into cycles. Each cycle is divided into shards and each shard contains a list of transactions. Each transaction contains a set of actions to be delivered. This structure can be visualized as a tree where alternating layers are processed sequentially and in parallel.
+Latency is the time it takes for one account to send a Action to another account and then receive a response. The goal is to enable two accounts to exchange Actions back and forth within a single block without having to wait 0.5 seconds between each Action. To enable this, the EOS.IO software divides each block into cycles. Each cycle is divided into shards and each shard contains a list of transactions. Each transaction contains a set of Actions to be delivered. This structure can be visualized as a tree where alternating layers are processed sequentially and in parallel.
 
       Block
 
@@ -243,23 +243,23 @@ Transactions generated in one cycle can be delivered in any subsequent cycle or 
 
 It is possible to use static analysis of a block to verify that within a given cycle no two shards contain transactions that modify the same account. So long as that invariant is maintained a block can be processed by running all shards in parallel.
 
-## Read-Only Message Handlers
+## Read-Only Action Handlers
 
-Some accounts may be able to process a message on a pass/fail basis without modifying their internal state. If this is the case then these handlers can be executed in parallel so long as only read-only message handlers for a particular account are included in one or more shards within a particular cycle.
+Some accounts may be able to process a Action on a pass/fail basis without modifying their internal state. If this is the case then these handlers can be executed in parallel so long as only read-only Action handlers for a particular account are included in one or more shards within a particular cycle.
 
 ## Atomic Transactions with Multiple Accounts
 
-Sometimes it is desirable to ensure that messages are delivered to and accepted by multiple accounts atomically. In this case both messages are placed in one transaction and both accounts will be assigned the same shard and the messages applied sequentially.
+Sometimes it is desirable to ensure that Actions are delivered to and accepted by multiple accounts atomically. In this case both Actions are placed in one transaction and both accounts will be assigned the same shard and the Actions applied sequentially.
 
 ## Partial Evaluation of Blockchain State
 
 Scaling blockchain technology necessitates that components are modular. Everyone should not have to run everything, especially if they only need to use a small subset of the applications.
 
-An exchange application developer runs full nodes for the purpose of displaying the exchange state to its users. This exchange application has no need for the state associated with social media applications. EOS.IO software allows any full node to pick any subset of applications to run. Messages delivered to other applications are safely ignored if your application never depends upon the state of another contract.
+An exchange application developer runs full nodes for the purpose of displaying the exchange state to its users. This exchange application has no need for the state associated with social media applications. EOS.IO software allows any full node to pick any subset of applications to run. Actions delivered to other applications are safely ignored if your application never depends upon the state of another contract.
 
 ## Subjective Best Effort Scheduling
 
-The EOS.IO software cannot obligate block producers to deliver any message to any other account. Each block producer makes their own subjective measurement of the computational complexity and time required to process a transaction. This applies whether a transaction is generated by a user or automatically by a smart contract.
+The EOS.IO software cannot obligate block producers to deliver any Action to any other account. Each block producer makes their own subjective measurement of the computational complexity and time required to process a transaction. This applies whether a transaction is generated by a user or automatically by a smart contract.
 
 On a launched blockchain adopting the EOS.IO software, at a network level all transactions are billed a computational bandwidth cost based on the number of WASM instructions executed. However, each individual block producer using the software may calculate resource usage using their own algorithm and measurements. When a block producer concludes that a transaction or account has consumed a disproportionate amount of the computational capacity they simply reject the transaction when producing their own block; however, they will still process the transaction if other block producers consider it valid.
 
@@ -275,9 +275,9 @@ EOS.IO Software supports deferred transactions that are scheduled to execute in 
 
 ## Context Free Actions
 
-A context free action involves computations that depend only on transaction data, but not upon the blockchain state. Signature verification, for example, is a computation that requires only the transaction data and a signature to determine the public key that signed the transaction. This is one of the most expensive individual computations a blockchain must perform, but because this computation is context free it can be performed in parallel.
+A Context Free Action involves computations that depend only on transaction data, but not upon the blockchain state. Signature verification, for example, is a computation that requires only the transaction data and a signature to determine the public key that signed the transaction. This is one of the most expensive individual computations a blockchain must perform, but because this computation is context free it can be performed in parallel.
 
-Context free actions are like other user actions, except they lack access to the blockchain state to perform validation. Not only does this enable EOS.IO to process all context free actions such as signature verification in parallel, but more importantly, this enables generalized signature verification.
+Context Free Actions are like other user Actions, except they lack access to the blockchain state to perform validation. Not only does this enable EOS.IO to process all Context Free Actions such as signature verification in parallel, but more importantly, this enables generalized signature verification.
 
 With support for Context Free Actions, scalability techniques such as Sharding, Raiden, Plasma, State Channels, and others become much more parallelizable and practical. This development enables efficient inter-blockchain communication and potentially unlimited scalability.
 
@@ -291,9 +291,9 @@ All blockchains are resource constrained and require a system to prevent abuse. 
 2. Computation and Computational Backlog (CPU); and
 3. State Storage (RAM).
 
-Bandwidth and computation have two components, instantaneous usage and long-term usage. A blockchain maintains a log of all messages and this log is ultimately stored and downloaded by all full nodes. With the log of messages it is possible to reconstruct the state of all applications.
+Bandwidth and computation have two components, instantaneous usage and long-term usage. A blockchain maintains a log of all Actions and this log is ultimately stored and downloaded by all full nodes. With the log of Actions it is possible to reconstruct the state of all applications.
 
-The computational debt is calculations that must be performed to regenerate state from the message log. If the computational debt grows too large then it becomes necessary to take snapshots of the blockchain's state and discard the blockchain's history. If computational debt grows too quickly then it may take 6 months to replay 1 year worth of transactions. It is critical, therefore, that the computational debt be carefully managed.
+The computational debt is calculations that must be performed to regenerate state from the Action log. If the computational debt grows too large then it becomes necessary to take snapshots of the blockchain's state and discard the blockchain's history. If computational debt grows too quickly then it may take 6 months to replay 1 year worth of transactions. It is critical, therefore, that the computational debt be carefully managed.
 
 Blockchain state storage is information that is accessible from application logic. It includes information such as order books and account balances. If the state is never read by the application then it should not be stored. For example, blog post content and comments are not read by application logic so they should not be stored in the blockchain's state. Meanwhile the existence of a post/comment, the number of votes, and other properties do get stored as part of the blockchain's state.
 
@@ -305,7 +305,7 @@ Adopting the EOS.IO software on a launched blockchain means bandwidth and comput
 
 As discussed earlier, instrumenting computational usage has a significant impact on performance and optimization; therefore, all resource usage constraints are ultimately subjective and enforcement is done by block producers according to their individual algorithms and estimates. These would typically be implemented by a block producer via the writing of a custom plugin.
 
-That said, there are certain things that are trivial to measure objectively. The number of messages delivered and the size of the data stored in the internal database are cheap to measure objectively. The EOS.IO software enables block producers to apply the same algorithm over these objective measures but may choose to apply stricter subjective algorithms over subjective measurements.
+That said, there are certain things that are trivial to measure objectively. The number of Actions delivered and the size of the data stored in the internal database are cheap to measure objectively. The EOS.IO software enables block producers to apply the same algorithm over these objective measures but may choose to apply stricter subjective algorithms over subjective measurements.
 
 ## Receiver Pays
 
@@ -390,11 +390,11 @@ The block producers may accelerate the process if a software change is required 
 
 # Scripts & Virtual Machines
 
-The EOS.IO software will be first and foremost a platform for coordinating the delivery of authenticated messages (called actions) to accounts. The details of scripting language and virtual machine are implementation specific details that are mostly independent from the design of the EOS.IO technology. Any language or virtual machine that is deterministic and properly sandboxed with sufficient performance can be integrated with the EOS.IO software API.
+The EOS.IO software will be first and foremost a platform for coordinating the delivery of authenticated messages (called Actions) to accounts. The details of scripting language and virtual machine are implementation specific details that are mostly independent from the design of the EOS.IO technology. Any language or virtual machine that is deterministic and properly sandboxed with sufficient performance can be integrated with the EOS.IO software API.
 
-## Schema Defined Messages
+## Schema Defined Actions
 
-All messages sent between accounts are defined by a schema which is part of the blockchain consensus state. This schema allows seamless conversion between binary and JSON representation of the messages.
+All Actions sent between accounts are defined by a schema which is part of the blockchain consensus state. This schema allows seamless conversion between binary and JSON representation of the Actions.
 
 ## Schema Defined Database
 
@@ -408,17 +408,17 @@ Developing smart contracts requires a defined database schema to track, store, a
 
 To maximize parallelization opportunities and minimize the computational debt associated with regenerating application state from the transaction log, EOS.IO software separates validation logic into three sections:
 
-1. Validating that a message is internally consistent;
+1. Validating that a Action is internally consistent;
 2. Validating that all preconditions are valid; and
 3. Modifying the application state.
 
-Validating the internal consistency of a message is read-only and requires no access to blockchain state. This means that it can be performed with maximum parallelism. Validating preconditions, such as required balance, is read-only and therefore can also benefit from parallelism. Only modification of application state requires write access and must be processed sequentially for each application.
+Validating the internal consistency of a Action is read-only and requires no access to blockchain state. This means that it can be performed with maximum parallelism. Validating preconditions, such as required balance, is read-only and therefore can also benefit from parallelism. Only modification of application state requires write access and must be processed sequentially for each application.
 
-Authentication is the read-only process of verifying that a message can be applied. Application is actually doing the work. In real time both calculations are required to be performed, however once a transaction is included in the blockchain it is no longer necessary to perform the authentication operations.
+Authentication is the read-only process of verifying that a Action can be applied. Application is actually doing the work. In real time both calculations are required to be performed, however once a transaction is included in the blockchain it is no longer necessary to perform the authentication operations.
 
 # Inter Blockchain Communication
 
-EOS.IO software is designed to facilitate inter-blockchain communication. This is achieved by making it easy to generate proof of message existence and proof of message sequence. These proofs combined with an application architecture designed around message passing enables the details of inter-blockchain communication and proof validation to be hidden from application developers, enabling high level abstractions to be presented to developers.
+EOS.IO software is designed to facilitate inter-blockchain communication. This is achieved by making it easy to generate proof of Action existence and proof of Action sequence. These proofs combined with an application architecture designed around Action passing enables the details of inter-blockchain communication and proof validation to be hidden from application developers, enabling high level abstractions to be presented to developers.
 
 <img align="right" src="http://eos.io/wpimg/Diagram1.jpg" width="362.84px" height="500px" />
 
@@ -447,56 +447,6 @@ When communicating with another outside blockchain, block producers must wait un
 ## Proof of Completeness
 
 When using merkle proofs from outside blockchains, there is a significant difference between knowing that all transactions processed are valid and knowing that no transactions have been skipped or omitted. While it is impossible to prove that all of the most recent transactions are known, it is possible to prove that there have been no gaps in the transaction history. The EOS.IO software facilitates this by assigning a sequence number to every Action delivered to every account. A user can use these sequence numbers to prove that all Actions intended for a particular account have been processed and that they were processed in order.
-
-For any Block N, the headers include the root of a nearly-balanced merkle tree where the leaves are commitments to data generated while processing actions: the Action Root. This can be used to prove existence and, ordering of actions. Additionally, it can be used to prove completeness of transcripts of actions that affect a given scope.
-
-The data committed to for each action, or Action Commitment, is:
-
-**receiver**: the account name whose contract received the given action  
-**scope**: the scope where this action is defined  
-**name**: The name of the action (eg: ‘transfer’)  
-**data**: the binary encoded data payload delivered to the contract  
-**data_access**: an array of sequence numbers for scopes accessed during the processing of this action  
-
-This can be used to prove complete transcripts by providing actions and proofs for the sequence numbers between two given actions.
-
-Sequence numbers always increment on write operations and never on reads. There will be exactly one action with a write for a given (sequence, scope, receiver):
-
-**region_id**: the region this action was processed in  
-**cycle_index**: the cycle this action was processed in  
-
-This can be used to prove ordering constraints.
-
-Shards inside a cycle can execute in parallel; there is no deterministic ordering between actions in the same cycle but different shards.
-
-```
-(Example Action Commitment)
-{
-  receiver:inite,
-  scope:eosio,
-  name:transfer,
-  data:{
-               "from":"inite",
-               "to":"inita",
-               "amount":10000,
-               "memo":"memo"
-  },
-  data_access:[
-               {"type":"write","scope":"inite","sequence":1},
-               {"type":"write","scope":"inita","sequence":0}
-  ],
-  region:0,
-  cycle:0
-}
-```
-
-For each shard (a unit of parallelizable execution in a cycle) a balanced merkle tree is constructed of these action commitments to generate a temporary shared merkle root. This is done for speed of parallel computation. The block header contains the root of a balanced merkle tree whose leaves are the roots of these individual shard merkle trees. This means that the resulting merkle tree represented by the Action Root is not guaranteed to be a perfectly balanced merkle tree, however, it should be very close in most cases.
-
-Given an action, somewhere in the blockchain, it is possible to succinctly prove the retirement of that action by first proving that it was committed to by a block’s Action Root, and then that the given block was committed to by a trusted irreversible block header’s Block Root. These two proofs are referred to as the “Action Path” and the “Block Path” respectively.
-
-The Action Path consists of all the data (sibling digests from the merkle tree) necessary to recalculate the root of a merkle tree with respect to a single Action Commitment. That merkle tree’s root should exactly match the Action Root committed to by the header of the block that retired the action.
-
-The Block Path consists of all the data necessary to recalculate the root of a merkle tree with respect to a single Block ID. That merkle tree’s root should exactly match the Block Root committed to by the header of a trusted irreversible block.
 
 ## Segregated Witness
 
