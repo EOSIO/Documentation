@@ -5,6 +5,10 @@
 - [Chinese](zh-CN/TechnicalWhitePaper.md) translated by [@dayzh](https://steemit.com/@dayzh)
 - [Korean](ko-KR/TechnicalWhitePaper.md) translated by [@clayop](https://steemit.com/@clayop)
 
+# EOS Wiki
+
+- [English](https://github.com/EOSIO/eos/wiki)
+
 # Translation Guide
 
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/eos-docs/localized.svg)](https://crowdin.com/project/eos-docs)
