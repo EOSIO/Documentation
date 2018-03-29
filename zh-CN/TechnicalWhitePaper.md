@@ -59,7 +59,7 @@ Copyright © 2017 block.one
   - [模式定义的数据库](#schema-defined-database)
   - [分离授权与应用](#separating-authentication-from-application)
   - [虚拟机独立架构](#virtual-machine-independent-architecture) 
-    - [Web 组建 (WASM)](#web-assembly)
+    - [Web 组件 (WASM)](#web-assembly)
     - [以太访虚拟机 (EVM)](#ethereum-virtual-machine--evm-)
 - [跨链通信](#inter-blockchain-communication) 
   - [用于轻客户端的 Merkle 证明 (LCV)](#merkle-proofs-for-light-client-validation--lcv-)
@@ -202,7 +202,7 @@ The EOS.IO technology also allows all accounts to have an "owner" group which ca
 
 用户可以在消息广播出去后通过邮件或者文字消息的形式收到通知。 如果他们没有授权，那么他们可以使用帐户恢复流程来恢复帐户，并收回消息。
 
-这个必须的延时由操作敏感性决定。 为一杯咖啡付款可以没有任何的延时，几秒之内就不可逆了，而购买一个房子也许需要 72 消失的结算期。 转移整个帐户到一个新的控制可能需要长达 30 天。 具体的延时选择由开发者和用户自己来做选择。
+这个必须的延时由操作敏感性决定。 为一杯咖啡付款可以没有任何的延时，几秒之内就不可逆了，而购买一个房子也许需要 72 小时的结算期。 转移整个帐户到一个新的控制可能需要长达 30 天。 具体的延时选择由开发者和用户自己来做选择。
 
 ## 恢复被盗窃的密钥
 
@@ -399,11 +399,11 @@ To maximize parallelization opportunities and minimize the computational debt as
 
 It is the intention of the EOS.IO software-based blockchain that multiple virtual machines can be supported and new virtual machines added over time as necessary. 因此，本文并不讨论任何特定的语言或者虚拟机。 That said, there are two virtual machines that are currently being evaluated for use with an EOS.IO software-based blockchain.
 
-### Web 组建 (WASM)
+### Web 组件 (WASM)
 
-网络组建是一种为了构建高性能的 web 应用而新兴的 web 标准。 只需要进行少量的更改 Web 组建就可以被制作为确定性的和沙盒化的。 Web 组建的好处是它有着广泛的产业支持并且它可以让智能合约使用熟知的语言进行开发，比如 C 或 C++。
+网络组件是一种为了构建高性能的 web 应用而新兴的 web 标准。 只需要进行少量的更改 Web 组件就可以被制作为确定性的和沙盒化的。 Web 组件的好处是它有着广泛的产业支持并且它可以让智能合约使用熟知的语言进行开发，比如 C 或 C++。
 
-以太访开发者已经开始更改 Web 组建来提供合适的沙盒与确定性在他们的[以太访式 Web 组建 (WASM)](https://github.com/ewasm/design)。 这种方式让 EOS.IO 很容易的与之适配和对接。
+以太访开发者已经开始更改 Web 组件来提供合适的沙盒与确定性在他们的[以太访式 Web 组件 (WASM)](https://github.com/ewasm/design)。 这种方式让 EOS.IO 很容易的与之适配和对接。
 
 ### 以太访虚拟机 (EVM)
 
