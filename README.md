@@ -8,7 +8,7 @@
 # EOS Wiki
 
 - [English](https://github.com/EOSIO/eos/wiki)
-
+- [中文](https://github.com/name55/eos/wiki)
 # Translation Guide
 
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/eos-docs/localized.svg)](https://crowdin.com/project/eos-docs)
