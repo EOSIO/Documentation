@@ -165,7 +165,7 @@ EOS.IO software allows accounts to define what combination of keys and/or accoun
 
 ### Named Permission Levels
 
-<img align="right" src="http://eos.io/wpimg/diagram3.png" width="228.395px" height="300px" />
+<img align="right" src="https://github.com/EOSIO/Documentation/blob/images/images/diagram3.png" width="228.395px" height="300px" />
 
 Using the EOS.IO software, accounts can define named permission levels each of which can be derived from higher level named permissions. Each named permission level defines an authority; an authority is a threshold multi-signature check consisting of keys and/or named permission levels of other accounts. For example, an account's "Friend" permission level can be set for an Action on the account to be controlled equally by any of the account's friends.
 
@@ -181,7 +181,7 @@ When delivering an Action of type "**Action**", from **@alice** to **@bob** the 
 
 Once a mapping is identified then signing authority is validated using the threshold multi-signature process and the authority associated with the named permission. If that fails, then it traverses up to the parent permission and ultimately to the owner permission, **@alice.owner**.
 
-<img align="center" src="http://eos.io/wpimg/diagram2grayscale2.jpg" width="845.85px" height="500px" />
+<img align="center" src="https://github.com/EOSIO/Documentation/blob/images/images/diagram2grayscale2.jpg" width="845.85px" height="500px" />
 
 #### Default Permission Groups
 
@@ -424,7 +424,7 @@ Authentication is the read-only process of verifying that an Action can be appli
 
 EOS.IO software is designed to facilitate inter-blockchain communication. This is achieved by making it easy to generate proof of Action existence and proof of Action sequence. These proofs combined with an application architecture designed around Action passing enables the details of inter-blockchain communication and proof validation to be hidden from application developers, enabling high level abstractions to be presented to developers.
 
-<img align="right" src="http://eos.io/wpimg/Diagram1.jpg" width="362.84px" height="500px" />
+<img align="right" src="https://github.com/EOSIO/Documentation/blob/images/images/Diagram1.jpg" width="362.84px" height="500px" />
 
 ## Merkle Proofs for Light Client Validation (LCV)
 
