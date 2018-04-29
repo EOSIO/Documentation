@@ -1,3 +1,9 @@
+# EOS.IO Technical White Paper v2
+
+- [English](TechnicalWhitePaper.md)
+- [Chinese](zh-CN/TechnicalWhitePaper-v2.md) translated by [@EOSLaoMao](https://steemit.com/@eoslaomao)
+
+
 # EOS.IO Technical White Paper
 
 - [English](TechnicalWhitePaper.md)
