@@ -1,19 +1,19 @@
-EOS.IO Technical White Paper v2 - EOS.IO 技术白皮书 第二版
+# EOS.IO Technical White Paper v2 - EOS.IO 技术白皮书 第二版
 
-译者注：本译文在 Harvey老狼、谭智勇、宋承根@OracleChain 及 梓岑@YOYOW 所译第一版EOS 白皮书基础之上修订而成。特此致谢
+译者： Harvey老狼，谭智勇，宋承根@OracleChain，梓岑@YOYOW，荆凯，Eureka@ee-studio.com
+整理： Eureka@ee-studio.com (https://eureka.name) 中英文对照版：http://dac.xyz/eos_tech_whitepaper
 
-译者： Harvey老狼，谭智勇，宋承根@OracleChain，梓岑@YOYOW，荆凯
+**March 16, 2018**
+**2018年3月16**
 
-March 16, 2018  
+**Abstract:** The EOS.IO software introduces a new blockchain architecture designed to enable vertical and horizontal scaling of decentralized applications. This is achieved by creating an operating system-like construct upon which applications can be built. The software provides accounts, authentication, databases, asynchronous communication, and the scheduling of applications across many of CPU cores or clusters. The resulting technology is a blockchain architecture that may ultimately scale to millions of transactions per second, eliminates user fees, and allows for quick and easy deployment and maintenance of decentralized applications, in the context of a governed blockchain.
 
-Abstract: The EOS.IO software introduces a new blockchain architecture designed to enable vertical and horizontal scaling of decentralized applications. This is achieved by creating an operating system-like construct upon which applications can be built. The software provides accounts, authentication, databases, asynchronous communication, and the scheduling of applications across many of CPU cores or clusters. The resulting technology is a blockchain architecture that may ultimately scale to millions of transactions per second, eliminates user fees, and allows for quick and easy deployment and maintenance of decentralized applications, in the context of a governed blockchain.
-
-摘要：EOS.IO软件引入了新的区块链架构，旨在实现去中心化应用的纵向和横向扩展。这是通过创建一个类似操作系统的架构来实现的，可以在上面构建应用。该软件提供了帐户，身份验证，数据库，异步通信以及跨越多个CPU内核或集群的程序调度。该技术的最终形式是一个区块链架构，在治理区块链的场景下，可以最终扩展，足以支持每秒数百万笔交易，消除用户费用，实现去中心化应用的轻松快速地部署和维护。
+**摘要：**EOS.IO软件引入了新的区块链架构，旨在实现去中心化应用的纵向和横向扩展。这是通过创建一个类似操作系统的架构来实现的，可以在上面构建应用。该软件提供了帐户，身份验证，数据库，异步通信以及跨越多个CPU内核或集群的程序调度。该技术的最终形式是一个区块链架构，在治理区块链的场景下，可以最终扩展，足以支持每秒数百万笔交易，消除用户费用，实现去中心化应用的轻松快速地部署和维护。
 
 
-PLEASE NOTE: CRYPTOGRAPHIC TOKENS REFERRED TO IN THIS WHITE PAPER REFER TO CRYPTOGRAPHIC TOKENS ON A LAUNCHED BLOCKCHAIN THAT ADOPTS THE EOS.IO SOFTWARE. THEY DO NOT REFER TO THE ERC-20 COMPATIBLE TOKENS BEING DISTRIBUTED ON THE ETHEREUM BLOCKCHAIN IN CONNECTION WITH THE EOS TOKEN DISTRIBUTION.
+**PLEASE NOTE: CRYPTOGRAPHIC TOKENS REFERRED TO IN THIS WHITE PAPER REFER TO CRYPTOGRAPHIC TOKENS ON A LAUNCHED BLOCKCHAIN THAT ADOPTS THE EOS.IO SOFTWARE. THEY DO NOT REFER TO THE ERC-20 COMPATIBLE TOKENS BEING DISTRIBUTED ON THE ETHEREUM BLOCKCHAIN IN CONNECTION WITH THE EOS TOKEN DISTRIBUTION.**
 
-请注意: 本文中提到的加密通证指的是使用EOS.IO软件所构建的区块链上的加密通证，并不是在EOS 通证发行相关的ETH区块链上的ERC-20兼容通证。
+**请注意: 本文中提到的加密通证指的是使用EOS.IO软件所构建的区块链上的加密通证，并不是在EOS 通证发行相关的ETH区块链上的ERC-20兼容通证。**
 
 Copyright © 2018 block.one
 
@@ -22,8 +22,9 @@ Without permission, anyone may use, reproduce or distribute any material in this
 无需授权，出于非商业目的和教育用途（即，除了收费或商业目的)，任何人都可以使用、复制或者分发本白皮书中的任意材料，需要注明原文出处和适用的版权声明。
 
 
-DISCLAIMER: This EOS.IO Technical White Paper v2 is for information purposes only. block.one does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided “as is”. block.one does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. block.one and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will block.one or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.
+**DISCLAIMER:** This EOS.IO Technical White Paper v2 is for information purposes only. block.one does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided “as is”. block.one does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. block.one and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will block.one or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.
 
+<!-- MarkdownTOC depth=4 autolink=true bracket=round list_bullets="-*+" -->
 
 - [Background 背景](#background)
 - [Requirements for Blockchain Applications 区块链应用程序的要求](#requirements-for-blockchain-applications)
@@ -94,13 +95,9 @@ While a number of blockchain platforms have struggled to support functional dece
 
 虽然一些通用区块链平台还在努力实现第一个能正常运行的区块链应用，针对特定场景的区块链应用诸如BitShares去中心化交易所（2014）和Steem社交媒体平台（2016）已经成为日活跃用户上万的成功应用。这两个应用成功的把性能提高到每秒数千笔交易，延迟降低到1.5秒，降低交易费用，并实现了与当前中心化服务器的方案相似的用户体验。
 
-
 Existing blockchain platforms are burdened by large fees and limited computational capacity that prevent widespread blockchain adoption.
 
-
-
 由于现有的区块链平台使用费用高昂，计算性能有限，阻碍了区块链的广泛应用。
-
 
 # Requirements for Blockchain Applications 区块链应用的要求
 
