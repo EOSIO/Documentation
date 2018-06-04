@@ -15,7 +15,7 @@
 
 **PLEASE NOTE: CRYPTOGRAPHIC TOKENS REFERRED TO IN THIS WHITE PAPER REFER TO CRYPTOGRAPHIC TOKENS ON A LAUNCHED BLOCKCHAIN THAT ADOPTS THE EOS.IO SOFTWARE. THEY DO NOT REFER TO THE ERC-20 COMPATIBLE TOKENS BEING DISTRIBUTED ON THE ETHEREUM BLOCKCHAIN IN CONNECTION WITH THE EOS TOKEN DISTRIBUTION.**
 
-**请注意: 本文中提到的加密通证指的是使用EOS.IO软件所构建的区块链上的加密通证，并不是在EOS 通证发行相关的ETH区块链上的ERC-20兼容通证。**
+**请注意: 本文中提到的加密代币指的是使用EOS.IO软件所构建的区块链上的加密代币，并不是在EOS 代币发行相关的ETH区块链上的ERC-20兼容代币。**
 
 Copyright © 2018 block.one
 
@@ -25,6 +25,8 @@ Without permission, anyone may use, reproduce or distribute any material in this
 
 
 **DISCLAIMER:** This EOS.IO Technical White Paper v2 is for information purposes only. block.one does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided “as is”. block.one does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. block.one and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will block.one or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.
+
+**免责声明：**本EOS.IO技术白皮书v2仅供参考。 block.one不保证本白皮书的准确性或达到相应的结论，并且本白皮书按“原样”提供。 block.one没有明确表示承担任何明示，暗示，法定或其他任何陈述和保证，包括但不限于：（i）对适销性，适用于特定用途，适用性，使用，标题或不侵权; （ii）本白皮书的内容没有错误; （iii）此类内容不会侵犯第三方权利。对于因使用，参考或依赖此白皮书或此处包含的任何内容而引起的任何形式的损失，即使已被告知可能发生此类损害，block.one及其附属公司也不承担任何责任。在任何情况下，一个附属公司将不会对任何人或实体承担任何形式的直接或间接，间接，补偿，偶然，实际，惩罚性或惩罚性的任何损害，损失，责任，成本或开支的责任使用，引用或依赖本白皮书或此处包含的任何内容，包括但不限于业务，收入，利润，数据，使用，商誉或其他无形损失的任何损失。
 
 <!-- MarkdownTOC depth=4 autolink=true bracket=round list_bullets="-*+" -->
 
@@ -101,7 +103,7 @@ Existing blockchain platforms are burdened by large fees and limited computation
 
 由于现有的区块链平台使用费用高昂，计算性能有限，阻碍了区块链的广泛应用。
 
-# Requirements for Blockchain Applications 区块链应用的要求
+# Requirements for Blockchain Applications 区块链应用的需求
 
 In order to gain widespread use, applications on the blockchain require a platform that is flexible enough to meet the following requirements:
 
@@ -113,7 +115,7 @@ Competing with businesses such as eBay, Uber, AirBnB, and Facebook, require bloc
 
 想要同Ebay，Uber，AirBnB和Facebook这些企业竞争，需要能够处理数千万日活跃用户的区块链技术。 在某些情况下，除非用户数足够庞大，否则应用程序可能无法正常运作，因此，能够应对大量用户的平台至关重要。
 
-## Free Usage 使用免费
+## Free Usage 免费使用
 
 Application developers need the flexibility to offer users free services; users should not have to pay in order to use the platform or benefit from its services. A blockchain platform that is free to use for users will likely gain more widespread adoption. Developers and businesses can then create effective monetization strategies.
 
@@ -147,12 +149,11 @@ Large scale applications need to divide the workload across multiple CPUs and co
 
 大型应用程序需要在多个CPU和计算机之间分配工作负载。
 
-
 # Consensus Algorithm (BFT-DPOS)
 
 EOS.IO software utilizes the only known decentralized consensus algorithm proven capable of meeting the performance requirements of applications on the blockchain, [Delegated Proof of Stake (DPOS)](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper). Under this algorithm, those who hold tokens on a blockchain adopting the EOS.IO software may select block producers through a continuous approval voting system. Anyone may choose to participate in block production and will be given an opportunity to produce blocks, provided they can persuade token holders to vote for them.
 
-EOS.IO软件采用了目前为止唯一能够符合上述性能要求的去中心化共识算法 -- 委托权益证明[Delegated Proof of Stake (DPOS)](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper).。根据这一算法，在使用EOS.IO软件构建的区块链上持有通证的人，可以通过一个持续进行的投票系统来选择区块生产者。任何人都可以选择参加区块生产，只要能够说服通证持有人为其投票，就会有机会参与区块生产。
+EOS.IO软件采用了目前为止唯一能够符合上述性能要求的去中心化共识算法 -- 委托权益证明[Delegated Proof of Stake (DPOS)](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper).。根据这一算法，在使用EOS.IO软件构建的区块链上持有代币的人，可以通过一个持续进行的投票系统来选择区块生产者。任何人都可以选择参加区块生产，只要能够说服通证持有人为其投票，就会有机会参与区块生产。
 
 The EOS.IO software enables blocks to be produced exactly every 0.5 second and exactly one producer is authorized to produce a block at any given point in time. If the block is not produced at the scheduled time, then the block for that time slot is skipped. When one or more blocks are skipped, there is a 0.5 or more second gap in the blockchain.
 
@@ -164,7 +165,7 @@ Using the EOS.IO software, blocks are produced in rounds of 126 (6 blocks each, 
 
 If a producer misses a block and has not produced any block within the last 24 hours they are removed from consideration until they notify the blockchain of their intention to start producing blocks again. This ensures the network operates smoothly by minimizing the number of blocks missed by not scheduling producers who are proven to be unreliable.
 
-使用EOS.IO软件，区块的产生是以126个区块(每个出块者六个区块，乘以21个出块者)为一个周期。在每个出块周期开始时，会根据通证持有人所投票数选出21个区块生产者。被选中的区块生产者的顺序会根据15个及以上的区块生产者的同意，制定出块顺序的安排。
+使用EOS.IO软件，区块的产生是以126个区块(每个出块者六个区块，乘以21个出块者)为一个周期。在每个出块周期开始时，会根据代币持有人所投票数选出21个区块生产者。被选中的区块生产者的顺序会根据15个及以上的区块生产者的同意，制定出块顺序的安排。
 
 如果出块者错过了一个块，并且在最近24小时内没有产生任何块，则这个出块者将被剔除在考虑范围之外，直到他们通知区块链可以重新开始产生区块。这确保了网络的顺利运行，把被证明为不可靠的区块生产者排除在出块排程之外，通过这一方式使得错过区块的数量最小化。
 
