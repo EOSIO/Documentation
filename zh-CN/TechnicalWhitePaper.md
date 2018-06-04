@@ -1,6 +1,8 @@
-# EOS.IO Technical White Paper v2 - EOS.IO 技术白皮书 第二版
+# EOS.IO Technical White Paper v2 
+# EOS.IO 技术白皮书 第二版
 
 译者： Harvey老狼，谭智勇，宋承根@OracleChain，梓岑@YOYOW，荆凯，Eureka@ee-studio.com
+
 整理： Eureka@ee-studio.com (https://eureka.name) 中英文对照版：http://dac.xyz/eos_tech_whitepaper
 
 **March 16, 2018**
@@ -8,7 +10,7 @@
 
 **Abstract:** The EOS.IO software introduces a new blockchain architecture designed to enable vertical and horizontal scaling of decentralized applications. This is achieved by creating an operating system-like construct upon which applications can be built. The software provides accounts, authentication, databases, asynchronous communication, and the scheduling of applications across many of CPU cores or clusters. The resulting technology is a blockchain architecture that may ultimately scale to millions of transactions per second, eliminates user fees, and allows for quick and easy deployment and maintenance of decentralized applications, in the context of a governed blockchain.
 
-**摘要：**EOS.IO软件引入了新的区块链架构，旨在实现去中心化应用的纵向和横向扩展。这是通过创建一个类似操作系统的架构来实现的，可以在上面构建应用。该软件提供了帐户，身份验证，数据库，异步通信以及跨越多个CPU内核或集群的程序调度。该技术的最终形式是一个区块链架构，在治理区块链的场景下，可以最终扩展，足以支持每秒数百万笔交易，消除用户费用，实现去中心化应用的轻松快速地部署和维护。
+**摘要：** EOS.IO软件引入了新的区块链架构，旨在实现去中心化应用的纵向和横向扩展。这是通过创建一个类似操作系统的架构来实现的，可以在上面构建应用。该软件提供了帐户，身份验证，数据库，异步通信以及跨越多个CPU内核或集群的程序调度。该技术的最终形式是一个区块链架构，在治理区块链的场景下，可以最终扩展，足以支持每秒数百万笔交易，消除用户费用，实现去中心化应用的轻松快速地部署和维护。
 
 
 **PLEASE NOTE: CRYPTOGRAPHIC TOKENS REFERRED TO IN THIS WHITE PAPER REFER TO CRYPTOGRAPHIC TOKENS ON A LAUNCHED BLOCKCHAIN THAT ADOPTS THE EOS.IO SOFTWARE. THEY DO NOT REFER TO THE ERC-20 COMPATIBLE TOKENS BEING DISTRIBUTED ON THE ETHEREUM BLOCKCHAIN IN CONNECTION WITH THE EOS TOKEN DISTRIBUTION.**
