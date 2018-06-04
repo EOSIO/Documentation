@@ -3,7 +3,7 @@
 
 译者： Harvey老狼，谭智勇，宋承根@OracleChain，梓岑@YOYOW，荆凯，Eureka@ee-studio.com
 
-整理： Eureka@ee-studio.com (https://eureka.name) 中英文对照版：http://dac.xyz/eos_tech_whitepaper
+整理： Eureka@ee-studio.com (https://eureka.name) 中英文对照版：http://dac.xyz/project/eos/tech_whitepaper
 
 **March 16, 2018**
 **2018年3月16**
@@ -26,7 +26,7 @@ Without permission, anyone may use, reproduce or distribute any material in this
 
 **DISCLAIMER:** This EOS.IO Technical White Paper v2 is for information purposes only. block.one does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided “as is”. block.one does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. block.one and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will block.one or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.
 
-**免责声明：**本EOS.IO技术白皮书v2仅供参考。 block.one不保证本白皮书的准确性或达到相应的结论，并且本白皮书按“原样”提供。 block.one没有明确表示承担任何明示，暗示，法定或其他任何陈述和保证，包括但不限于：（i）对适销性，适用于特定用途，适用性，使用，标题或不侵权; （ii）本白皮书的内容没有错误; （iii）此类内容不会侵犯第三方权利。对于因使用，参考或依赖此白皮书或此处包含的任何内容而引起的任何形式的损失，即使已被告知可能发生此类损害，block.one及其附属公司也不承担任何责任。在任何情况下，一个附属公司将不会对任何人或实体承担任何形式的直接或间接，间接，补偿，偶然，实际，惩罚性或惩罚性的任何损害，损失，责任，成本或开支的责任使用，引用或依赖本白皮书或此处包含的任何内容，包括但不限于业务，收入，利润，数据，使用，商誉或其他无形损失的任何损失。
+**免责声明：** 本EOS.IO技术白皮书v2仅供参考。 block.one不保证本白皮书的准确性或达到相应的结论，并且本白皮书按“原样”提供。 block.one没有明确表示承担任何明示，暗示，法定或其他任何陈述和保证，包括但不限于：（i）对适销性，适用于特定用途，适用性，使用，标题或不侵权; （ii）本白皮书的内容没有错误; （iii）此类内容不会侵犯第三方权利。对于因使用，参考或依赖此白皮书或此处包含的任何内容而引起的任何形式的损失，即使已被告知可能发生此类损害，block.one及其附属公司也不承担任何责任。在任何情况下，一个附属公司将不会对任何人或实体承担任何形式的直接或间接，间接，补偿，偶然，实际，惩罚性或惩罚性的任何损害，损失，责任，成本或开支的责任使用，引用或依赖本白皮书或此处包含的任何内容，包括但不限于业务，收入，利润，数据，使用，商誉或其他无形损失的任何损失。
 
 <!-- MarkdownTOC depth=4 autolink=true bracket=round list_bullets="-*+" -->
 
@@ -59,11 +59,11 @@ Without permission, anyone may use, reproduce or distribute any material in this
   * [Subjective Best Effort Scheduling 排程的主观最优化](#subjective-best-effort-scheduling)
   * [Deferred Transactions 延迟事务](#deferred-transactions)
   * [Context Free Actions 上下文无关的动作](#context-free-actions)
-- [Token Model and Resource Usage 通证模型和资源使用](#token-model-and-resource-usage)
+- [Token Model and Resource Usage 代币模型和资源使用](#token-model-and-resource-usage)
   * [Objective and Subjective Measurements 主观度量和客观度量](#objective-and-subjective-measurements)
   * [Receiver Pays 收款方付费](#receiver-pays)
   * [Delegating Capacity 代理容量](#delegating-capacity)
-  * [Separating Transaction costs from Token Value 将交易成本与通证价值区分](#separating-transaction-costs-from-token-value)
+  * [Separating Transaction costs from Token Value 将交易成本与代币价值区分](#separating-transaction-costs-from-token-value)
   * [State Storage Costs 状态存储的成本](#state-storage-costs)
   * [Block Rewards 出块奖励](#block-rewards)
   * [Worker Proposal System 工作提案系统](#worker-proposal-system)
@@ -149,11 +149,11 @@ Large scale applications need to divide the workload across multiple CPUs and co
 
 大型应用程序需要在多个CPU和计算机之间分配工作负载。
 
-# Consensus Algorithm (BFT-DPOS)
+# Consensus Algorithm (BFT-DPOS) 共识算法（BFT-DPOS）
 
 EOS.IO software utilizes the only known decentralized consensus algorithm proven capable of meeting the performance requirements of applications on the blockchain, [Delegated Proof of Stake (DPOS)](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper). Under this algorithm, those who hold tokens on a blockchain adopting the EOS.IO software may select block producers through a continuous approval voting system. Anyone may choose to participate in block production and will be given an opportunity to produce blocks, provided they can persuade token holders to vote for them.
 
-EOS.IO软件采用了目前为止唯一能够符合上述性能要求的去中心化共识算法 -- 委托权益证明[Delegated Proof of Stake (DPOS)](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper).。根据这一算法，在使用EOS.IO软件构建的区块链上持有代币的人，可以通过一个持续进行的投票系统来选择区块生产者。任何人都可以选择参加区块生产，只要能够说服通证持有人为其投票，就会有机会参与区块生产。
+EOS.IO软件采用了目前为止唯一能够符合上述性能要求的去中心化共识算法 -- 委托权益证明[Delegated Proof of Stake (DPOS)](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper).。根据这一算法，在使用EOS.IO软件构建的区块链上持有代币的人，可以通过一个持续进行的投票系统来选择区块生产者。任何人都可以选择参加区块生产，只要能够说服代币持有人为其投票，就会有机会参与区块生产。
 
 The EOS.IO software enables blocks to be produced exactly every 0.5 second and exactly one producer is authorized to produce a block at any given point in time. If the block is not produced at the scheduled time, then the block for that time slot is skipped. When one or more blocks are skipped, there is a 0.5 or more second gap in the blockchain.
 
@@ -215,7 +215,7 @@ The EOS.IO software permits all accounts to be referenced by a unique human read
 In a decentralized context, application developers will pay the nominal cost of account creation to sign up a new user. Traditional businesses already spend significant sums of money per customer they acquire in the form of advertising, free services, etc. The cost of funding a new blockchain account should be insignificant in comparison. Fortunately, there is no need to create accounts for users already signed up by another application.
 
 
-EOS.IO软件允许使用唯一的可读的名称来实现对帐户的引用，名称最长为12个字符。该名称由帐户的创建者选择。账户创建者必须留出RAM空间用于存储新的账户，直至新建的账户抵押了通证以获得自己的RAM空间。
+EOS.IO软件允许使用唯一的可读的名称来实现对帐户的引用，名称最长为12个字符。该名称由帐户的创建者选择。账户创建者必须留出RAM空间用于存储新的账户，直至新建的账户抵押了代币以获得自己的RAM空间。
 
 在去中心化的情境下，应用程序开发人员将为创建帐户支付名义成本来注册新的用户。通常企业已经以广告和免费服务等形式，为所获取的每个用户花费了大量资金。相比之下，创建新的区块链帐户所需的资金成本是微不足道的。并且幸运的是，没有必要为已经由另一个应用程序注册的用户创建帐户。
 
@@ -451,11 +451,11 @@ With support for Context Free Actions, scalability techniques such as Sharding, 
 
 在支持上下文无关动作(Context Free Actions)的情况下，可伸缩性技术如Sharding、Raiden、Plasma、State Channels等，变得更加可并行化，实用性更强。这一发展可以实现高效的跨区块链通信和潜在的无限可扩展性。
 
-# Token Model and Resource Usage 通证模型和资源使用
+# Token Model and Resource Usage 代币模型和资源使用
 
 **PLEASE NOTE: CRYPTOGRAPHIC TOKENS REFERRED TO IN THIS WHITE PAPER REFER TO CRYPTOGRAPHIC TOKENS ON A LAUNCHED BLOCKCHAIN THAT ADOPTS THE EOS.IO SOFTWARE. THEY DO NOT REFER TO THE ERC-20 COMPATIBLE TOKENS BEING DISTRIBUTED ON THE ETHEREUM BLOCKCHAIN IN CONNECTION WITH THE EOS TOKEN DISTRIBUTION.**
 
-**请注意: 在本篇白皮书中，所指的加密通证是使用EOS.IO软件所构建区块链中的加密通证。 并不是在 EOS 通证发行过程中所用的基于以太坊的ERC-20兼容通证.**
+**请注意: 在本篇白皮书中，所指的加密代币是使用EOS.IO软件所构建区块链中的加密代币。 并不是在 EOS 代币发行过程中所用的基于以太坊的ERC-20兼容代币.**
 
 All blockchains are resource constrained and require a system to prevent abuse. With a blockchain that uses EOS.IO software, there are three broad classes of resources that are consumed by applications:
 
@@ -465,7 +465,6 @@ All blockchains are resource constrained and require a system to prevent abuse. 
 1. Bandwidth and Log Storage (Disk);
 2. Computation and Computational Backlog (CPU); and
 3. State Storage (RAM).
-
 
 1. 带宽和日志存储 (磁盘);
 2. 计算和计算积压 (CPU); 
@@ -485,7 +484,7 @@ Blockchain state storage is information that is accessible from application logi
 
 Block producers publish their available capacity for bandwidth, computation, and state. The EOS.IO software allows each account to consume a percentage of the available capacity proportional to the amount of tokens held in a 3-day staking contract. For example, if a blockchain based on the EOS.IO software is launched and if an account holds 1% of the total tokens distributable pursuant to that blockchain, then that account has the potential to utilize 1% of the state storage capacity.
 
-区块生成者可以公布它们可用的带宽、计算资源和状态的容量。EOS.IO系统根据账户在期限为三天的抵押合约中所抵押的通证数量，允许每个帐户可以消耗一定比例的可用容量。例如，假设一个基于EOS.IO系统的区块链应用启动，如果一个帐户持有该区块链提供的总通证的1%，那么这个帐户就有可能利用该区块链1%的状态存储容量。
+区块生成者可以公布它们可用的带宽、计算资源和状态的容量。EOS.IO系统根据账户在期限为三天的抵押合约中所抵押的代币数量，允许每个帐户可以消耗一定比例的可用容量。例如，假设一个基于EOS.IO系统的区块链应用启动，如果一个帐户持有该区块链提供的总代币的1%，那么这个帐户就有可能利用该区块链1%的状态存储容量。
 
 
 Adopting the EOS.IO software on a launched blockchain means bandwidth and computational capacity are allocated on a fractional reserve basis because they are transient (unused capacity cannot be saved for future use). The algorithm used by EOS.IO software is similar to the algorithm used by Steem to rate-limit bandwidth usage.
@@ -521,36 +520,36 @@ While it is true that the receiver can pay, EOS.IO enables the sender to pay for
 
 A holder of tokens on a blockchain launched adopting the EOS.IO software who may not have an immediate need to consume all or part of the available bandwidth, can delegate or rent such unconsumed bandwidth to others; the block producers running EOS.IO software on such blockchain will recognize this delegation of capacity and allocate bandwidth accordingly.
 
-在一条使用EOS.IO系统开发的区块链上，通证的持有人可能不需要立即消耗可用带宽的全部或部分资源，他们可以选择将未消耗的带宽委托或租赁给他人；在这一区块链上运行EOS.IO 软件的区块生产者将识别这一授权并分配相应的带宽。
+在一条使用EOS.IO系统开发的区块链上，代币的持有人可能不需要立即消耗可用带宽的全部或部分资源，他们可以选择将未消耗的带宽委托或租赁给他人；在这一区块链上运行EOS.IO 软件的区块生产者将识别这一授权并分配相应的带宽。
 
-## Separating Transaction costs from Token Value 将交易成本与通证价值区分开
+## Separating Transaction costs from Token Value 将交易成本与代币价值区分开
 
 One of the major benefits of the EOS.IO software is that the amount of bandwidth available to an application is entirely independent of any token price. If an application owner holds a relevant number of tokens on a blockchain adopting EOS.IO software, then the application can run indefinitely within a fixed state and bandwidth usage. In such case, developers and users are unaffected from any price volatility in the token market and therefore not reliant on a price feed. In other words, a blockchain that adopts the EOS.IO software enables block producers to naturally increase bandwidth, computation, and storage available per token independent of the token's value.
 
-EOS.IO软件的主要优点之一是，应用程序可用的带宽数完全独立于通证的价格之外。如果应用程序所有者持有相应数量的通证，那么应用程序可以在固定的状态下，使用固定的带宽资源持续运行。开发人员和用户不会受到通证的市场价格波动的影响，因此不会依赖于喂价。换句话说，使用EOS.IO程序运行的区块链，可以让区块生产者能够自然地增加每单位通证可用的带宽、计算资源和存储资源，这与通证的价值无关。
+EOS.IO软件的主要优点之一是，应用程序可用的带宽数完全独立于代币的价格之外。如果应用程序所有者持有相应数量的代币，那么应用程序可以在固定的状态下，使用固定的带宽资源持续运行。开发人员和用户不会受到代币的市场价格波动的影响，因此不会依赖于喂价。换句话说，使用EOS.IO程序运行的区块链，可以让区块生产者能够自然地增加每单位代币可用的带宽、计算资源和存储资源，这与代币的价值无关。
 
 A blockchain using EOS.IO software also awards block producers tokens every time they produce a block. The value of the tokens will impact the amount of bandwidth, storage, and computation a producer can afford to purchase; this model naturally leverages rising token values to increase network performance.
 
 
-使用EOS.IO软件的区块链，区块生产者每次产生区块，都会得到一定的通证奖励。通证的值将影响一个区块生成者能够有钱购买的带宽、存储和计算量；这个模型自然会利用通证价值的上涨来提高网络性能。
+使用EOS.IO软件的区块链，区块生产者每次产生区块，都会得到一定的代币奖励。代币的值将影响一个区块生成者能够有钱购买的带宽、存储和计算量；这个模型自然会利用代币价值的上涨来提高网络性能。
 
 ## State Storage Costs 状态存储成本
 
 While bandwidth and computation can be delegated, storage of application state will require an application developer to hold tokens until that state is deleted. If state is never deleted, then the tokens are effectively removed from circulation.
 
-带宽和计算可以可以代理给他人，但是应用程序状态的存储需要开发者持有通证，直至状态删除为止。如果程序的状态永不删除，那么实际上这部分通证就退出了流通。
+带宽和计算可以可以代理给他人，但是应用程序状态的存储需要开发者持有代币，直至状态删除为止。如果程序的状态永不删除，那么实际上这部分代币就退出了流通。
 
 ## Block Rewards 出块奖励
 
 A blockchain that adopts the EOS.IO software will award new tokens to a block producer every time a block is produced. In these circumstances, the number of tokens created is determined by the median of the desired pay published by all block producers. The EOS.IO software may be configured to enforce a cap on producer awards such that the total annual increase in token supply does not exceed 5%.
 
-在使用EOS.IO软件构建的区块链上，每生成一个区块，出块者都会得到一些新的通证作为奖励。在这一状况下，新创建的通证数量是由所有区块生产者公布的期望报酬的中位数而决定的。可以配置EOS.IO软件，限制区块生成者所得奖励上限，使得通证供应的年总增长率不超过5%。
+在使用EOS.IO软件构建的区块链上，每生成一个区块，出块者都会得到一些新的代币作为奖励。在这一状况下，新创建的代币数量是由所有区块生产者公布的期望报酬的中位数而决定的。可以配置EOS.IO软件，限制区块生成者所得奖励上限，使得代币供应的年总增长率不超过5%。
 
 ## Worker Proposal System 工作提案系统
 
 In addition to electing block producers, pursuant to a blockchain based on the EOS.IO software, token holders can elect a number of Worker Proposals designed to benefit the community. The winning proposals will receive tokens of up to a configured percent of the token inflation minus those tokens that have been paid to block producers. These proposals will receive tokens proportional to the votes each application has received from token holders, up to the amount they request for performing their work. The elected proposals can be replaced by newly elected proposals by token holders.
 
-在基于EOS.IO 软件的区块链上，通证持有人除了选举区块生产者，还可以选出一些旨在造福社区的工作提案。获胜的提案能够得到通证奖励，所配置的每年通证的膨胀率减去已支付给区块生成者的部分，就是这部分奖励的最大值。这些提案将按照所得到的选票比例来获得通证的分配，上限是他们进行工作所要求的通证数量。所选出的提案可以由通证持有人新选出的提案所替代。
+在基于EOS.IO 软件的区块链上，代币持有人除了选举区块生产者，还可以选出一些旨在造福社区的工作提案。获胜的提案能够得到代币奖励，所配置的每年代币的膨胀率减去已支付给区块生成者的部分，就是这部分奖励的最大值。这些提案将按照所得到的选票比例来获得代币的分配，上限是他们进行工作所要求的代币数量。所选出的提案可以由代币持有人新选出的提案所替代。
 
 The system contracts that implement Worker Proposals may not be in place at initial launch in June 2018, but the funding mechanism will. It will begin to accumulate funds at the same time block producer awards start. Since the Worker Proposal System will be implemented in WASM it can be added at a later date without a fork.
 
@@ -569,9 +568,7 @@ Governance is the process by which people in a community:
 
 
 1. 有些事实无法通过软件代码来收集，而人们通过搜集这些事实，就主观问题达成共识;
-
 2. 执行他们达成的决策;
-
 3. 通过宪法修正案，来变更治理规则。
 
 An EOS.IO software-based blockchain implements a governance process that efficiently directs the existing influence of block producers. Absent a defined governance process, prior blockchains relied ad hoc, informal, and often controversial governance processes that result in unpredictable outcomes.
@@ -580,11 +577,11 @@ An EOS.IO software-based blockchain implements a governance process that efficie
 
 A blockchain based on the EOS.IO software recognizes that power originates with the token holders who delegate that power to the block producers. The block producers are given limited and checked authority to freeze accounts, update defective applications, and propose hard forking changes to the underlying protocol.
 
-基于 EOS.IO 软件的区块链认为，权力来自于通证持有人，他们将权力代理给区块生产者。区块生产者被赋予了有限和经审查的授权，可以冻结账户，更新有缺陷的应用，并提出对基础协议进行硬分叉的变更。
+基于 EOS.IO 软件的区块链认为，权力来自于代币持有人，他们将权力代理给区块生产者。区块生产者被赋予了有限和经审查的授权，可以冻结账户，更新有缺陷的应用，并提出对基础协议进行硬分叉的变更。
 
 Embedded into the EOS.IO software is the election of block producers. Before any change can be made to the blockchain these block producers must approve it. If the block producers refuse to make changes desired by the token holders then they can be voted out. If the block producers make changes without permission of the token holders then all other non-producing full-node validators (exchanges, etc) will reject the change.
 
-EOS.IO 软件内嵌了区块生产者的选举机制。在对区块链进行任何更改之前，这些区块生产者必须批准它。如果区块生产者拒绝按通证持有人的期望做出变更，那么可以投票将其替换。如果未经通证持有者的允许区块生产者就擅作更改，那么所有其他非出块的全节点验证者(交易所等)将拒绝该更改。
+EOS.IO 软件内嵌了区块生产者的选举机制。在对区块链进行任何更改之前，这些区块生产者必须批准它。如果区块生产者拒绝按代币持有人的期望做出变更，那么可以投票将其替换。如果未经代币持有者的允许区块生产者就擅作更改，那么所有其他非出块的全节点验证者(交易所等)将拒绝该更改。
 
 ## Freezing Accounts  冻结账户
 
@@ -628,7 +625,7 @@ EOS.IO 软件定义了如下过程，借助于此，可以对由源代码和宪�
 
 
 1.  区块生产者提出变更宪法的动议，获得出块者中 15/21 的投票通过。
-2.   区块生产者对新 **宪法**的赞成态度，需要维持持续30天。
+2.  区块生产者对新 **宪法**的赞成态度，需要维持持续30天。
 3.  所有的用户都需要表示接受新的宪法，作为未来的交易能够处理的条件。
 4.  区块生产者采纳对源代码的变更以反应宪法的变化，并用新宪法的哈希值将变更提交到区块链上.
 5.  区块生产者对新**代码**的赞成态度，需要维持持续30天.
