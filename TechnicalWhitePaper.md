@@ -229,17 +229,15 @@ Latency is the time it takes for one account to send an Action to another accoun
 
       Block
 
-        Region
+        Cycles (sequential)
 
-          Cycles (sequential)
+          Shards (parallel)
 
-            Shards (parallel)
+            Transactions (sequential)
 
-              Transactions (sequential)
+              Actions (sequential)
 
-                Actions (sequential)
-
-                  Receiver and Notified Accounts (parallel)
+                Receiver and Notified Accounts (parallel)
 
 Transactions generated in one cycle can be delivered in any subsequent cycle or block. Block producers will keep adding cycles to a block until the maximum wall clock time has passed or there are no new generated transactions to deliver.
 
