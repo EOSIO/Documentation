@@ -5,9 +5,9 @@
 - [Chinese](zh-CN/TechnicalWhitePaper.md) translated by [@dayzh](https://steemit.com/@dayzh)
 - [Korean](ko-KR/TechnicalWhitePaper.md) translated by [@clayop](https://steemit.com/@clayop)
 
-# EOS Wiki
+# EOS Developers Portal
 
-- [English](https://github.com/EOSIO/eos/wiki)
+- [English](https://developers.eos.io/)
 
 # Translation Guide
 
