@@ -109,7 +109,7 @@ Ebay, Uber, AirBnB, Facebook 과 같은 기존 서비스와 경쟁력을 갖추�
 
 EOS.IO 소프트웨어는 블록체인 애플리케이션의 성능 요구사항을 충족할 수 있는 유일한 탈중앙화 합의 알고리즘인 [지분 위임 증명(DPOS; Deleteged Proof-Of-Stake)을 사용합니다](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper). Under this algorithm, those who hold tokens on a blockchain adopting the EOS.IO software may select block producers through a continuous approval voting system and anyone may choose to participate in block production and will be given an opportunity to produce blocks proportional to the total votes they have received relative to all other producers. For private blockchains the management could use the tokens to add and remove IT staff.
 
-EOS.IO 소프트웨어는 정확히 0.5초마다 블록이 만들어질 수 있게 하며, 각 시점마다 오직 한 명의 블록 생산자만이 블록을 생성할 수 있습니다. 만약 정해진 시간에 블록이 생산되지 않을 경우 해당 시점의 블록은 무시됩니다. 1개 혹은 그 이상의 블록이 무시될 경우 블록체인에는 6초 혹은 그 이상의 간격(gap)이 나타납니다.
+EOS.IO 소프트웨어는 정확히 0.5초마다 블록이 만들어질 수 있게 하며, 각 시점마다 오직 한 명의 블록 생산자만이 블록을 생성할 수 있습니다. 만약 정해진 시간에 블록이 생산되지 않을 경우 해당 시점의 블록은 무시됩니다. 1개 혹은 그 이상의 블록이 무시될 경우 블록체인에는 0.5초 혹은 그 이상의 간격(gap)이 나타납니다.
 
 EOS.IO 소프트웨어를 이용하여 블록들은 21번의 단계로 구성되는 라운드로 생성되며. 각 라운드가 시작될 때 21명의 블록 생산자가 정해집니다. 라운드마다 많은 득표를 받은 상위 20명의 블록 생산자가 자동으로 배정되며, 마지막 생산자는 다른 생산자와의 상대적인 투표수에 비례하여 선출됩니다. 블록 시간으로 유도되는 의사 난수(pseudorandom number)에 따라 선출된 생산자들의 블록 생성 순서를 랜덤하게 섞습니다. 블록 생성 순서를 섞는 것은 모든 생산자가 다른 생산자들과 균형적인 연결(balanced connectivity)을 유지하도록 진행합니다.
 
