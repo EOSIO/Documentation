@@ -3,6 +3,7 @@
 ## EOS.IO Technical White Paper
 
 - [English](TechnicalWhitePaper.md)
+- [French](fr-FR/TechnicalWhitePaper.md) translated by [@franceos](https://www.franceos.fr)
 - [Russian](ru-RU/TechnicalWhitePaper.md) translated by [@blockchained](https://steemit.com/@blockchained)
 - [Chinese](zh-CN/TechnicalWhitePaper.md) translated by [@dayzh](https://steemit.com/@dayzh)
 - [Korean](ko-KR/TechnicalWhitePaper.md) translated by [@clayop](https://steemit.com/@clayop)
