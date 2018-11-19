@@ -4,17 +4,17 @@
 
 **摘要：** EOS.IO 软件引入一种新的区块链架构设计，它使得去中心化的应用可以横向和纵向的扩展。 这通过构建一个仿操作系统的方式来实现，在它之上可以构建应用程序。 该软件提供帐户、身份验证、数据库、异步通信和跨越数百个 CPU 内核或集群的应用程序调度。 由此产生的技术是一种区块链架构，它可以扩展至每秒处理百万级交易，消除用户的手续费，并且允许快速和轻松的部署去中心化的应用。
 
-**PLEASE NOTE: CRYPTOGRAPHIC TOKENS REFERRED TO IN THIS WHITE PAPER REFER TO CRYPTOGRAPHIC TOKENS ON A LAUNCHED BLOCKCHAIN THAT ADOPTS THE EOS.IO SOFTWARE. THEY DO NOT REFER TO THE ERC-20 COMPATIBLE TOKENS BEING DISTRIBUTED ON THE ETHEREUM BLOCKCHAIN IN CONNECTION WITH THE EOS TOKEN DISTRIBUTION.**
+** 请注意：在本白皮书中提到的密码令牌指的是未来采用EOS.IO软件的区块链上的密码令牌。 它们不是指在以太坊区块链上进行ICO的ERC-20兼容的EOS令牌。**
 
 Copyright © 2017 block.one
 
 未经允许，在非用于商业和教育用途的前提下 (即，除了收取费用或商业目的)，如果注明原始出处并适用声明的版权，任何人可以使用、复制或发布本白皮书内的任何内容。
 
-**免责声明：** 本 EOS.IO 技术白皮书草案仅供参考。 block.one does not guarantee the accuracy of or the conclusions reached in this white paper, and this white paper is provided “as is”. block.one does not make and expressly disclaims all representations and warranties, express, implied, statutory or otherwise, whatsoever, including, but not limited to: (i) warranties of merchantability, fitness for a particular purpose, suitability, usage, title or noninfringement; (ii) that the contents of this white paper are free from error; and (iii) that such contents will not infringe third-party rights. block.one and its affiliates shall have no liability for damages of any kind arising out of the use, reference to, or reliance on this white paper or any of the content contained herein, even if advised of the possibility of such damages. In no event will block.one or its affiliates be liable to any person or entity for any damages, losses, liabilities, costs or expenses of any kind, whether direct or indirect, consequential, compensatory, incidental, actual, exemplary, punitive or special for the use of, reference to, or reliance on this white paper or any of the content contained herein, including, without limitation, any loss of business, revenues, profits, data, use, goodwill or other intangible losses.
+**免责声明：** 本 EOS.IO 技术白皮书草案仅供参考。 block.one不保证本白皮书的准确性或达成的结论，本白皮书“按原样”提供。block.one不以任何形式明示，暗示，法定或其他方式表示和保证，包括但不限于：（i）商业保证，适用于特定用途，适用性，使用，标题或不侵权; （ii）本白皮书的内容没有错误; （iii）这些内容不会侵犯第三方的权利。对于因使用，引用或依赖此白皮书或此处包含的任何内容而引起的任何形式的损害，即使已被告知存在此类损害的可能性，本公司及其附属公司概不负责。在任何情况下，block.one或其附属公司将不会对因引用或依赖本白皮书或此处包含的任何内容而造成对任何人或实体的任何损害，损失，责任，成本或费用负责，无论是直接的还是间接的，后果性的，补偿性的，附带的，实际的，惩戒性的，惩罚性的或特殊的使用，包括但不限于业务，收入，利润，数据，使用，商誉或其他无形损失的任何损失。
 
 - [背景](#background)
 - [区块链应用的要求](#requirements-for-blockchain-applications) 
-  - [支持成百上千的用户](#support-millions-of-users)
+  - [支持百万级别的用户](#support-millions-of-users)
   - [免费的使用](#free-usage)
   - [简单升级和 bug 修复](#easy-upgrades-and-bug-recovery)
   - [低延时](#low-latency)
@@ -69,23 +69,21 @@ Copyright © 2017 block.one
 
 # 背景
 
-区块链技术是通过 2008 年诞生的比特币货币得以被认知，自从那之后企业家和开发者就不断的尝试推广这一技术，以便在单一的区块链平台上支持更为广泛的应用程序。
+区块链技术源于2008 年诞生的比特币，自从那之后企业家和开发者就不断的尝试推广这一技术，以便在单一的区块链平台上支持更为广泛的应用。
 
-而一些区块链平台努力的支持可运作的去中心化应用，具体的应用比如 BitShares 去中心化交易所 (2014) 和 Steem 社交媒体平台 (2016) 已经成为每天被成千上万活跃用户重度使用的区块链。 他们能做到这些，是通过性能的提升达到每秒处理上千交易，消除手续费和提供堪比已经存在的中心化服务的用户体验。
+一些区块链平台努力的支持可运作的去中心化应用，具体的应用比如 BitShares 去中心化交易所 (2014) 和 Steem 社交媒体平台 (2016) 已经成为每天被成千上万活跃用户重度使用的区块链。 他们能做到这些，是通过性能的提升达到每秒处理上千交易，消减手续费和提供堪比已经存在的中心化服务的用户体验。
 
-已存在的区块链平台承担着大量的交易费和有限的可计算能力，这都阻碍了区块链技术的大面积应用。
+已存在的区块链平台收取的大量的交易费及其有限的计算能力阻碍了区块链技术的大面积应用。
 
 # 区块链应用的要求
-
 为了赢得广泛的应用，构建在区块链之上的应用需要一个灵活性足以满足以下要求的平台：
 
-## 支持成百上千的用户
+## 支持数百万的用户
 
-像 Ebay、Uber、AirBnB 和 Facebook 这样企业，他们需要区块链技术能处理每日数以千万的活跃用户。 在某些情况下，除非用户群体达到一个极庞大的量级否则应用并无用武之地，因此一个可以处理极其庞大用户的平台是至关重要的。
+类似 Ebay、Uber、AirBnB 和 Facebook 等企业的分布式商业活动需要能处理每日数千万活跃用户的区块链技术。 在某些情况下，除非用户群体达到一个极庞大的量级否则应用并无用武之地，因此一个可以处理极其庞大用户的平台是至关重要的。
 
 ## 免费的使用
-
-Application developers need the flexibility to offer users free services; users should not have to pay in order to use the platform or benefit from its services. 一个可以免费供用户使用的区块链平台或许将赢得更为广泛的使用。 开发者和企业可以制订有效的货币化战略。
+应用开发者需要能灵活地提供免费服务。用户不必为因使用平台或提供的服务受益而付费。一个可以免费供用户使用的区块链平台或许将赢得更为广泛的使用。 开发者和企业可以制订有效的货币化策略。
 
 ## 简单升级和 bug 修复
 
@@ -103,11 +101,11 @@ Application developers need the flexibility to offer users free services; users 
 
 ## 并发性能
 
-大型可扩展应用需要将工作量分配到多 CPU 和计算机之上。
+大型可扩展应用需要将工作量分配到多个 CPU 和多台计算机之上。
 
 # 共识算法 (DPOS)
 
-EOS.IO 软件使用唯一能满足区块链之上应用性能需求的去中心化共识算法，[委托股权证明 (DPOS)](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper)。 Under this algorithm, those who hold tokens on a blockchain adopting the EOS.IO software may select block producers through a continuous approval voting system and anyone may choose to participate in block production and will be given an opportunity to produce blocks proportional to the total votes they have received relative to all other producers. For private blockchains the management could use the tokens to add and remove IT staff.
+EOS.IO 软件使用唯一能满足区块链之上应用性能需求的去中心化共识算法，[委托股权证明 (DPOS)](https://steemit.com/dpos/@dantheman/dpos-consensus-algorithm-this-missing-white-paper)。 在这种算法下，在运行EOS.IO软件的区块链上持有令牌的人可以通过持续的批准投票系统选择区块生产者，任何人都可以选择参与区块生产，并有机会生产相对其他生产者的总得票数成比例的区块数量。对于私有区块链，管理层可以使用令牌来添加和删除IT人员。
 
 EOS.IO 软件使得区块准确的每 3 秒生成一个并且在任何时间点都只有一个被授权的生产者来生成区块。 如果一个区块在规定时间之内未被生产出来则这一区块将被跳过。 当一个或多个区块被跳过发生时，在区块链中会有一个 6 秒及以上的间隔。
 
@@ -131,7 +129,7 @@ EOS.IO 软件使得区块准确的每 3 秒生成一个并且在任何时间点�
 
 EOS.IO 软件需要每一个交易包含最近一个区块头的哈希值。这个哈希值有两个目的：
 
-  1. 防止不包含区块引用的交易在分叉时重放发生；和
+  1. 防止不包含区块引用的交易在分叉时重放；和
   2. 通知网络对应的用户和他们的股份当前在某个具体的分叉上。
 
 随着时间的推移，所有的用户直接确认区块链，在这一链条上难以伪造假的链条，因为假的链条根本无法从合法链条上迁移交易。
@@ -140,7 +138,7 @@ EOS.IO 软件需要每一个交易包含最近一个区块头的哈希值。这�
 
 EOS.IO 软件允许所有的帐户使用一个唯一的人类可读的名称来索引，长度在 2 到 32 个字符之间。 这个名称由帐户创建者自己选择。 所有的帐户必须在创建时用极少的帐户余额来注资，从而覆盖存储帐户信息的成本。 帐户名称也支持命名空间，比如 @domain 这个帐户的拥有者是唯一可以创建 @user.domain 帐户的人。
 
-在一个去中心化的场景中，应用开发者将会为新用户注册成本买单。 Traditional businesses already spend significant sums of money per customer they acquire in the form of advertising, free services, etc. 比起来，资助一个新的区块链帐户的花费简直微不足道。 值得庆幸的是，对一个已经在另一个应用注册过的用户并不需要再创建新的帐户。
+在一个去中心化的场景中，应用开发者将会为新用户注册成本买单。传统企业已经以广告，免费服务等形式为每位客户花费大量资金。比起来，资助一个新的区块链帐户的花费简直微不足道。 值得庆幸的是，对一个已经在另一个应用注册过的用户并不需要再创建新的帐户。
 
 ## 消息 & 处理
 
@@ -148,27 +146,25 @@ EOS.IO 软件允许所有的帐户使用一个唯一的人类可读的名称来�
 
 ## 基于角色的权限管理
 
-权限管理涉及判定一条消息是否被正确的授权。 权限管理最简单的形式就是检查一个交易包含必须的签名，但这意味着必须的签名是已知的。 一般情况下，权威必然是独立的个体或者个体组成的群体，并且是被划分开的。 EOS.IO 软件提供了声明式的权限管理系统，通过管理谁可以在什么时间做什么来给用户细力度和高维度的控制。
+权限管理涉及判定一条消息是否被正确的授权。 权限管理最简单的形式就是检查一个交易包含必须的签名，但这意味着必须的签名是已知的。  一般而言，权力是与个人或个人组成的群体联系在一起的，而且往往是分门别类的。 EOS.IO软件提供了一个声明性的权限管理系统，可以对账户进行细粒度和高级别的控制，以确定谁可以做什么，什么时候做什么。认证和权限管理必须标准化，并与应用程序的业务逻辑分开。 这使得开发工具能够以通用的方式管理权限，并为性能优化提供重要的机会。
 
-授权和权限管理被标准化和脱离应用的商业逻辑是不可取的。 这使得管理权限的工具得以被开发，既满足常规的需求又为性能优化提供了重要的可能性。
+每个账户可以通过其他账户和私人密钥的任何加权组合来控制。 这创建了一个反映如何组织实际权限的分级权限结构，并使得多用户对资金的控制比以往更容易。 多用户控制是安全性的最大贡献者，而且正确使用时，可以大大降低黑客窃取的风险。
 
-每一个帐户可以被任何权重组合的其他帐户和私钥管控。 这创建了分层级的权利结构，这反映了现实中的权限分配方式，并且让多用户共同管理资产变得从未如此简单。 多用户控制是安全最大的贡献者，并且，当用户使用得当，它可以极大的消除因被黑而导致被盗窃的风险。
-
-EOS.IO software allows accounts to define what combination of keys and/or accounts can send a particular message type to another account. 举个例子，可以指定一个密钥给一个用户的社交媒体账号，同时另一个密钥访问交易所。 甚至可以给其他帐户权限来代表自己而无需分配给他们密钥。
+EOS.IO 软件允许帐户定义什么样的密钥和/或帐户组合可以将特定的消息类型发送到另一个帐户。 举个例子，可以指定一个密钥给一个用户的社交媒体账号，同时另一个密钥访问交易所。 甚至可以给其他帐户权限来代表自己而无需分配给他们密钥。
 
 ### 命名的权限级别
 
 <img align="right" src="http://eos.io/wpimg/diagram3.png" width="228.395px" height="300px" />
 
-在 EOS.IO 软件中，帐户可以定义命名的权限级别，每一个是由更高级别的命名权限派生而来。 每一个命名的权限级别定义了一个权威；一个权威是多重签名阈值校验，它包含密钥和／或其他帐户的命名权限级别。 打个比方，一个帐户的“朋友”权限级别可以被设置为由该帐户的任何一个朋友无差别的控制。
+使用EOS.IO软件，帐户可以定义命名权限级别，每个权限级别都可以从更高级别的命名权限中导出。 每个命名的权限级别定义一个权限; 权限是由其他账户的密钥和/或命名权限级别组成的阈值多重签名检查。 例如，帐户的“朋友”权限级别可以设置为帐户的任何朋友同等控制的帐户。
 
-另一个例子在 Steem 区块链中，它包含三个硬编码的命名权限级别：拥有，活跃和发帖。 发帖权限就只能进行如投票和发帖的社交活动，而活跃权限可以做除了变更拥有之外的所有的事情。 拥有权限的意思是冷存储并且有能力做任何事。 The EOS.IO software generalizes this concept by allowing each account holder to define their own hierarchy as well as the grouping of actions.
+另一个例子在 Steem 区块链中，它包含三个硬编码的命名权限级别：拥有，活跃和发帖。 发帖权限就只能进行如投票和发帖的社交活动，而活跃权限可以做除了变更拥有之外的所有的事情。 拥有者权限是为了冷存储，并且有能力做任何事。 EOS.IO软件概括了这个概念，允许每个帐户持有者定义他们自己的层次结构以及行为分组。
 
 ### 命名的消息处理群组
 
-EOS.IO 软件允许每个帐户将他们自己的消息组织到一个命名和嵌套的群组中。 这个命名的消息处理群组可以在其他帐户配置他们权限级别时被引用。
+EOS.IO软件允许每个帐户将自己的消息处理程序组织到命名组和嵌套组中。 这些指定的消息处理程序组在配置其权限级别时可由其他帐户引用。
 
-最高级别的消息处理群组是帐户名称，最低级别的是一个帐户接收到的单独的消息类型。 这些群组可以被这样的方式引用： **@accountname.groupa.subgroupb.MessageType**.
+最高级别的消息处理群组是帐户名称，最低级别的是一个帐户接收到的单个的消息类型。 这些群组可以被这样的方式引用： **@accountname.groupa.subgroupb.MessageType**.
 
 在这样的模型之下，交易所合约可以通过将挂单的创建和取消分组，从而与充值提现分离开。 交易所合约的这样分组对用户而言带来了方便。
 
@@ -180,13 +176,13 @@ EOS.IO 软件允许每个帐户定义从任意帐户的一个命名的消息处�
 
 当 **@alice** 以 "**Action**" 类型发送一条消息给 **@bob** 时，EOS.IO 软件首先会检查 **@alice** 是否为 **@bob.groupa.subgroup.Action** 定义过权限映射。 如果什么都没有找到，紧接着检查 **@bob.groupa.subgroup** 映射，然后是 **@bob.groupa**，最后 **@bob** 将被检查。 如果都没有找到，那么假定映射为命名的权限群组 **@alice.active**。
 
-一旦一个映射被识别，则通过阈值多签名流程验证签名权威，并且关联权威与命名的权限。 如果失败了，则跃迁至父权限，直至拥有者权限，**@alice.owner**。
+一旦一个映射被识别，则通过阈值多签名流程验证签名权威，并且关联权威与命名的权限。 如果失败了，则跃迁至父权限，直至拥有者权限**@alice.owner**。
 
 <img align="center" src="http://eos.io/wpimg/diagram2grayscale2.jpg" width="845.85px" height="500px" />
 
 #### 默认权限群组
 
-The EOS.IO technology also allows all accounts to have an "owner" group which can do everything, and an "active" group which can do everything except change the owner group. 所有其他的全新群组派生自“活动”群组。
+EOS.IO技术还允许所有帐户拥有一个可以做所有事情的“所有者”组，而一个“活动”组可以做除了更改所有者组以外的所有事情。 所有其他权限组都是从“活动”派生的。
 
 #### 权限并行评估
 
@@ -194,21 +190,21 @@ The EOS.IO technology also allows all accounts to have an "owner" group which ca
 
 从各方面考虑，权限验证占据了验证交易计算量的很大比例。 让其只读和普遍的并发处理将会使得性能有一个质的飞跃。
 
-当从消息日志中重新生成确定性状态时不再需要重复的权限验证。 事实是一个交易如果被包含近了一个被认为不存在问题的区块时它就有足够的理由跳过这 步这将极大减少因为区块链增长拉去过去记录时的计算量。
+当从消息日志中重新生成确定性状态时不再需要重复的权限验证。 事实是一个交易如果被包含在一个被认为不存在问题的区块时它就有足够的理由跳过这步，这大大减少了与重放不断增长的区块链相关的计算负担。
 
 ## 带强制性延时的消息
 
-时间是安全中的一个关键组成部分。 在大多数情况下，一个私钥在没有被使用前都无从知晓它是否被偷窃。 当人们有需要密钥的应用在每天联网使用的电脑上运行时，基于时间的安全会更为重要。 EOS.IO 软件让应用开发者可以指明消息必须在被加到一个区块之前等待最小的时间间隙。 During this time they can be cancelled.
+时间是安全中的一个关键组成部分。 在大多数情况下，一个私钥在没有被使用前都无从知晓它是否被偷窃。 当人们有需要密钥的应用在每天联网使用的电脑上运行时，基于时间的安全会更为重要。 EOS.IO 软件让应用开发者可以指明消息必须在被加到一个区块之前等待最小的时间间隙。在此期间，他们可以被取消。
 
 用户可以在消息广播出去后通过邮件或者文字消息的形式收到通知。 如果他们没有授权，那么他们可以使用帐户恢复流程来恢复帐户，并收回消息。
 
-这个必须的延时由操作敏感性决定。 为一杯咖啡付款可以没有任何的延时，几秒之内就不可逆了，而购买一个房子也许需要 72 消失的结算期。 转移整个帐户到一个新的控制可能需要长达 30 天。 具体的延时选择由开发者和用户自己来做选择。
+这个必须的延时由操作敏感性决定。 为一杯咖啡付款可以没有任何的延时，几秒之内就不可逆了，而购买一个房子也许需要 72 消失的结算期。 转移整个帐户到一个新的控制可能需要长达 30 天。 具体的延时选择由开发者和用户自己来决定。
 
 ## 恢复被盗窃的密钥
 
 EOS.IO 软件提供给用户一种找回自己失窃密钥控制权的方式。 一个帐户的所有者可以使用过去 30 天任何活跃的拥有者密钥与事先指定的合作者帐户给出的批准来重置自己帐户的密钥。 帐户的恢复合作者在没有所有人帮助的情况下无法重置帐户的控制权。
 
-黑客尝试进行恢复流程是无意义的，因为他们已经“控制”了帐户。 此外，就算他们真的进行这一流程，恢复合作者也会询问身份证明和多因素认证 (手机和邮件)。 这会让黑客脱作出让步或者无功而返。
+黑客尝试进行恢复流程是无意义的，因为他们已经“控制”了帐户。 此外，就算他们真的进行这一流程，恢复合作者也会询问身份证明和多因素认证 (手机和邮件)。 这会让黑客作出让步或者无功而返。
 
 这一流程与简单的多重签名有很大差异。 在多重签名中，另一个公司要参与所有转账的执行，但在恢复流程中，它却只在恢复时才起作用对每天的转账无从干预。 这大大的降低了参与者的成本和法律责任。
 
@@ -216,9 +212,9 @@ EOS.IO 软件提供给用户一种找回自己失窃密钥控制权的方式。 
 
 区块链共识取决于确定性 (可重现的) 的行为。 这意味着所有的并行计算必须是不能互斥或者具有其他锁特性的。 没有了锁就必须有一些方式可以确保所有的帐户只可以读取和写入他们自己的私有数据库。 这也意味着每个帐户处理消息是顺序的，而并发只能在帐户层面进行。
 
-In an EOS.IO software-based blockchain, it is the job of the block producer to organize message delivery into independent threads so that they can be evaluated in parallel. 每个帐户的状态由且只由发送给它的消息决定。 进度表由区块生产者输出并且会被确定性的执行，但是生成进度表的过程却不一定是确定性的。 这意味着区块生产者可以使用并发算法来调度交易。
+在基于EOS.IO软件的区块链中，块生产者的工作是将消息传递组织成独立的线程，以便可以并行评估它们。 每个帐户的状态仅取决于传送给它的消息。 时间表是块生产者的输出，并且将被确定性地执行，但是生成时间表的过程不需要是确定性的。 这意味着块生产者可以利用并行算法来安排交易。
 
-并行执行的一方面意味着当一个脚本生成了一个新的消息，它不会立即被发送，而被安排在下一个轮训中发送。 不能立马发出的原因是接受者可能在另一个线程中活跃的变更自己的状态。
+部分并行执行意味着，当一个脚本产生一个新的消息时，它不会立即被传送，而是被安排在下一个周期传送。 它不能立即传递的原因是因为接收者可能正在另一个线程中主动修改自己的状态。
 
 ## 最小化通信延迟
 
@@ -239,17 +235,16 @@ In an EOS.IO software-based blockchain, it is the job of the block producer to o
 
 在一个循环中生成的交易可以在后续的任何一个循环或者区块中被发送。 区块生产者会持续不断的向区块中添加循环直到最大的墙上时间到了或者没有更多的新交易要发送。
 
-可以对一个区块使用静态分析来验证同一个循环内不存在两个线程包含同一帐户下对交易的变更。 只要保持不变一个区块就可以并行的运行所有的线程。
-
+可以使用块的静态分析来验证在给定周期内没有两个线程包含修改相同账户的交易。 只要保持不变，一个块可以通过并行运行所有线程来处理。
 ## 只读消息的处理
 
-有些帐户可以在传递/失败的基础上处理消息而不修改内部状态。 如果是这样的话，那么这些处理程序可以并行执行，只要只有一个特定的帐户的只读消息处理程序包含在一个或多个线程在一个特定的周期。
+某些帐户可能能够以通过/未通过的方式处理消息，而无需修改其内部状态。 如果是这种情况，则这些处理程序可以并行执行，只要特定账户的只读消息处理程序包含在特定周期内的一个或多个线程中即可。
 
 ## 多帐户的原子化交易
 
-有时我们需要确保消息自动的被多个账户传递和接收。 在这种情况下，消息会被放在同一个交易内，账户会被分配到同一个线程，并且消息被顺序的添加。 这种情况对性能是不理想的，当用户使用涉及到“账单”时，他们将在交易内以账户唯一索引被列入其中。
+有时需要确保消息以原子方式传递给多个账户并被其接受。 在这种情况下，消息都被放置在一个事务中，并且所有账户将被分配相同的线程和按顺序应用的消息。 这种情况对于性能来说并不理想，因此在为用户“使用”计费时，他们将通过交易引用的不同的账户的数量来计费。
 
-基于性能和成本原因最好减少涉及两个或多个重度帐户的原子性操作。
+出于性能和成本原因，最好尽量减少涉及两个或更多使用率高的帐户的原子操作。
 
 ## 区块链状态的部分评估
 
@@ -257,27 +252,27 @@ In an EOS.IO software-based blockchain, it is the job of the block producer to o
 
 一个交易所应用开发者运行一个完整节点位的是为其用户展现所有的状态。 这个交易所应用没有与社交网络建立关联的必要性。 EOS.IO 软件允许任何的完整节点选择应用的任何子集来执行。 传递给其他应用的消息可以被安全的忽略掉，因为应用程序的状态完全由传递给它的消息派生。
 
-这与其他帐户的沟通有一些重要的影响。 最重要的是，不能假定其他帐户的状态可以在同一台机器上访问。 这也意味着，虽然很容易启用“锁”来允许一个帐户同步调用另一个帐户，如果其他帐户不驻留在内存中，这种设计模式就会出现问题。
+这对与其他账户的沟通有一些重大的影响。 最重要的是，不能认为其他账户的状态可以在同一台机器上访问。 这也意味着，虽然启用允许一个账户同步呼叫另一个账户的“锁”是诱人的，但是如果另一个账户不驻留在内存中，则该设计模式发生故障。
 
-所有账户帐户间的状态通信必须通过包含在区块链中的消息进行。
+账户之间的所有状态通信都必须通过区块链中包含的消息来传递。
 
 ## 自主最优调度
 
-EOS.IO 软件并不能为区块生产生者为任何其他帐户送达的任何信息负责。 每个区块生产者要对计算的发杂读和处理一个消息的时间自己进行主观上的预测。 这同时适用于用户生成的和脚本自动生成的交易。
+EOS.IO软件不能强制块生产者将任何消息传递给任何其他帐户。每个块生产者对处理交易所需的计算复杂性和时间做出自己的主观测量。这适用于交易是由用户生成还是由脚本自动生成的。
 
-On a launched blockchain adopting the EOS.IO software, at a network level all transactions are billed a fixed computational bandwidth cost regardless of whether it took .01ms or a full 10 ms to execute it. 然而，每个单独的区块生产者要通过自己的算法来计算资源的消耗。 当一个区块生产者断定一个交易或者帐户消耗了不相称的大量的计算资源时，他们可以在生成自己的区块时拒绝该交易；但是，如果其他区块生产者认为交易是有效的，他们就仍需要处理交易。
+在采用EOS.IO软件的区块链上，在网络层面上，所有交易都会收取固定的计算带宽成本，无论是花费0.01毫秒还是花费10毫秒来执行。然而，使用软件的每个块生产者可以使用他们自己的算法和测量来计算资源使用。当一个区块生产者得出结论：一个交易或账户消耗了不成比例的计算能力时，他们只是简单地在生产自己的区块时拒绝该交易;但是，如果其他区块生产商认为有效，他们仍然会处理交易。
 
 一般而言，只要一个区块生产者认为交易在资源使用限度内是有效的，那么其他区块生产者就也要接受，但可能交易传递给生产者就要花费 1 分钟。
 
-在某些情况下，生产者可以创建包含可接受范围之外的数量级的块。 在这种情况下，下一个区块生产者可能会选择拒绝区块和束缚将被第三个生产者打破。 这和因为区块过大导致的网络延时没什么打不同。 社区会注意到模式的异常并最终会将票从流氓生产者哪里删掉。
+在某些情况下，生产者可能会创建一个块，其中包含的交易数量级在可接受的范围之外。 在这种情况下，下一个区块生产者可以选择拒绝该区块，并且这种约束将被第三个生产者打破。 这与一个大区块导致网络传播延迟没什么不同。 社区会注意到一种滥用的模式，并最终取消投给流氓生产者的选票。
 
-这种对计算成本的主观评估将区块链从必须精确和确定的预测一些东西要花多长时间来运行这一问题中解放出来。 有了这一设计就不需要精确的数指令，将极大的增加优化的可能性又不必打破共识。
+计算成本的这种主观评估使得区块链不必精确地和确定地测量什么东西运行需要多长时间。 有了这个设计，就不需要精确的数指令，将极大的增加优化的可能性又不必打破共识。
 
 # Token 模型与资源使用
 
-**PLEASE NOTE: CRYPTOGRAPHIC TOKENS REFERRED TO IN THIS WHITE PAPER REFER TO CRYPTOGRAPHIC TOKENS ON A LAUNCHED BLOCKCHAIN THAT ADOPTS THE EOS.IO SOFTWARE. THEY DO NOT REFER TO THE ERC-20 COMPATIBLE TOKENS BEING DISTRIBUTED ON THE ETHEREUM BLOCKCHAIN IN CONNECTION WITH THE EOS TOKEN DISTRIBUTION.**
+**请注意：在本白皮书中提到的密码令牌指的是未来采用EOS.IO软件的区块链上的密码令牌。 它们不是指在以太坊区块链上进行ICO的ERC-20兼容的EOS令牌。**
 
-All blockchains are resource constrained and require a system to prevent abuse. With a blockchain that uses EOS.IO software, there are three broad classes of resources that are consumed by applications:
+所有区块链都是资源受限的，需要一个系统来防止滥用。 在使用EOS.IO软件的区块链上，应用程序消耗的有三大类资源：
 
   1. 带宽和日志存储 (磁盘)；
   2. 计算与计算储备 (中央处理器)；
@@ -285,35 +280,35 @@ All blockchains are resource constrained and require a system to prevent abuse. 
 
 带宽和计算有两部分，瞬时使用和长期使用。 一个区块链维持着所有消息的日志，这些日志最终由完全节点存储和下载。 通过消息日志可以重现所有应用的状态。
 
-可计算债务是一个必须通过消息日志重新构建状态的计算结果。 如果可计算债务增长变得臃肿则有必要通过快照方式记录区块链状态，并丢弃区块链历史。 如果可计算债务增长过快，则它需要花费 6 个月时间来重放等值与 1 年的交易。 这很不可取，因此，可计算债务需要被细心的管理。
+可计算债务是必须执行的从消息日志中重新生成状态的计算。如果计算债务增长过大，则有必要拍摄区块链状态的快照并丢弃区块链的历史记录。如果计算债务增长过快，则可能需要6个月的时间来重放1年的交易。因此，对计算债务进行仔细管理是至关重要的。
 
-区块链状态存储是通过访问应用逻辑获取的信息。 它包括诸如挂单和账户余额等信息。 如果状态从未被应用读取则它不会被存储。 比如，博客发布的内容和评论如未被应用逻辑读取则他们就不应该存储在区块链状态中。 同时，发布的内容／评论的存在、投票的数量和其他属性要作为区块链状态的部分被存储下来。
+区块链状态存储是可从应用程序逻辑访问的信息。它包括订单和账户余额等信息。如果应用程序从不读取状态，则不应该存储。例如，应用程序逻辑不会读取博客文章内容和评论，因此不应将其存储在区块链状态中。同时，一个帖子/评论，投票数量和其他属性的要被存储为区块链状态的一部分。
 
-区块生产者对外发布她们可用的带宽，计算能力和状态。 EOS.IO 允许帐户按比例消耗一个 3 天对赌合约中的可用资源。 举个例子，如果一个基于 EOS.IO 的区块链启动了，一个帐户持有所有 token 发行总量的 1%，那么帐号就具有使用 1% 状态存储空间的能力。
+块生产者发布他们的带宽，计算和状态的可用容量。 EOS.IO软件允许每个账户消耗一定比例的可用容量，与3天放样合同中的令牌数量成正比。例如，如果启动基于EOS.IO软件的区块链，并且如果一个账户拥有根据该区块链可分配总代币的1％，则该账户就有利用1％的状态存储空间的能力。
 
-Adopting the EOS.IO software on a launched blockchain means bandwidth and computational capacity are allocated on a fractional reserve basis because they are transient (unused capacity cannot be saved for future use). The algorithm used by EOS.IO software is similar to the algorithm used by Steem to rate-limit bandwidth usage.
+在已启动的区块链中采用EOS.IO软件意味着带宽和计算能力在部分保留基础上进行分配，因为它们是暂时的（未使用的容量不能保存以供将来使用）。 EOS.IO软件使用的算法类似于Steem用来限制带宽使用率的算法。
 
 ## 客观与主观的度量
 
-如前所述，检测计算使用的性能和优化的影响很大；因此，所有资源的使用限制，最终都是主观的，执行依靠个人的算法和区块生产者进行估计。
+如前所述，检测计算使用的性能和优化的影响很大；因此，所有的资源使用约束最终都是主观的，由块生产者根据各自的算法和估计来执行。
 
-也就是说，有一些事情是微不足道的客观衡量。 发送的消息数和存储在内部数据库中的数据的大小是便宜的客观衡量。 的 EOS.IO 软件让区块生产者采用相同的算法应对客观的量，但可以在主观量上选择采用更严格的主观测量算法。
+也就是说，有些事情客观地衡量是微不足道的。 传递的消息数量和存储在内部数据库中的数据的大小客观地测量是便宜的。 EOS.IO软件使块生产者能够在这些客观度量上应用相同的算法，但是可以选择对主观测量应用更严格的主观算法。
 
 ## 接收方付费
 
-传统上来说，企业为办公场地、计算力和其他为了运行企业而需要的成本买单。 客户从企业购买具体的产品，产品销售产生的利润来盖过企业运作的成本。 类似的，没有哪个网站要求来访者为盖过运作成本而支付。 因此，去中心化应用也不应该强制用户因为使用了区块链而直接为区块链支付。
+传统上来说，企业为办公场地、计算力和其他为了运行企业而需要的成本买单。 客户从企业购买具体的产品，这些产品的销售收入用于支付业务成本。 类似的，没有哪个网站要求来访者支付其运作成本。因此，去中心化应用也不应该强制用户因为使用了区块链而直接为区块链支付。
 
-A launched blockchain that uses the EOS.IO software does not require its users to pay the blockchain directly for its use and therefore does not constrain or prevent a business from determining its own monetization strategy for its products.
+使用EOS.IO软件的区块链不要求其用户直接支付区块链使用费，因此不会限制或阻止企业确定其产品的货币化策略。
 
 ## 委托能力
 
-A holder of tokens on a blockchain launched adopting the EOS.IO software who may not have an immediate need to consume all or part of the available bandwidth, can give or rent such unconsumed bandwidth to others; the block producers running EOS.IO software on such blockchain will recognize this delegation of capacity and allocate bandwidth accordingly.
+采用EOS.IO软件的区块链上的令牌持有者，可能不会立即需要消耗全部或部分可用带宽，他可以向其他用户提供或租用这些未消耗的带宽; 在这样的区块链上的区块生产者将认识到这种容量授权并相应地分配带宽。
 
 ## 分离交易成本与 Token 价值
 
-EOS.IO 软件的一个主要优点就是应用可用的带宽完全独立于 token 的价格。 If an application owner holds a relevant number of tokens on a blockchain adopting EOS.IO software, then the application can run indefinitely within a fixed state and bandwidth usage. In such case, developers and users are unaffected from any price volatility in the token market and therefore not reliant on a price feed. In other words, a blockchain that adopts the EOS.IO software enables block producers to naturally increase bandwidth, computation, and storage available per token independent of the token's value.
+EOS.IO 软件的一个主要优点就是应用可用的带宽完全独立于 token 的价格。 如果应用程序所有者在采用EOS.IO软件的区块链上持有相关数量的令牌，则应用程序可以在固定状态和带宽使用情况下无限期地运行。 在这种情况下，开发商和用户不会受到令牌市场任何价格波动的影响，因此不依赖于市场价格。 换句话说，采用EOS.IO软件的区块链使区块生产者能够独立于令牌的价格自然地增加每个令牌可用的带宽，计算和存储。
 
-A blockchain using EOS.IO software also awards block producers tokens every time they produce a block. Token 的值将影响其能购买的带宽、存储和计算资源；这一模型会自然的利用 token 值的上涨来增加网络的性能。
+使用EOS.IO软件的区块链会在区块生产者每次产生区块时授予其令牌。 Token 的值将影响其能购买的带宽、存储和计算资源；这一模型会自然的利用 token 值的上涨来增加网络的性能。
 
 ## 状态存储成本
 
@@ -323,53 +318,53 @@ A blockchain using EOS.IO software also awards block producers tokens every time
 
 ## 块奖励
 
-A blockchain that adopts the EOS.IO software will award new tokens to a block producer every time a block is produced. In these circumstances, the number of tokens created is determined by the median of the desired pay published by all block producers. EOS.IO 软件可以配置限定生产者回报的上限从而确保 token 的每年增长比例不会超过 5%。
+采用EOS.IO软件的区块链将在每次创建块时向块生产者授予新的令牌。 在这种情况下，创建的令牌数量由所有块生产者公布的期望收益的中位数决定。EOS.IO 软件可以配置限定生产者回报的上限从而确保 token 的每年增长比例不会超过 5%。
 
-## 社区效益应用
+## 社区利益应用
 
-In addition to electing block producers, pursuant to a blockchain based on the EOS.IO software, users can elect 3 community benefit applications also known as smart contracts. 这三个应用将接收至多一个按照配置百分比对应的 token 年供应量减去每年提供给区块生产者的 token 量。 这些智能合约将按照每个应用接收到的 token 持有者的票的比例对应的 token。 这些应用或者智能合约可以被 token 持有者选出的新的应用或智能合约所替代。
+除了选择区块生产者之外，在基于EOS.IO软件的区块链上，用户可以选举3个社区利益应用程序，也称为智能合同。 这3个应用程序将获得每年令牌供应量（减去已经支付给块生产者的令牌数）的配置百分比。这些智能合约将获得与其从令牌持有者收到的投票数成比例的令牌。 选举出来的应用程序或智能合约可以由代币持有者新选出的应用程序或智能合约来代替。
 
 # 治理
 
-治理是人们在主观问题上达成共识的过程，而这无法完全用软件算法来捕获。 An EOS.IO software-based blockchain implements a governance process that efficiently directs the existing influence of block producers. 没有了定义好的治理流程，之前的区块链依赖临时的、非正式和常常充满争议的方式治理，直接导致不可预知的结果。
+治理是人们在主观问题上达成共识的过程，而这无法完全用软件算法来捕获。基于EOS.IO软件的区块链实现了一个治理过程，能有效地引导区块生产者的现有影响。由于缺少明确的治理流程，以前的区块链依赖于特殊的，非正式的，往往是有争议的治理过程，导致不可预知的结果。
 
-A blockchain based on the EOS.IO software recognizes that power originates with the token holders who delegate that power to the block producers. 区块生产者被授予有限的检查权威来冻结帐户，升级有缺陷的应用程序，对底层协议提出硬分叉的改进建议。
+基于EOS.IO软件的区块链认识到权力来源于令牌拥有者，他们将权力委托给区块生产者。块生产者被给予有限的检查权限来冻结帐户，更新有缺陷的应用程序，并且提出对底层协议的硬分叉改变。
 
-Embedded into the EOS.IO software is the election of block producers. 在对区块链没有做任何变更之前他们必须认可它。 如果区块生产者拒绝 token 持有者所预期的变更他们就会被投出。 如果区块生产者未经 token 持有者的授权作出变更，其他的非生产、完整验证 (交易所等) 会拒绝这些变更。
+嵌入到EOS.IO软件中的是对块生产者的选举。在对区块链进行任何更改之前必须得到区块生产者的批准。如果区块生产者拒绝令牌持有者想要的改变，那么他们可以被投票出去。如果块生产者没有令牌持有者的授权进行更改，则所有其他非生产性全节点验证者（交易所等）将拒绝该更改。
 
 ## 冻结帐户
 
-有时一个智能合约的行为处于一种一场或不可预测的状态并且无法按照预期执行；另一些时候一个应用或帐户也许发现了一个可以销毁不可想像数量资源的漏洞。 当这些问题不可避免的发生时，区块生产者有能力来扭转这一局面。
+有时一个智能合约的行为处于一种一场或不可预测的状态并且无法按照预期执行；其他时候，应用程序或帐户可能会发现一个使其消耗不合理数量资源的漏洞。 当这些问题不可避免地发生时，区块生产者有能力来扭转这一局面。
 
-所有区块链上的区块生产者都有能力来决定哪些交易被加到区块中，这给了他们冻结帐户的能力。 A blockchain using EOS.IO software formalizes this authority by subjecting the process of freezing an account to a 17/21 vote of active producers. 如果生产者滥用权利他们会被投出，而对应冻结帐户就将解冻。
+所有区块链上的区块生产者都有权来决定哪些交易被加到区块中，这给了他们冻结帐户的能力。  使用EOS.IO软件的区块链通过将冻结帐户的过程经过活跃的生产者的17/21投票表格正式化。 如果生产者滥用权力，他们可以被投票出去，账户将被解冻。
 
 ## 更改帐户代码
 
-When all else fails and an "unstoppable application" acts in an unpredictable manner, a blockchain using EOS.IO software allows the block producers to replace the account's code without hard forking the entire blockchain. 与冻结一个帐户类似，更改帐户代码需要 17/21 这样的生产者票形。
+当所有其他事情都失败了，一个“不可阻挡的应用程序”以不可预知的方式发挥作用时，使用EOS.IO软件的区块链可以让区块生产者替换该账户的代码，而不必导致整个区块链的硬分叉。 与冻结账户的过程类似，这个代码的替换需要17/21选出的块生产者投票。
 
 ## 宪法
 
-EOS.IO 应用使得区块链创建了一个点对点的服务条款协议或者绑定用户到一个合约，这都需要用户对其签名，简称“宪法”。 宪法的内容定义了仅仅依靠代码无法在用户间履行的义务，同时通过建立管辖权和可选的法律来解决相互间的争端。 每个在网络广播的交易都必须将宪法的哈希值作为签名的一部分，从而显性的将签名者绑定在合约中。
+EOS.IO软件允许区块链建立的点对点的服务条款协议或签署该协议的用户之间的绑定合同，称为“宪法”。 宪法的内容规定了无法仅仅依靠代码在用户间履行的义务，同时通过建立管辖权和可选的法律来解决相互间的争端。 每个在网络广播的交易都必须将宪法的哈希值作为签名的一部分，从而显性的将签名者绑定在合约中。
 
-宪法还定义了人类可读意图的源代码协议。 这个意图是用来识别错误和功能之间的差异，当错误发生时，引导社区对什么是适当或不当修复。
+宪法还定义了人类可读意图的源代码协议。 这个意图是用来识别发生错误时的错误和功能之间的差异，当错误发生时，引导社区对什么是适当或不当进行修复。
 
 ## 升级协议 & 宪法
 
-The EOS.IO software defines a process by which the protocol as defined by the canonical source code and its constitution, can be updated using the following process:
+EOS.IO软件定义了一个过程，通过这个过程，规范的源代码定义的协议及其宪法可以通过以下过程来更新：
 
   1. 区块生产者对宪法提出改建意见并获得 17/21 批准。
-  2. 区块生产者持续 17/21 品准连续 30 天。
+  2. 区块生产者维持 17/21 批准连续 30 天。
   3. 所有用户需要使用新的宪法来做签名。
-  4. 区块生产通过变更代码的方式来影响宪法并且提交一个 git 记录的哈希值。
-  5. 区块生产者持续 17/21 品准连续 30 天。
-  6. 7 天后改为会起影响的代码，给所有完整节点 1 周时间在确认源码后进行升级。
+  4. 区块生产者采取改变的源代码，以反映宪法的变化，并且提交一个 git 记录的哈希值。
+  5. 区块生产者维持 17/21 批准连续 30 天。
+  6. 对代码的更改在7天后生效，给所有完整节点 1 周时间在确认源码后进行升级。
   7. 所有未升级到最新代码的节点被自动关掉。
 
 按照 EOS.IO 的默认配置，添加新特性升级区块链的流程需要 2 到 3 个月，而修复一般的 bug 不需要更改宪法需要 1 到 2 个月时间。
 
 ### 紧急变更
 
-区块生产者可以推荐软件的变更当 bug 是伤害性 bug 或安全溢出影响用户使用的。 一般来说，这可能是对宪法的加速更新，引进新的功能或修复无害的错误。
+区块生产者可以推荐软件的变更，当 bug 是伤害性 bug 或安全溢出影响用户使用时。 一般来说，这可能是对宪法的加速更新，引进新的功能或修复无害的错误。
 
 # 脚本 & 虚拟机
 
@@ -377,7 +372,7 @@ EOS.IO 首先会是一个平台用于协同用户间认证消息的传递。 脚
 
 ## 模式定义的消息
 
-所以用户间发送的消息都是通过模式定义定义出来的，它是区块链共识状态的一部分。 这个模式允许消息在二进制与 JSON 格式之间无缝的转换。
+在账户之间发送的所有消息都由作为区块链共识状态一部分的模式定义。这个模式允许消息在二进制与 JSON 格式之间无缝的转换。
 
 ## 模式定义的数据库
 
@@ -385,29 +380,27 @@ EOS.IO 首先会是一个平台用于协同用户间认证消息的传递。 脚
 
 ## 分离授权与应用
 
-To maximize parallelization opportunities and minimize the computational debt associated with regenerating application state from the transaction log, EOS.IO software separates validation logic into three sections:
-
+为了最大限度地实现并行计算并最大限度地减少与事务日志中重新生成应用程序状态相关的可计算债务，EOS.IO软件将验证逻辑分为三部分：
   1. 验证消息是否内部一致；
   2. 验证所有前提条件是否有效；
   3. 修改应用程序状态。
 
-验证消息的内部一致性是只读的并且无需访问区块链状态。 这意味着它可以以最大并发来执行。 验证前提条件，比如需要的余额数，是只读的因此也可以受益与并行计算。 只有更改应用状态时需要写入权限并且必须顺序的执行每个应用。
+验证消息的内部一致性是只读的并且无需访问区块链状态。 这意味着它可以以最大并发来执行。 验证前提条件，比如需要的余额数，是只读的因此也可以受益于并行计算。 只有更改应用状态时需要写入权限并且必须顺序的执行每个应用。
 
 身份认证是一个验证消息可被使用的只读过程。 应用程序实际上在发挥作用。 同一时间两者都需要被计算，然而一旦消息被包含进区块它就不再需要进行消息验证的操作了。
 
 ## 虚拟机独立架构
 
-It is the intention of the EOS.IO software-based blockchain that multiple virtual machines can be supported and new virtual machines added over time as necessary. 因此，本文并不讨论任何特定的语言或者虚拟机。 That said, there are two virtual machines that are currently being evaluated for use with an EOS.IO software-based blockchain.
+基于EOS.IO软件的区块链旨在支持多个虚拟机，并根据需要随时添加新的虚拟机。 因此，本文并不讨论任何特定的语言或者虚拟机。目前有两个虚拟机正在评估中，用于基于EOS.IO软件的区块链。
 
 ### Web 组建 (WASM)
-
-网络组建是一种为了构建高性能的 web 应用而新兴的 web 标准。 只需要进行少量的更改 Web 组建就可以被制作为确定性的和沙盒化的。 Web 组建的好处是它有着广泛的产业支持并且它可以让智能合约使用熟知的语言进行开发，比如 C 或 C++。
+WASM是一种为了构建高性能的 web 应用而新兴的 web 标准。 只需要进行少量的更改 Web 组建就可以被制作为确定性的和沙盒化的。 Web 组建的好处是它有着广泛的产业支持并且它可以让智能合约使用熟知的语言进行开发，比如 C 或 C++。
 
 以太访开发者已经开始更改 Web 组建来提供合适的沙盒与确定性在他们的[以太访式 Web 组建 (WASM)](https://github.com/ewasm/design)。 这种方式让 EOS.IO 很容易的与之适配和对接。
 
 ### 以太访虚拟机 (EVM)
 
-这个虚拟机已经被众多已有的智能合约所采用并且可以通过适配应用与 EOS.IO 区块链中。 It is conceivable that EVM contracts could be run within their own sandbox inside an EOS.IO software-based blockchain and that with some adaptation EVM contracts could communicate with other EOS.IO software blockchain applications.
+这个虚拟机已经被众多已有的智能合约所采用并且可以通过适配应用与 EOS.IO 区块链中。可以想象的是，EVM合约可以在基于EOS.IO软件的区块链内的自己的沙箱中运行，并且通过一些适配，EVM合约可以与其他EOS.IO软件区块链应用程序进行通信。
 
 # 跨链通信
 
@@ -429,16 +422,16 @@ EOS.IO 软件使得任何一个人只要他拥有包含交易所对应区块之�
 
 当需要验证其他链时，有譬如 时间/ 空间/ 带宽 的多样化优化可以做。 追踪全部区块头 (420 MB/年) 将保持证明体积的轻巧。 只追踪最近的头可以提供最小长期存储和证明大小来获得。 另外，一个区块链可以使用懒惰的评估方法，即它记住过去证明的中间值哈希。 新证明只需要包含指向已知稀疏树的链接。 确切的方法将取决于那些包含对 Merkle 证明引用的交易所在的外部区块的比例。
 
-一定密度的联系后，将变得更为高效，一个链会包含另一个链整个区块的历史和消除证据一起，这样就不需要通信便可以验证了。 出于性能原因，应最小化的跨链证明的频率。
+在一定的互连密度之后，简单地使一条链包含另一条链的整个块历史并且不需要所有的一起证明就变得更有效率。 出于性能原因，最理想的做法是尽量减少链间证据的频率。
 
 ## 跨链通信的延时
 
-当与外部区块链进行通信时，区块生产者必须等待直到 100% 确信一个交易已经被另一个区块链确认为不可逆后才会接收它成为一个有效的输入。 Using an EOS.IO software-based blockchain and DPOS with 3 second blocks and 21 producers, this takes approximately 45 seconds. If a chain's block producers do not wait for irreversibility it would be like an exchange accepting a deposit that was later reversed and could impact the validity of the blockchain's consensus.
+当与外部区块链进行通信时，区块生产者必须等待直到 100% 确信一个交易已经被另一个区块链确认为不可逆后才会接收它成为一个有效的输入。 使用基于EOS.IO软件的区块链和DPOS以及3秒区块和21个生产者，大约需要45秒。 如果一个区块生产者不等待不可逆转性，那么就像一家交易所接受一笔后来又被逆转的存款，将可能影响到区块链共识的有效性。
 
 ## 完备性证明
 
-当使用来自外部区块链的 Merkle 证明时，在已知所有交易均已验证和已知没有交易被跳过或遗忘之间有一个重要的差异。 虽然不可能证明所有最近的交易是已知的，但有没有间隙的交易历史是可以被证明的。 EOS.IO 软件在每个用户的每个传递的消息上分配了一个序列号。 一个用于可以使用这些序列号来证明所有的消息由某个特定帐户处理，只需要看它是否是按序执行的。
+当使用来自外部区块链的merkle证明时，知道所有处理的交易都是有效的和知道没有事务被跳过或省略，这两者之间存在着显著差异。 虽然不可能证明所有最近的交易是已知的，但是可以证明交易历史是没有间隙的。 EOS.IO软件通过为发送给每个帐户的每条消息分配一个序列号来简化此过程。 用户可以使用这些序列号来证明针对特定帐户的所有消息已经被处理，并且它们被按顺序处理。
 
 # 总结
 
-EOS.IO 软件是从证明概念的经验和最佳实践设计而来，它代表了区块链技术的重要进步。 该软件是全球可扩展区块链社会伟大蓝图中的一部分，它将应用去中心化并得以轻松的发布和治理。
+EOS.IO软件的设计源自经过验证的概念和最佳实践经验，代表区块链技术的根本性进步。 该软件是全球可扩展区块链社会的整体蓝图的一部分，分散式应用程序可以轻松部署和管理。
