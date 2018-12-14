@@ -75,7 +75,7 @@ Attacking the network with spam, virtual machine exploits, and bug crashes, and 
 
 ### Language Support
 
-Adding support for additional langauges to be compiled to WASM: C++, Rust, etc.
+Adding support for additional languages to be compiled to WASM: C++, Rust, etc.
 
 ### Documentation & Tutorials
 
