@@ -252,7 +252,7 @@ Some accounts may be able to process an Action on a pass/fail basis without modi
 
 ## Atomic Transactions with Multiple Accounts
 
-Sometimes it is desirable to ensure that Actions are delivered to and accepted by multiple accounts atomically. In this case both Actions are placed in one transaction and both accounts will be assigned the same shard and the Actions applied sequentially.
+Sometimes it is desirable to ensure that Actions are delivered to and accepted by multiple accounts atomically. In this case all Actions are placed in one transaction and all accounts will be assigned the same shard and the Actions applied sequentially.
 
 ## Partial Evaluation of Blockchain State
 
