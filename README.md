@@ -1,4 +1,4 @@
-# EOS.IO documentation is now located at http://developers.eos.io
+# EOS.IO documentation is present here hurry up http://developers.eos.io
 
 ## EOS.IO Technical White Paper
 
